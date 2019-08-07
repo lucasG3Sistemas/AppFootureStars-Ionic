@@ -1,0 +1,31 @@
+<ion-header>
+  <!--<ion-navbar>
+    
+  </ion-navbar>-->
+</ion-header>
+
+<ion-content class="page-intro" padding>
+
+  <ion-slides pager>
+    <ion-slide *ngFor="let slide of slides">
+      <ion-toolbar>
+        <ion-buttons class="slide-button" end>
+          <a (click)="acessarTabsPage()">Pular</a>
+        </ion-buttons>
+      </ion-toolbar>
+      <img [src]="slide.image" class="slide-image" />
+      <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+      <p [innerHTML]="slide.description"></p>
+    </ion-slide>
+    <ion-slide>
+      <ion-toolbar>
+      </ion-toolbar>
+      <img src="assets/imgs/slide4.png" class="slide-image" />
+      <h2 class="slide-title">Tudo Pronto?</h2>
+      <button ion-button large clear icon-end color="primary">
+        <a (click)="acessarTabsPage()">Continuar</a>
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
