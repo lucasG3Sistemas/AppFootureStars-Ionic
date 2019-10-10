@@ -42,7 +42,7 @@ export class IntroPage {
     console.log('ionViewDidLoad IntroPage');
   }
 
-  acessarTabsPage() {
+  acessarHome() {
     this.navCtrl.push(TabsPage);
   }
 

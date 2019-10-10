@@ -10,7 +10,7 @@
     <ion-slide *ngFor="let slide of slides">
       <ion-toolbar>
         <ion-buttons class="slide-button" end>
-          <a (click)="acessarTabsPage()">Pular</a>
+          <a (click)="acessarHome()">Pular</a>
         </ion-buttons>
       </ion-toolbar>
       <img [src]="slide.image" class="slide-image" />
@@ -23,7 +23,7 @@
       <img src="assets/imgs/slide4.png" class="slide-image" />
       <h2 class="slide-title">Tudo Pronto?</h2>
       <button ion-button large clear icon-end color="primary">
-        <a (click)="acessarTabsPage()">Continuar</a>
+        <a (click)="acessarHome()">Continuar</a>
         <ion-icon name="arrow-forward"></ion-icon>
       </button>
     </ion-slide>
