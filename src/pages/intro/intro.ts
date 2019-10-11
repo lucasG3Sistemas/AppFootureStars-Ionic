@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
+import { TabsClubePage } from '../tabsclube/tabsclube';
+import { TabsEmprPage } from '../tabsempr/tabsempr';
 
 /**
  * Generated class for the IntroPage page.

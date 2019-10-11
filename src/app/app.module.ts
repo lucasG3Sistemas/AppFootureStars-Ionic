@@ -10,18 +10,30 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IntroPageModule } from '../pages/intro/intro.module';
 import { ConfigProvider } from '../providers/config/config';
-import { VideoPage } from '../pages/video/video';
-import { ClubecadastradoPage } from '../pages/clubecadastrado/clubecadastrado';
-import { ConfigjogadorPage } from '../pages/configjogador/configjogador';
+import { VideosJogadorPage } from '../pages/videos-jogador/videos-jogador';
+import { ClubesCadastradosPage } from '../pages/clubes-cadastrados/clubes-cadastrados';
+import { ConfigJogadorPage } from '../pages/config-jogador/config-jogador';
+import { TabsClubePage } from '../pages/tabsclube/tabsclube';
+import { ListaObservacaoPage } from '../pages/lista-observacao/lista-observacao';
+import { ClubeEmprSeusJogadoresPage } from '../pages/clube-empr-seus-jogadores/clube-empr-seus-jogadores';
+import { ConfigClubePage } from '../pages/config-clube/config-clube';
+import { ConfigEmprPage } from '../pages/config-empr/config-empr';
+import { TabsEmprPage } from '../pages/tabsempr/tabsempr';
 
 @NgModule({
   declarations: [
     MyApp,
     FeedPage,
-    VideoPage,
-    ClubecadastradoPage,
-    ConfigjogadorPage,
-    TabsPage
+    VideosJogadorPage,
+    ClubesCadastradosPage,
+    ConfigJogadorPage,
+    TabsPage,
+    TabsClubePage,
+    TabsEmprPage,
+    ListaObservacaoPage,
+    ClubeEmprSeusJogadoresPage,
+    ConfigClubePage,
+    ConfigEmprPage
   ],
   imports: [
     BrowserModule,
@@ -32,10 +44,16 @@ import { ConfigjogadorPage } from '../pages/configjogador/configjogador';
   entryComponents: [
     MyApp,
     FeedPage,
-    VideoPage,
-    ClubecadastradoPage,
-    ConfigjogadorPage,
-    TabsPage
+    VideosJogadorPage,
+    ClubesCadastradosPage,
+    ConfigJogadorPage,
+    TabsPage,
+    TabsClubePage,
+    TabsEmprPage,
+    ListaObservacaoPage,
+    ClubeEmprSeusJogadoresPage,
+    ConfigClubePage,
+    ConfigEmprPage
   ],
   providers: [
     StatusBar,

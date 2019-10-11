@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the ConfigjogadorPage page.
+ * Generated class for the ListaObservacaoPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,16 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-configjogador',
-  templateUrl: 'configjogador.html',
+  selector: 'page-lista-observacao',
+  templateUrl: 'lista-observacao.html',
 })
-export class ConfigjogadorPage {
+export class ListaObservacaoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ConfigjogadorPage');
+    console.log('ionViewDidLoad ListaObservacaoPage');
   }
 
 }
