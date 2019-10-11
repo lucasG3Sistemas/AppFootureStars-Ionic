@@ -20,19 +20,19 @@ export class IntroPage {
 
   slides = [
     {
-      title: "Welcome to the Docs!",
-      description: "The <b>Ionic Component Documentation</b> showcases a number of useful components that are included out of the box with Ionic.",
-      image: "assets/img/ica-slidebox-img-1.png",
+      title: "App FootureStars!",
+      description: "Este aplicativo irá transformar a sua experiência de <b>divulgação e acompanhamento de jogadores de futebol</b> em uma maneira simples e rápida!",
+      image: "assets/img/slide4.jpg",
+    },  
+    {
+      title: "Você é um Jogador?",
+      description: "Cadastre-se de forma rapída e inclua seus <b>vídeos jogando futebol</b> para que os clubes possam observá-lo!",
+      image: "assets/img/slide4.jpg",
     },
     {
-      title: "What is Ionic?",
-      description: "<b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.",
-      image: "assets/img/ica-slidebox-img-2.png",
-    },
-    {
-      title: "What is Ionic Cloud?",
-      description: "The <b>Ionic Cloud</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.",
-      image: "assets/img/ica-slidebox-img-3.png",
+      title: "Você é um Clube ou Olheiro/Empresário?",
+      description: "Cadastra-se, <b>controle seus jogadores na palma da sua mão</b>, além de <b>observar e acompanhar jogadores pretendidos</b> em qualquer lugar apenas utilizando seu celular!",
+      image: "assets/img/slide4.jpg",
     }
   ];
 
