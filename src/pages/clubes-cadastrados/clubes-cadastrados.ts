@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ClubeFutebolService } from '../../services/domain/clube.service';
 
-/**
- * Generated class for the ClubesCadastradosPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,11 +10,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ClubesCadastradosPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public clubeFutebolService: ClubeFutebolService) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ClubesCadastradosPage');
+    this.clubeFutebolService.findAll().subscribe(response => {
+      console.log(response);
+    },
+    error => {
+      console.log(error);
+    });
+
   }
 
 }
