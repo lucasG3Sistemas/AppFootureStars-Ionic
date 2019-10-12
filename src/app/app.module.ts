@@ -19,10 +19,12 @@ import { ClubeEmprSeusJogadoresPage } from '../pages/clube-empr-seus-jogadores/c
 import { ConfigClubePage } from '../pages/config-clube/config-clube';
 import { ConfigEmprPage } from '../pages/config-empr/config-empr';
 import { TabsEmprPage } from '../pages/tabsempr/tabsempr';
+import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
     MyApp,
+    LoginPage,
     FeedPage,
     VideosJogadorPage,
     ClubesCadastradosPage,
@@ -43,6 +45,7 @@ import { TabsEmprPage } from '../pages/tabsempr/tabsempr';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    LoginPage,
     FeedPage,
     VideosJogadorPage,
     ClubesCadastradosPage,
