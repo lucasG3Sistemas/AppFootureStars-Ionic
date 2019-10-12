@@ -6,13 +6,24 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>clubesCadastrados</ion-title>
+  <ion-navbar color="greenlight">
+    <ion-title>Clubes Cadastrados</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      <ion-thumbnail item-start>
+        <img src="{{bucketUrl}}/club{{item.id}}.jpg">
+      </ion-thumbnail>
+      <h2><b>{{item.nome}}</b></h2>
+      <p>{{item.profissionalizacao==1 ? 'Clube Profissional' : 'Clube Amador'}}</p>
+      <p>{{item.modalidades[0].descricao}}</p>
+      <p>{{item.pais}}</p>
+      <p>{{item.municipio}}/{{item.estado}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>
