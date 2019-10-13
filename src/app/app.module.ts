@@ -22,6 +22,7 @@ import { TabsEmprPage } from '../pages/tabsempr/tabsempr';
 import { LoginPage } from '../pages/login/login';
 import { ClubeFutebolService } from '../services/domain/clube.service';
 import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
+import { AuthService } from '../services/auth.service';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ConfigProvider,
     ClubeFutebolService,
-    ErrorInterceptorProvider
+    ErrorInterceptorProvider,
+    AuthService
   ]
 })
 

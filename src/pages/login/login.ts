@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { CredenciaisDTO } from '../../models/credenciais-dto';
+import { AuthService } from '../../services/auth.service';
 
 
 @IonicPage()
@@ -16,7 +17,10 @@ export class LoginPage {
     senha: ""
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public auth: AuthService
+    ) {
   }
 
   ionViewDidLoad() {
@@ -24,8 +28,12 @@ export class LoginPage {
   }
 
   login() {
-    console.log(this.creds);
-    this.navCtrl.push(TabsPage);
+    this.auth.authenticate(this.creds)
+    .subscribe(response => {
+      console.log(response.headers.get('Authorization'));
+      this.navCtrl.push(TabsPage);
+    },
+    error => {});
   }
 
 }
