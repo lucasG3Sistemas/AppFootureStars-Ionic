@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { StorageService } from '../../services/storage.service';
 
 /**
  * Generated class for the ConfigJogadorPage page.
@@ -15,11 +16,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ConfigJogadorPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  email: string;
+
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public storage: StorageService) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ConfigJogadorPage');
+    let localUser = this.storage.getLocalUser();
+    if (localUser && localUser.email) {
+      this.email = localUser.email;
+    }
   }
 
 }
