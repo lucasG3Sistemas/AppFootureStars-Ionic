@@ -24,6 +24,7 @@ import { ClubeFutebolService } from '../services/domain/clube.service';
 import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 import { AuthService } from '../services/auth.service';
 import { StorageService } from '../services/storage.service';
+import { JogadorService } from '../services/domain/jogador.service';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { StorageService } from '../services/storage.service';
     ClubeFutebolService,
     ErrorInterceptorProvider,
     AuthService,
-    StorageService
+    StorageService,
+    JogadorService
   ]
 })
 

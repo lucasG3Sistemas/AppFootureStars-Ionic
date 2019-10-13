@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { CredenciaisDTO } from '../../models/credenciais-dto';
 import { AuthService } from '../../services/auth.service';
-import { TabsClubePage } from '../tabsclube/tabsclube';
 
 
 @IonicPage()
@@ -32,7 +31,7 @@ export class LoginPage {
     this.auth.authenticate(this.creds)
     .subscribe(response => {
       this.auth.successfulLogin(response.headers.get('Authorization'));
-      this.navCtrl.push(TabsClubePage);
+      this.navCtrl.push(TabsPage);
     },
     error => {});
   }
