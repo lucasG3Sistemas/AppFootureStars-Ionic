@@ -23,6 +23,7 @@ import { LoginPage } from '../pages/login/login';
 import { ClubeFutebolService } from '../services/domain/clube.service';
 import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 import { AuthService } from '../services/auth.service';
+import { StorageService } from '../services/storage.service';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { AuthService } from '../services/auth.service';
     ConfigProvider,
     ClubeFutebolService,
     ErrorInterceptorProvider,
-    AuthService
+    AuthService,
+    StorageService
   ]
 })
 
