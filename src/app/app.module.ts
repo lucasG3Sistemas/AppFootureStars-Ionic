@@ -21,6 +21,7 @@ import { ConfigEmprPage } from '../pages/config-empr/config-empr';
 import { TabsEmprPage } from '../pages/tabsempr/tabsempr';
 import { LoginPage } from '../pages/login/login';
 import { ClubeFutebolService } from '../services/domain/clube.service';
+import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { ClubeFutebolService } from '../services/domain/clube.service';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ConfigProvider,
-    ClubeFutebolService
+    ClubeFutebolService,
+    ErrorInterceptorProvider
   ]
 })
 
