@@ -17,13 +17,7 @@ export class ClubeFutebolService {
     }
     
     findByEmail(email: string) : Observable<ClubeFutebolDTO> {
-
-        let token = this.storage.getLocalUser().token;
-        let authHeader = new HttpHeaders({'Authorization': 'Bearer ' + token});
-
-        return this.http.get<ClubeFutebolDTO>(
-            `${API_CONFIG.baseUrl}/clubes/email?value=${email}`,
-            {'headers': authHeader});
+        return this.http.get<ClubeFutebolDTO>(`${API_CONFIG.baseUrl}/clubes/email?value=${email}`);
     }
 
     getImageFromBucket(id : string) : Observable<any> {

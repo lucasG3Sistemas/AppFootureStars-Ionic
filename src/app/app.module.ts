@@ -26,6 +26,7 @@ import { AuthService } from '../services/auth.service';
 import { StorageService } from '../services/storage.service';
 import { JogadorService } from '../services/domain/jogador.service';
 import { EmpresarioService } from '../services/domain/empresario.service';
+import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -70,10 +71,11 @@ import { EmpresarioService } from '../services/domain/empresario.service';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ConfigProvider,
-    ClubeFutebolService,
+    AuthInterceptorProvider,
     ErrorInterceptorProvider,
     AuthService,
     StorageService,
+    ClubeFutebolService,
     JogadorService,
     EmpresarioService
   ]

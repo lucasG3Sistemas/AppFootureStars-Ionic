@@ -13,13 +13,7 @@ export class JogadorService {
     }
 
     findByEmail(email: string) : Observable<JogadorDTO> {
-
-        let token = this.storage.getLocalUser().token;
-        let authHeader = new HttpHeaders({'Authorization': 'Bearer ' + token});
-
-        return this.http.get<JogadorDTO>(
-            `${API_CONFIG.baseUrl}/jogadores/email?value=${email}`,
-            {'headers': authHeader});
+        return this.http.get<JogadorDTO>(`${API_CONFIG.baseUrl}/jogadores/email?value=${email}`);
     }
 
     getImageFromBucket(id : string) : Observable<any> {
