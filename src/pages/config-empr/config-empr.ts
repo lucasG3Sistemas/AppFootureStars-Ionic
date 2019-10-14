@@ -4,6 +4,7 @@ import { StorageService } from '../../services/storage.service';
 import { EmpresarioDTO } from '../../models/empresario.dto';
 import { EmpresarioService } from '../../services/domain/empresario.service';
 import { API_CONFIG } from '../../config/api.config';
+import { LoginPage } from '../login/login';
 
 @IonicPage()
 @Component({
@@ -28,7 +29,13 @@ export class ConfigEmprPage {
           this.empresario = response;
           this.getImageIfExists();
         },
-        error => {});
+        error => {
+          if (error.status == 403) {
+            this.navCtrl.setRoot(LoginPage);
+          }
+        });
+    } else {
+      this.navCtrl.setRoot(LoginPage);
     }
   }
 

@@ -4,6 +4,7 @@ import { StorageService } from '../../services/storage.service';
 import { API_CONFIG } from '../../config/api.config';
 import { ClubeFutebolService } from '../../services/domain/clube.service';
 import { ClubeFutebolDTO } from '../../models/clube.dto';
+import { LoginPage } from '../login/login';
 
 @IonicPage()
 @Component({
@@ -28,7 +29,13 @@ export class ConfigClubePage {
           this.clube = response;
           this.getImageIfExists();
         },
-        error => {});
+        error => {
+          if (error.status == 403) {
+            this.navCtrl.setRoot(LoginPage);
+          }
+        });
+    } else {
+      this.navCtrl.setRoot(LoginPage);
     }
   }
 
