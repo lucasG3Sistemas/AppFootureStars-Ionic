@@ -45,7 +45,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     handle401() {
         let alert = this.alertCtrl.create({
-            title: 'Erro 401: falha de autenticação',
+            title: 'Erro 401: Falha de Autenticação',
             message: 'Email ou senha incorretos',
             enableBackdropDismiss: false,
             buttons: [
@@ -58,6 +58,17 @@ export class ErrorInterceptor implements HttpInterceptor {
     }
 
     handle403() {
+        let alert = this.alertCtrl.create({
+            title: 'Erro 403: Proibido',
+            message: 'Você não tem permissão para acessar esta tela',
+            enableBackdropDismiss: false,
+            buttons: [
+                {
+                    text: 'Ok'
+                }
+            ]
+        });
+        alert.present();
         this.storage.setLocalUser(null);
     }
 

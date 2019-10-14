@@ -33,11 +33,11 @@ export class ConfigEmprPage {
         },
         error => {
           if (error.status == 403) {
-            this.navCtrl.setRoot(LoginPage);
+            this.navCtrl.parent.parent.setRoot(LoginPage);
           }
         });
     } else {
-      this.navCtrl.setRoot(LoginPage);
+      this.navCtrl.parent.parent.setRoot(LoginPage);
     }
   }
 
