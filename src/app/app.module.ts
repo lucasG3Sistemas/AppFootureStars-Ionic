@@ -27,6 +27,7 @@ import { StorageService } from '../services/storage.service';
 import { JogadorService } from '../services/domain/jogador.service';
 import { EmpresarioService } from '../services/domain/empresario.service';
 import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
+import { SignupPage } from '../pages/signup/signup';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
     ListaObservacaoPage,
     ClubeEmprSeusJogadoresPage,
     ConfigClubePage,
-    ConfigEmprPage
+    ConfigEmprPage,
+    SignupPage
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,8 @@ import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
     ListaObservacaoPage,
     ClubeEmprSeusJogadoresPage,
     ConfigClubePage,
-    ConfigEmprPage
+    ConfigEmprPage,
+    SignupPage
   ],
   providers: [
     StatusBar,

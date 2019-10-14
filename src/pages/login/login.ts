@@ -4,6 +4,7 @@ import { TabsPage } from '../tabs/tabs';
 import { CredenciaisDTO } from '../../models/credenciais-dto';
 import { AuthService } from '../../services/auth.service';
 import { TabsEmprPage } from '../tabsempr/tabsempr';
+import { SignupPage } from '../signup/signup';
 
 
 @IonicPage()
@@ -54,6 +55,10 @@ export class LoginPage {
       this.navCtrl.push(TabsPage);
     },
     error => {});
+  }
+
+  signup() {
+    this.navCtrl.push(SignupPage);
   }
 
 }
