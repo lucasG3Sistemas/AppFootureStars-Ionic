@@ -23,7 +23,7 @@ export class IntroPage {
     {
       title: "App Footure Stars!",
       description: "Este aplicativo irá transformar a sua experiência de <b>divulgação e acompanhamento de jogadores de futebol</b> em uma maneira simples e rápida!",
-      image: "assets/imgs/slide4.jpg",
+      image: "assets/imgs/app.jpg",
     },  
     {
       title: "Você é um Jogador?",
