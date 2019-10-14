@@ -25,6 +25,7 @@ import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 import { AuthService } from '../services/auth.service';
 import { StorageService } from '../services/storage.service';
 import { JogadorService } from '../services/domain/jogador.service';
+import { EmpresarioService } from '../services/domain/empresario.service';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { JogadorService } from '../services/domain/jogador.service';
     ErrorInterceptorProvider,
     AuthService,
     StorageService,
-    JogadorService
+    JogadorService,
+    EmpresarioService
   ]
 })
 

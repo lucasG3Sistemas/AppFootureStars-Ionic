@@ -5,13 +5,6 @@ import { JogadorDTO } from '../../models/jogador.dto';
 import { JogadorService } from '../../services/domain/jogador.service';
 import { API_CONFIG } from '../../config/api.config';
 
-/**
- * Generated class for the ConfigJogadorPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-config-jogador',

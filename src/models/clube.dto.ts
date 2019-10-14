@@ -11,4 +11,5 @@ export interface ClubeFutebolDTO {
     email : String;
     complemento : String;
     idUsuario : String;
+    imageUrl? : string;
 }
