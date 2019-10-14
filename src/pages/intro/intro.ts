@@ -1,16 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { TabsPage } from '../tabs/tabs';
-import { TabsClubePage } from '../tabsclube/tabsclube';
-import { TabsEmprPage } from '../tabsempr/tabsempr';
 import { LoginPage } from '../login/login';
-
-/**
- * Generated class for the IntroPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -22,7 +12,7 @@ export class IntroPage {
   slides = [
     {
       title: "App Footure Stars!",
-      description: "Este aplicativo irá transformar a sua experiência de <b>divulgação e acompanhamento de jogadores de futebol</b> em uma maneira simples e rápida!",
+      description: "Este aplicativo irá transformar a sua experiência em <b>divulgação e acompanhamento de jogadores de futebol</b> em uma maneira simples e rápida!",
       image: "assets/imgs/app.jpg",
     },  
     {
@@ -32,7 +22,7 @@ export class IntroPage {
     },
     {
       title: "Você é um Clube ou Olheiro/Empresário?",
-      description: "Cadastra-se, <b>controle seus jogadores na palma da sua mão</b>, além de <b>observar e acompanhar jogadores pretendidos</b> em qualquer lugar apenas utilizando seu celular!",
+      description: "Cadastra-se, <b>controle seus jogadores na palma da sua mão</b>, além de <b>observar e acompanhar jogadores pretendidos</b> em qualquer lugar, apenas utilizando seu celular!",
       image: "assets/imgs/slide3.jpg",
     }
   ];
