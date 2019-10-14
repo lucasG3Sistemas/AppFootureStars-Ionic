@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SignupJogadorPage } from '../signup-jogador/signup-jogador';
 
 @IonicPage()
 @Component({
@@ -15,6 +16,8 @@ export class SignupPage {
     console.log('ionViewDidLoad SignupPage');
   }
 
-  
+  cadastrarJogador() {
+    this.navCtrl.push(SignupJogadorPage);
+  }
 
 }
