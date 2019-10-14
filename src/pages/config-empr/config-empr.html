@@ -13,4 +13,12 @@
   </ion-avatar>
   <h2 text-center>{{empresario?.nome}}</h2>
   <p text-center>{{empresario?.email}}</p>
+
+  <div text-center>
+    <button ion-button icon-end color="greenlight">
+      <a (click)="logout()">Sair</a>
+      <ion-icon name="md-exit"></ion-icon>
+    </button>
+  </div>
+
 </ion-content>

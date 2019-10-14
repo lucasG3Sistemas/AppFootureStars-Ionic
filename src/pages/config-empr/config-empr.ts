@@ -5,6 +5,7 @@ import { EmpresarioDTO } from '../../models/empresario.dto';
 import { EmpresarioService } from '../../services/domain/empresario.service';
 import { API_CONFIG } from '../../config/api.config';
 import { LoginPage } from '../login/login';
+import { AuthService } from '../../services/auth.service';
 
 @IonicPage()
 @Component({
@@ -18,7 +19,8 @@ export class ConfigEmprPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public storage: StorageService,
-    public empresarioService: EmpresarioService) {
+    public empresarioService: EmpresarioService,
+    public auth: AuthService) {
   }
 
   ionViewDidLoad() {
@@ -45,6 +47,11 @@ export class ConfigEmprPage {
       this.empresario.imageUrl = `${API_CONFIG.bucketBaseUrl}/empr${this.empresario.id}.jpg`;
     },
     error => {});
+  }
+
+  logout() {
+    this.auth.logout();
+    this.navCtrl.parent.parent.setRoot(LoginPage);
   }
 
 }
