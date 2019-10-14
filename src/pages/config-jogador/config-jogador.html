@@ -6,11 +6,18 @@
 
 </ion-header>
 
-
 <ion-content padding>
   <ion-avatar>
     <img class="circle" [src]="jogador?.imageUrl || 'assets/imgs/avatar-blank.png'">
   </ion-avatar>
   <h2 text-center>{{jogador?.nome}}</h2>
   <p text-center>{{jogador?.email}}</p>
+
+  <div text-center>
+    <button ion-button icon-end color="greenlight">
+      <a (click)="logout()">Sair</a>
+      <ion-icon name="md-exit"></ion-icon>
+    </button>
+  </div>
+
 </ion-content>

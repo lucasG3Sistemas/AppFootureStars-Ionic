@@ -16,7 +16,10 @@ import { TabsPage } from '../pages/tabs/tabs';
 export class MyApp {
   rootPage:any;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, configProvider: ConfigProvider) {
+  constructor(platform: Platform,
+    statusBar: StatusBar, 
+    splashScreen: SplashScreen, 
+    configProvider: ConfigProvider) {
     platform.ready().then(() => {
       
       let config = configProvider.getConfigData();

@@ -5,6 +5,7 @@ import { JogadorDTO } from '../../models/jogador.dto';
 import { JogadorService } from '../../services/domain/jogador.service';
 import { API_CONFIG } from '../../config/api.config';
 import { LoginPage } from '../login/login';
+import { AuthService } from '../../services/auth.service';
 
 @IonicPage()
 @Component({
@@ -18,7 +19,8 @@ export class ConfigJogadorPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public storage: StorageService,
-    public jogadorService: JogadorService) {
+    public jogadorService: JogadorService,
+    public auth: AuthService) {
   }
 
   ionViewDidLoad() {
@@ -45,6 +47,11 @@ export class ConfigJogadorPage {
       this.jogador.imageUrl = `${API_CONFIG.bucketBaseUrl}/jdor${this.jogador.id}.jpg`;
     },
     error => {});
+  }
+
+  logout() {
+    this.auth.logout();
+    this.navCtrl.parent.parent.setRoot(LoginPage);
   }
 
 }
