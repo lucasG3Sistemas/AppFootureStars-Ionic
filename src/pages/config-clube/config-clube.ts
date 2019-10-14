@@ -5,6 +5,7 @@ import { API_CONFIG } from '../../config/api.config';
 import { ClubeFutebolService } from '../../services/domain/clube.service';
 import { ClubeFutebolDTO } from '../../models/clube.dto';
 import { LoginPage } from '../login/login';
+import { AuthService } from '../../services/auth.service';
 
 @IonicPage()
 @Component({
@@ -18,7 +19,8 @@ export class ConfigClubePage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public storage: StorageService,
-    public clubeService: ClubeFutebolService) {
+    public clubeService: ClubeFutebolService,
+    public auth: AuthService) {
   }
 
   ionViewDidLoad() {
@@ -45,6 +47,11 @@ export class ConfigClubePage {
       this.clube.imageUrl = `${API_CONFIG.bucketBaseUrl}/club${this.clube.id}.jpg`;
     },
     error => {});
+  }
+
+  logout() {
+    this.auth.logout();
+    this.navCtrl.parent.parent.setRoot(LoginPage);
   }
 
 }
