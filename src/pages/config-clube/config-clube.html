@@ -8,5 +8,9 @@
 
 
 <ion-content padding>
-  {{ email }}
+  <ion-avatar>
+    <img class="circle" [src]="clube?.imageUrl || 'assets/imgs/club-blank.jpg'">
+  </ion-avatar>
+  <h2 text-center>{{clube?.nome}}</h2>
+  <p text-center>{{clube?.email}}</p>
 </ion-content>

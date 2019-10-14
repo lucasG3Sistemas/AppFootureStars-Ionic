@@ -4,6 +4,7 @@ import { TabsPage } from '../tabs/tabs';
 import { CredenciaisDTO } from '../../models/credenciais-dto';
 import { AuthService } from '../../services/auth.service';
 import { TabsEmprPage } from '../tabsempr/tabsempr';
+import { TabsClubePage } from '../tabsclube/tabsclube';
 
 
 @IonicPage()
@@ -32,7 +33,7 @@ export class LoginPage {
     this.auth.authenticate(this.creds)
     .subscribe(response => {
       this.auth.successfulLogin(response.headers.get('Authorization'));
-      this.navCtrl.push(TabsEmprPage);
+      this.navCtrl.push(TabsClubePage);
     },
     error => {});
   }
