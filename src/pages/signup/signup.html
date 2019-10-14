@@ -6,21 +6,24 @@
 
 </ion-header>
 
-
-<ion-content padding class="page-signup">
-  <h4>Escolha Seu Usuário:</h4>
-  <div text-center class="buttons">
-    <button ion-button icon-start color="greenlight">
-      <ion-icon name="ios-shirt"></ion-icon>
-      <a (click)="cadastrarJogador()">Jogador de Futebol</a>
-    </button>
-    <button ion-button icon-start color="greenlight">
-        <ion-icon name="ios-football"></ion-icon>
-      <a (click)="cadastrarClube()">Clube de Futebol</a>
-    </button>
-    <button ion-button icon-start color="greenlight">
-        <ion-icon name="md-person"></ion-icon>
-      <a (click)="cadastrarEmpresario()">Olheiro/Empresário</a>
-    </button>
-  </div>
+<ion-content padding>
+  <form (ngSubmit)="signupUser(); $event.preventDefault()">
+    <ion-item>
+      <ion-label stacked>Email*</ion-label>
+      <ion-input name="email" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Senha*</ion-label>
+      <ion-input name="senha" type="password"></ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label stacked>Tipo Usuário*</ion-label>
+      <ion-select name="tipoUsuario">
+        <ion-option value="1">Jogador de Futebol</ion-option>
+        <ion-option value="2">Clube de Futebol</ion-option>
+        <ion-option value="3">Olheiro/Empresário</ion-option>
+      </ion-select>
+    </ion-item>    
+    <button ion-button block type="submit" color="greenlight">Continuar</button>
+  </form>
 </ion-content>

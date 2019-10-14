@@ -16,8 +16,9 @@ export class SignupPage {
     console.log('ionViewDidLoad SignupPage');
   }
 
-  cadastrarJogador() {
-    this.navCtrl.push(SignupJogadorPage);
+  signupUser() {
+    console.log("enviou o form");
+    //this.navCtrl.push(SignupJogadorPage);
   }
 
 }
