@@ -8,7 +8,6 @@ export interface ClubeFutebolDTO {
     pais : string;
     estado : string;
     municipio : string;
-    email : string;
     complemento : string;
     idUsuario : string;
     imageUrl? : string;
