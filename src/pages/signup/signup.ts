@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SignupJogadorPage } from '../signup-jogador/signup-jogador';
+import { UsuarioNewDTO } from '../../models/usuario.dto';
 
 @IonicPage()
 @Component({
@@ -8,6 +9,12 @@ import { SignupJogadorPage } from '../signup-jogador/signup-jogador';
   templateUrl: 'signup.html',
 })
 export class SignupPage {
+
+  usuario: UsuarioNewDTO = {
+    email: "",
+    senha: "",
+    tipoUsuario: ""
+  };
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -18,7 +25,10 @@ export class SignupPage {
 
   signupUser() {
     console.log("enviou o form");
-    //this.navCtrl.push(SignupJogadorPage);
+    if (this.usuario.tipoUsuario == "1") {
+      this.navCtrl.push(SignupJogadorPage);
+    }
+    
   }
 
 }
