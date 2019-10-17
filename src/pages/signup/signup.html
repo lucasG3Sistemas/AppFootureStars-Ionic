@@ -7,18 +7,18 @@
 </ion-header>
 
 <ion-content padding>
-  <form (ngSubmit)="signupUser(); $event.preventDefault()">
+  <form [formGroup]="formGroup" (ngSubmit)="signupUser(); $event.preventDefault()">
     <ion-item>
       <ion-label stacked>Email*</ion-label>
-      <ion-input [(ngModel)]="usuario.email" name="email" type="text"></ion-input>
+      <ion-input formControlName="email" type="text"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Senha*</ion-label>
-      <ion-input [(ngModel)]="usuario.senha" name="senha" type="password"></ion-input>
+      <ion-input formControlName="senha" type="password"></ion-input>
     </ion-item> 
     <ion-item>
       <ion-label stacked>Tipo de Usuário*</ion-label>
-      <ion-select [(ngModel)]="usuario.tipoUsuario" name="tipoUsuario">
+      <ion-select formControlName="tipoUsuario">
         <ion-option value="1">Jogador de Futebol</ion-option>
         <ion-option value="2">Clube de Futebol</ion-option>
         <ion-option value="3">Olheiro/Empresário</ion-option>

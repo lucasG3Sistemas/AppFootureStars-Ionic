@@ -4,6 +4,8 @@ import { SignupJogadorPage } from '../signup-jogador/signup-jogador';
 import { UsuarioDTO } from '../../models/usuario.dto';
 import { SignupClubePage } from '../signup-clube/signup-clube';
 import { SignupEmpresarioPage } from '../signup-empresario/signup-empresario';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CONFIG_USU } from '../../config/config_usu';
 
 @IonicPage()
 @Component({
@@ -12,13 +14,18 @@ import { SignupEmpresarioPage } from '../signup-empresario/signup-empresario';
 })
 export class SignupPage {
 
-  usuario: UsuarioDTO = {
-    email: "",
-    senha: "",
-    tipoUsuario: ""
-  };
+  formGroup: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public formBuilder: FormBuilder) {
+
+      this.formGroup = this.formBuilder.group({
+        email: ['teste@gmail.com', [Validators.required, Validators.email]],
+        senha : ['', [Validators.required]],
+        tipoUsuario : [null, [Validators.required]]
+      });
   }
 
   ionViewDidLoad() {
@@ -26,12 +33,13 @@ export class SignupPage {
   }
 
   signupUser() {
-    console.log("enviou o form");
-    if (this.usuario.tipoUsuario == "1") {
+    CONFIG_USU.emailUsuario = this.formGroup.value.email;
+
+    if (this.formGroup.value.tipoUsuario == "1") {
       this.navCtrl.push(SignupJogadorPage);
-    } else if (this.usuario.tipoUsuario == "2") {
+    } else if (this.formGroup.value.tipoUsuario == "2") {
       this.navCtrl.push(SignupClubePage);
-    } else if (this.usuario.tipoUsuario == "3") {
+    } else if (this.formGroup.value.tipoUsuario == "3") {
       this.navCtrl.push(SignupEmpresarioPage);
     }
     

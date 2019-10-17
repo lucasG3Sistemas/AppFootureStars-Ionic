@@ -8,39 +8,63 @@
 
 
 <ion-content padding>
-  
-  <form (ngSubmit)="signupJogador(); $event.preventDefault()">
+
+  <form [formGroup]="formGroup" (ngSubmit)="signupJogador(); $event.preventDefault()">
     <ion-item>
       <ion-label stacked>Nome*</ion-label>
-      <ion-input name="nome" type="text"></ion-input>
+      <ion-input formControlName="nome" type="text"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label stacked>CPF*</ion-label>
-      <ion-input name="cpf" type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Data Nascimento*</ion-label>
-      <ion-input name="data_nasc" type="date"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Nacionalidade*</ion-label>
-      <ion-input name="nacionalidade" type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Estado Nascimento*</ion-label>
-      <ion-select name="estado_nasc" (ionChange)="updateCidades()">
-        <ion-option value="SC">Santa Catarina</ion-option>
-        <ion-option value="RS">Rio Grande do Sul</ion-option>
-      </ion-select>
-    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label stacked>CPF*</ion-label>
+              <ion-input formControlName="cpf" type="text"></ion-input>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label stacked>Data Nascimento*</ion-label>
+              <ion-input formControlName="data_nasc" type="date"></ion-input>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label stacked>Nacionalidade*</ion-label>
+              <ion-input formControlName="nacionalidade" type="text"></ion-input>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label stacked>Estado Nascimento*</ion-label>
+              <ion-select formControlName="estado_nasc" (ionChange)="updateCidades()">
+                <ion-option value="SC">Santa Catarina</ion-option>
+                <ion-option value="RS">Rio Grande do Sul</ion-option>
+              </ion-select>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     <ion-item>
       <ion-label stacked>Cidade Nascimento*</ion-label>
-      <ion-select name="municipio_nasc">
+      <ion-select formControlName="municipio_nasc">
         <ion-option value="1">Uberlândia</ion-option>
         <ion-option value="2">Campinas</ion-option>
       </ion-select>
     </ion-item>
-    <ion-list radio-group name="sexo">
+    <ion-list radio-group formControlName="sexo">
       <ion-list-header>
         Sexo*
       </ion-list-header>
@@ -53,15 +77,27 @@
         <ion-radio value="2"></ion-radio>
       </ion-item>
     </ion-list>
-    <ion-item>
-      <ion-label stacked>Altura*</ion-label>
-      <ion-input name="altura" type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Peso*</ion-label>
-      <ion-input name="peso" type="text"></ion-input>
-    </ion-item>
-    <ion-list radio-group name="profissionalizacao">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label stacked>Altura*</ion-label>
+              <ion-input formControlName="altura" type="text"></ion-input>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label stacked>Peso*</ion-label>
+              <ion-input formControlName="peso" type="text"></ion-input>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-list radio-group formControlName="profissionalizacao">
       <ion-list-header>
         Profissionalização*
       </ion-list-header>
@@ -76,37 +112,49 @@
     </ion-list>
     <ion-item>
       <ion-label stacked>Código CBF</ion-label>
-      <ion-input name="codigo_cbf" type="text"></ion-input>
-    </ion-item>  
+      <ion-input formControlName="codigo_cbf" type="text"></ion-input>
+    </ion-item>
     <ion-item>
       <ion-label stacked>Modalidade Esportiva*</ion-label>
-      <ion-select name="idModalidade" (ionChange)="updatePosicoes()">
+      <ion-select formControlName="idModalidade" (ionChange)="updatePosicoes()">
         <ion-option value="1">Futebol de Campo</ion-option>
         <ion-option value="2">Futebol de Salão</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label stacked>Posição Principal*</ion-label>
-      <ion-select name="idPosicao1">
+      <ion-select formControlName="idPosicao1">
         <ion-option value="1">Goleiro</ion-option>
         <ion-option value="2">Zagueiro</ion-option>
       </ion-select>
     </ion-item>
-    <ion-item>
-      <ion-label stacked>Posição Secundária*</ion-label>
-      <ion-select name="idPosicao2">
-        <ion-option value="1">Goleiro</ion-option>
-        <ion-option value="2">Zagueiro</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Posição Terciária*</ion-label>
-      <ion-select name="idPosicao3">
-        <ion-option value="1">Goleiro</ion-option>
-        <ion-option value="2">Zagueiro</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-list radio-group name="perna_preferida">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label stacked>Posição Secundária</ion-label>
+              <ion-select formControlName="idPosicao2">
+                <ion-option value="1">Goleiro</ion-option>
+                <ion-option value="2">Zagueiro</ion-option>
+              </ion-select>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label stacked>Posição Terciária</ion-label>
+              <ion-select formControlName="idPosicao3">
+                <ion-option value="1">Goleiro</ion-option>
+                <ion-option value="2">Zagueiro</ion-option>
+              </ion-select>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-list radio-group formControlName="perna_preferida">
       <ion-list-header>
         Perna Preferida*
       </ion-list-header>
@@ -119,25 +167,37 @@
         <ion-radio value="2"></ion-radio>
       </ion-item>
     </ion-list>
-    <ion-item>
-      <ion-label stacked>Prefixo Fone*</ion-label>
-      <ion-input name="prefixo_fone" type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>DDD Fone*</ion-label>
-      <ion-input name="ddd_fone" type="text"></ion-input>
-    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label stacked>Prefixo Fone*</ion-label>
+              <ion-input formControlName="prefixo_fone" type="text"></ion-input>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label stacked>DDD Fone*</ion-label>
+              <ion-input formControlName="ddd_fone" type="text"></ion-input>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     <ion-item>
       <ion-label stacked>Fone*</ion-label>
-      <ion-input name="fone" type="text"></ion-input>
+      <ion-input formControlName="fone" type="text"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Email*</ion-label>
-      <ion-input name="email" type="text"></ion-input>
+      <ion-input formControlName="email" type="text"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Complemento</ion-label>
-      <ion-input name="complemento" type="textarea"></ion-input>
+      <ion-input formControlName="complemento" type="textarea"></ion-input>
     </ion-item>
     <button ion-button block type="submit" color="greenlight">Cadastrar Jogador</button>
   </form>

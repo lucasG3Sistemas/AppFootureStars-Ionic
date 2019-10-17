@@ -1,75 +1,99 @@
 <ion-header>
 
-    <ion-navbar color="greenlight">
-      <ion-title>Cadastro de Olheiro/Empresário</ion-title>
-    </ion-navbar>
-  
-  </ion-header>
-  
-  
-  <ion-content padding>
-    
-    <form (ngSubmit)="signupEmpresario(); $event.preventDefault()">
+  <ion-navbar color="greenlight">
+    <ion-title>Cadastro de Olheiro/Empresário</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <form [formGroup]="formGroup" (ngSubmit)="signupEmpresario(); $event.preventDefault()">
+    <ion-item>
+      <ion-label stacked>Nome*</ion-label>
+      <ion-input formControlName="nome" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>CPF*</ion-label>
+      <ion-input formControlName="cpf" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Data Nascimento*</ion-label>
+      <ion-input formControlName="data_nasc" type="date"></ion-input>
+    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label stacked>Nacionalidade*</ion-label>
+              <ion-input formControlName="nacionalidade" type="text"></ion-input>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label stacked>Estado Nascimento*</ion-label>
+              <ion-select formControlName="estado_nasc" (ionChange)="updateCidades()">
+                <ion-option value="SC">Santa Catarina</ion-option>
+                <ion-option value="RS">Rio Grande do Sul</ion-option>
+              </ion-select>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-item>
+      <ion-label stacked>Cidade Nascimento*</ion-label>
+      <ion-select formControlName="municipio_nasc">
+        <ion-option value="1">Uberlândia</ion-option>
+        <ion-option value="2">Campinas</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-list radio-group formControlName="sexo">
+      <ion-list-header>
+        Sexo*
+      </ion-list-header>
       <ion-item>
-        <ion-label stacked>Nome*</ion-label>
-        <ion-input name="nome" type="text"></ion-input>
+        <ion-label>Masculino</ion-label>
+        <ion-radio checked="true" value="1"></ion-radio>
       </ion-item>
       <ion-item>
-        <ion-label stacked>CPF*</ion-label>
-        <ion-input name="cpf" type="text"></ion-input>
+        <ion-label>Feminino</ion-label>
+        <ion-radio value="2"></ion-radio>
       </ion-item>
-      <ion-item>
-        <ion-label stacked>Data Nascimento*</ion-label>
-        <ion-input name="data_nasc" type="date"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>Nacionalidade*</ion-label>
-        <ion-input name="nacionalidade" type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>Estado Nascimento*</ion-label>
-        <ion-select name="estado_nasc" (ionChange)="updateCidades()">
-          <ion-option value="SC">Santa Catarina</ion-option>
-          <ion-option value="RS">Rio Grande do Sul</ion-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>Cidade Nascimento*</ion-label>
-        <ion-select name="municipio_nasc">
-          <ion-option value="1">Uberlândia</ion-option>
-          <ion-option value="2">Campinas</ion-option>
-        </ion-select>
-      </ion-item>
-      <ion-list radio-group name="sexo">
-        <ion-list-header>
-          Sexo*
-        </ion-list-header>
-        <ion-item>
-          <ion-label>Masculino</ion-label>
-          <ion-radio checked="true" value="1"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Feminino</ion-label>
-          <ion-radio value="2"></ion-radio>
-        </ion-item>
-      </ion-list>
-      <ion-item>
-        <ion-label stacked>Prefixo Fone*</ion-label>
-        <ion-input name="prefixo_fone" type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>DDD Fone*</ion-label>
-        <ion-input name="ddd_fone" type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>Fone*</ion-label>
-        <ion-input name="fone" type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>Complemento</ion-label>
-        <ion-input name="complemento" type="textarea"></ion-input>
-      </ion-item>
-      <button ion-button block type="submit" color="greenlight">Cadastrar Olheiro/Empresário</button>
-    </form>
-  
-  </ion-content>
+    </ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label stacked>Prefixo Fone*</ion-label>
+              <ion-input formControlName="prefixo_fone" type="text"></ion-input>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label stacked>DDD Fone*</ion-label>
+              <ion-input formControlName="ddd_fone" type="text"></ion-input>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-item>
+      <ion-label stacked>Fone*</ion-label>
+      <ion-input formControlName="fone" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Complemento</ion-label>
+      <ion-input formControlName="complemento" type="textarea"></ion-input>
+    </ion-item>
+    <button ion-button block type="submit" color="greenlight">Cadastrar Olheiro/Empresário</button>
+  </form>
+
+</ion-content>
