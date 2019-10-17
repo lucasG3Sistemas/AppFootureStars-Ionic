@@ -30,6 +30,7 @@ import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { SignupPage } from '../pages/signup/signup';
 import { SignupJogadorPage } from '../pages/signup-jogador/signup-jogador';
 import { SignupClubePage } from '../pages/signup-clube/signup-clube';
+import { SignupEmpresarioPage } from '../pages/signup-empresario/signup-empresario';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { SignupClubePage } from '../pages/signup-clube/signup-clube';
     ConfigEmprPage,
     SignupPage,
     SignupJogadorPage,
-    SignupClubePage
+    SignupClubePage,
+    SignupEmpresarioPage
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,8 @@ import { SignupClubePage } from '../pages/signup-clube/signup-clube';
     ConfigEmprPage,
     SignupPage,
     SignupJogadorPage,
-    SignupClubePage
+    SignupClubePage,
+    SignupEmpresarioPage
   ],
   providers: [
     StatusBar,

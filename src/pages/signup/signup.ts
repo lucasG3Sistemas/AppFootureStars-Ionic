@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SignupJogadorPage } from '../signup-jogador/signup-jogador';
 import { UsuarioDTO } from '../../models/usuario.dto';
 import { SignupClubePage } from '../signup-clube/signup-clube';
+import { SignupEmpresarioPage } from '../signup-empresario/signup-empresario';
 
 @IonicPage()
 @Component({
@@ -30,6 +31,8 @@ export class SignupPage {
       this.navCtrl.push(SignupJogadorPage);
     } else if (this.usuario.tipoUsuario == "2") {
       this.navCtrl.push(SignupClubePage);
+    } else if (this.usuario.tipoUsuario == "3") {
+      this.navCtrl.push(SignupEmpresarioPage);
     }
     
   }

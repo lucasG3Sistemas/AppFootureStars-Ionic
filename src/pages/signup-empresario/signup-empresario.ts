@@ -3,19 +3,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-signup-clube',
-  templateUrl: 'signup-clube.html',
+  selector: 'page-signup-empresario',
+  templateUrl: 'signup-empresario.html',
 })
-export class SignupClubePage {
+export class SignupEmpresarioPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupClubePage');
+    console.log('ionViewDidLoad SignupEmpresarioPage');
   }
 
-  signupClube() {
+  signupEmpresario() {
     console.log("enviou o form");
   }
 
