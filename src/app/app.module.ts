@@ -31,6 +31,8 @@ import { SignupPage } from '../pages/signup/signup';
 import { SignupJogadorPage } from '../pages/signup-jogador/signup-jogador';
 import { SignupClubePage } from '../pages/signup-clube/signup-clube';
 import { SignupEmpresarioPage } from '../pages/signup-empresario/signup-empresario';
+import { CidadeService } from '../services/domain/municipio.service';
+import { EstadoService } from '../services/domain/estado.service';
 
 @NgModule({
   declarations: [
@@ -89,7 +91,9 @@ import { SignupEmpresarioPage } from '../pages/signup-empresario/signup-empresar
     StorageService,
     ClubeFutebolService,
     JogadorService,
-    EmpresarioService
+    EmpresarioService,
+    EstadoService,
+    CidadeService
   ]
 })
 
