@@ -28,7 +28,9 @@
           <div>
             <ion-item>
               <ion-label stacked>Nacionalidade*</ion-label>
-              <ion-input formControlName="nacionalidade" type="text"></ion-input>
+              <ion-select formControlName="nacionalidade">
+                <ion-option value="Brasil">Brasil</ion-option>
+              </ion-select>
             </ion-item>
           </div>
         </ion-col>
@@ -37,8 +39,7 @@
             <ion-item>
               <ion-label stacked>Estado Nascimento*</ion-label>
               <ion-select formControlName="estado_nasc" (ionChange)="updateCidades()">
-                <ion-option value="SC">Santa Catarina</ion-option>
-                <ion-option value="RS">Rio Grande do Sul</ion-option>
+                <ion-option *ngFor="let estado of estados" [value]="estado.id">{{estado.nome}}</ion-option>
               </ion-select>
             </ion-item>
           </div>
@@ -48,8 +49,7 @@
     <ion-item>
       <ion-label stacked>Cidade Nascimento*</ion-label>
       <ion-select formControlName="municipio_nasc">
-        <ion-option value="1">Uberlândia</ion-option>
-        <ion-option value="2">Campinas</ion-option>
+        <ion-option *ngFor="let cidade of cidades" [value]="cidade.nome">{{cidade.nome}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-list radio-group formControlName="sexo">
