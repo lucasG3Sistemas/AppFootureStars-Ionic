@@ -117,15 +117,15 @@
     <ion-item>
       <ion-label stacked>Modalidade Esportiva*</ion-label>
       <ion-select formControlName="idModalidade" (ionChange)="updatePosicoes()">
-        <ion-option value="1">Futebol de Campo</ion-option>
-        <ion-option value="2">Futebol de Salão</ion-option>
+        <ion-option *ngFor="let modalidade of modalidades; first as f" [value]="modalidade.id" [selected]="f">
+          {{modalidade.descricao}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label stacked>Posição Principal*</ion-label>
       <ion-select formControlName="idPosicao1">
-        <ion-option value="1">Goleiro</ion-option>
-        <ion-option value="2">Zagueiro</ion-option>
+        <ion-option *ngFor="let modalidadePosicao of modalidadePosicoes; first as f" [value]="modalidadePosicao.id"
+          [selected]="f">{{modalidadePosicao.descricao}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-grid>
@@ -135,8 +135,8 @@
             <ion-item>
               <ion-label stacked>Posição Secundária</ion-label>
               <ion-select formControlName="idPosicao2">
-                <ion-option value="1">Goleiro</ion-option>
-                <ion-option value="2">Zagueiro</ion-option>
+                <ion-option *ngFor="let modalidadePosicao of modalidadePosicoes"
+                  [value]="modalidadePosicao.id">{{modalidadePosicao.descricao}}</ion-option>
               </ion-select>
             </ion-item>
           </div>
@@ -146,8 +146,8 @@
             <ion-item>
               <ion-label stacked>Posição Terciária</ion-label>
               <ion-select formControlName="idPosicao3">
-                <ion-option value="1">Goleiro</ion-option>
-                <ion-option value="2">Zagueiro</ion-option>
+                <ion-option *ngFor="let modalidadePosicao of modalidadePosicoes"
+                  [value]="modalidadePosicao.id">{{modalidadePosicao.descricao}}</ion-option>
               </ion-select>
             </ion-item>
           </div>

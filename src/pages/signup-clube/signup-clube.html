@@ -16,15 +16,13 @@
     <ion-item>
       <ion-label stacked>Modalidade Esportiva Principal*</ion-label>
       <ion-select formControlName="idModalidade1">
-        <ion-option value="1">Futebol de Campo</ion-option>
-        <ion-option value="2">Futebol de Salão</ion-option>
+        <ion-option *ngFor="let modalidade of modalidades; first as f" [value]="modalidade.id" [selected]="f">{{modalidade.descricao}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label stacked>Modalidade Esportiva Secundária</ion-label>
       <ion-select formControlName="idModalidade2">
-        <ion-option value="1">Futebol de Campo</ion-option>
-        <ion-option value="2">Futebol de Salão</ion-option>
+        <ion-option *ngFor="let modalidade of modalidades; first as f" [value]="modalidade.id">{{modalidade.descricao}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-list radio-group formControlName="profissionalizacao">

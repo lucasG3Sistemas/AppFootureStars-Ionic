@@ -6,6 +6,8 @@ import { CidadeDTO } from '../../models/municipio.dto';
 import { CidadeService } from '../../services/domain/municipio.service';
 import { EstadoDTO } from '../../models/estado.dto';
 import { EstadoService } from '../../services/domain/estado.service';
+import { ModalidadeDTO } from '../../models/modalidade.dto';
+import { ModalidadeService } from '../../services/domain/modalidade.service';
 
 @IonicPage()
 @Component({
@@ -15,6 +17,7 @@ import { EstadoService } from '../../services/domain/estado.service';
 export class SignupClubePage {
 
   formGroup: FormGroup;
+  modalidades: ModalidadeDTO[];
   estados: EstadoDTO[];
   cidades: CidadeDTO[];
 
@@ -22,6 +25,7 @@ export class SignupClubePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
+    public modalidadeService: ModalidadeService,
     public estadoService: EstadoService,
     public cidadeService: CidadeService) {
 
@@ -47,6 +51,13 @@ export class SignupClubePage {
         this.estados = response;
         this.formGroup.controls.estado.setValue(this.estados[0].id);
         this.updateCidades();
+      },
+        error => { });
+
+    this.modalidadeService.findAll()
+      .subscribe(response => {
+        this.modalidades = response;
+        this.formGroup.controls.idModalidade1.setValue(this.modalidades[0].id);
       },
         error => { });
   }

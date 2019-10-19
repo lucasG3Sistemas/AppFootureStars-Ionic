@@ -6,6 +6,10 @@ import { EstadoDTO } from '../../models/estado.dto';
 import { EstadoService } from '../../services/domain/estado.service';
 import { CidadeService } from '../../services/domain/municipio.service';
 import { CidadeDTO } from '../../models/municipio.dto';
+import { ModalidadePosicaoDTO } from '../../models/modalidade.posicao.dto';
+import { ModalidadeDTO } from '../../models/modalidade.dto';
+import { ModalidadeService } from '../../services/domain/modalidade.service';
+import { ModalidadePosicaoService } from '../../services/domain/modalidade.posicao.service';
 
 @IonicPage()
 @Component({
@@ -14,44 +18,48 @@ import { CidadeDTO } from '../../models/municipio.dto';
 })
 export class SignupJogadorPage {
 
-  formGroup: FormGroup; 
+  formGroup: FormGroup;
   estados: EstadoDTO[];
   cidades: CidadeDTO[];
+  modalidades: ModalidadeDTO[];
+  modalidadePosicoes: ModalidadePosicaoDTO[];
 
   constructor(
     public navCtrl: NavController,
-     public navParams: NavParams,
-     public formBuilder: FormBuilder,
-     public estadoService: EstadoService,
-     public cidadeService: CidadeService) {
+    public navParams: NavParams,
+    public formBuilder: FormBuilder,
+    public estadoService: EstadoService,
+    public cidadeService: CidadeService,
+    public modalidadeService: ModalidadeService,
+    public modalidadePosicaoService: ModalidadePosicaoService) {
 
-      this.formGroup = this.formBuilder.group({
-        nome : ['', [Validators.required]],
-        cpf : ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
-        data_nasc : ['', [Validators.required]],
-        nacionalidade : ['', [Validators.required]],
-        estado_nasc : [null, [Validators.required]],
-        municipio_nasc : [null, [Validators.required]],
-        sexo : ['', [Validators.required]],
-        altura : ['', [Validators.required]],
-        peso : ['', [Validators.required]],
-        profissionalizacao : ['', [Validators.required]],
-        codigo_cbf : ['', [Validators.required]],
-        idModalidade : [null, [Validators.required]],
-        idPosicao1 : [null, [Validators.required]],
-        idPosicao2 : [null],
-        idPosicao3 : [null],
-        perna_preferida : [null, [Validators.required]],
-        prefixo_fone : ['', [Validators.required]],
-        ddd_fone : ['', [Validators.required]],
-        fone : ['', [Validators.required]],
-        email : [CONFIG_USU.emailUsuario, [Validators.required, Validators.email]],
-        complemento : [''],
-        idClubeFutebol : [null],
-        idEmpresario : [null],
-        idUsuario : CONFIG_USU.emailUsuario
-      });
-      
+    this.formGroup = this.formBuilder.group({
+      nome: ['', [Validators.required]],
+      cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+      data_nasc: ['', [Validators.required]],
+      nacionalidade: ['', [Validators.required]],
+      estado_nasc: [null, [Validators.required]],
+      municipio_nasc: [null, [Validators.required]],
+      sexo: ['', [Validators.required]],
+      altura: ['', [Validators.required]],
+      peso: ['', [Validators.required]],
+      profissionalizacao: ['', [Validators.required]],
+      codigo_cbf: ['', [Validators.required]],
+      idModalidade: [null, [Validators.required]],
+      idPosicao1: [null, [Validators.required]],
+      idPosicao2: [null],
+      idPosicao3: [null],
+      perna_preferida: [null, [Validators.required]],
+      prefixo_fone: ['', [Validators.required]],
+      ddd_fone: ['', [Validators.required]],
+      fone: ['', [Validators.required]],
+      email: [CONFIG_USU.emailUsuario, [Validators.required, Validators.email]],
+      complemento: [''],
+      idClubeFutebol: [null],
+      idEmpresario: [null],
+      idUsuario: CONFIG_USU.emailUsuario
+    });
+
   }
 
   ionViewDidLoad() {
@@ -63,6 +71,14 @@ export class SignupJogadorPage {
         this.updateCidades();
       },
         error => { });
+
+    this.modalidadeService.findAll()
+      .subscribe(response => {
+        this.modalidades = response;
+        this.formGroup.controls.idModalidade.setValue(this.modalidades[0].id);
+        this.updatePosicoes();
+      },
+        error => { });
   }
 
   updateCidades() {
@@ -71,6 +87,16 @@ export class SignupJogadorPage {
       .subscribe(response => {
         this.cidades = response;
         this.formGroup.controls.municipio_nasc.setValue(null);
+      },
+        error => { });
+  }
+
+  updatePosicoes() {
+    let idModalidade = this.formGroup.value.idModalidade;
+    this.modalidadePosicaoService.findAll(idModalidade)
+      .subscribe(response => {
+        this.modalidadePosicoes = response;
+        this.formGroup.controls.idPosicao1.setValue(null);
       },
         error => { });
   }
