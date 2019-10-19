@@ -29,7 +29,7 @@ export class SignupEmpresarioPage {
      public alertCtrl: AlertController) {
 
       this.formGroup = this.formBuilder.group({
-        nome: ['teste@gmail.com', [Validators.required]],
+        nome: ['', [Validators.required]],
         cpf : ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
         data_nasc : ['', [Validators.required]],
         nacionalidade : ['', [Validators.required]],

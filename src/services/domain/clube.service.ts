@@ -25,4 +25,15 @@ export class ClubeFutebolService {
         return this.http.get(url, {responseType : 'blob'});
     }
 
+    insert(obj : ClubeFutebolDTO) {
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/clubes`, 
+            obj,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        );
+    }
+
 }
