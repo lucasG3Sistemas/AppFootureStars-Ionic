@@ -35,6 +35,7 @@ import { CidadeService } from '../services/domain/municipio.service';
 import { EstadoService } from '../services/domain/estado.service';
 import { ModalidadeService } from '../services/domain/modalidade.service';
 import { ModalidadePosicaoService } from '../services/domain/modalidade.posicao.service';
+import { UsuarioService } from '../services/domain/usuario.service';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { ModalidadePosicaoService } from '../services/domain/modalidade.posicao.
     ErrorInterceptorProvider,
     AuthService,
     StorageService,
+    UsuarioService,
     ClubeFutebolService,
     JogadorService,
     EmpresarioService,
