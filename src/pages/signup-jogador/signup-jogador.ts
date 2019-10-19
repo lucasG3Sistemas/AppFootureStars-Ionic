@@ -44,7 +44,7 @@ export class SignupJogadorPage {
       altura: ['', [Validators.required]],
       peso: ['', [Validators.required]],
       profissionalizacao: ['', [Validators.required]],
-      codigo_cbf: ['', [Validators.required]],
+      codigo_cbf: [''],
       idModalidade: [null, [Validators.required]],
       idPosicao1: [null, [Validators.required]],
       idPosicao2: [null],

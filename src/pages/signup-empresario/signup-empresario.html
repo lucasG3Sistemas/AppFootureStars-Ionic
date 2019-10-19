@@ -14,14 +14,17 @@
       <ion-label stacked>Nome*</ion-label>
       <ion-input formControlName="nome" type="text"></ion-input>
     </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.nome.dirty && formGroup.controls.nome.errors" margin-left>Valor inválido</p>
     <ion-item>
       <ion-label stacked>CPF*</ion-label>
       <ion-input formControlName="cpf" type="text"></ion-input>
     </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.cpf.dirty && formGroup.controls.cpf.errors" margin-left>Valor inválido</p>
     <ion-item>
       <ion-label stacked>Data Nascimento*</ion-label>
       <ion-input formControlName="data_nasc" type="date"></ion-input>
     </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.data_nasc.dirty && formGroup.controls.data_nasc.errors" margin-left>Valor inválido</p>
     <ion-grid>
       <ion-row>
         <ion-col>
@@ -52,6 +55,7 @@
         <ion-option *ngFor="let cidade of cidades" [value]="cidade.nome">{{cidade.nome}}</ion-option>
       </ion-select>
     </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.municipio_nasc.dirty && formGroup.controls.municipio_nasc.errors" margin-left>Valor inválido</p>
     <ion-list radio-group formControlName="sexo">
       <ion-list-header>
         Sexo*
@@ -65,6 +69,7 @@
         <ion-radio value="2"></ion-radio>
       </ion-item>
     </ion-list>
+    <p class="danger" *ngIf="formGroup.controls.sexo.dirty && formGroup.controls.sexo.errors" margin-left>Valor inválido</p>
     <ion-grid>
       <ion-row>
         <ion-col>
@@ -73,6 +78,7 @@
               <ion-label stacked>Prefixo Fone*</ion-label>
               <ion-input formControlName="prefixo_fone" type="text"></ion-input>
             </ion-item>
+            <p class="danger" *ngIf="formGroup.controls.prefixo_fone.dirty && formGroup.controls.prefixo_fone.errors" margin-left>Valor inválido</p>
           </div>
         </ion-col>
         <ion-col>
@@ -81,6 +87,7 @@
               <ion-label stacked>DDD Fone*</ion-label>
               <ion-input formControlName="ddd_fone" type="text"></ion-input>
             </ion-item>
+            <p class="danger" *ngIf="formGroup.controls.ddd_fone.dirty && formGroup.controls.ddd_fone.errors" margin-left>Valor inválido</p>
           </div>
         </ion-col>
       </ion-row>
@@ -89,11 +96,12 @@
       <ion-label stacked>Fone*</ion-label>
       <ion-input formControlName="fone" type="text"></ion-input>
     </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.fone.dirty && formGroup.controls.fone.errors" margin-left>Valor inválido</p>
     <ion-item>
       <ion-label stacked>Complemento</ion-label>
       <ion-input formControlName="complemento" type="textarea"></ion-input>
     </ion-item>
-    <button ion-button block type="submit" color="greenlight">Cadastrar Olheiro/Empresário</button>
+    <button ion-button block type="submit" color="greenlight" [disabled]="formGroup.invalid">Cadastrar Olheiro/Empresário</button>
   </form>
 
 </ion-content>

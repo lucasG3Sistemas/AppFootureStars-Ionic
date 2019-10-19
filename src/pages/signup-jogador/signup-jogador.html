@@ -14,26 +14,17 @@
       <ion-label stacked>Nome*</ion-label>
       <ion-input formControlName="nome" type="text"></ion-input>
     </ion-item>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <div>
-            <ion-item>
-              <ion-label stacked>CPF*</ion-label>
-              <ion-input formControlName="cpf" type="text"></ion-input>
-            </ion-item>
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-            <ion-item>
-              <ion-label stacked>Data Nascimento*</ion-label>
-              <ion-input formControlName="data_nasc" type="date"></ion-input>
-            </ion-item>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <p class="danger" *ngIf="formGroup.controls.nome.dirty && formGroup.controls.nome.errors" margin-left>Valor inválido</p>
+    <ion-item>
+      <ion-label stacked>CPF*</ion-label>
+      <ion-input formControlName="cpf" type="text"></ion-input>
+    </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.cpf.dirty && formGroup.controls.cpf.errors" margin-left>Valor inválido</p>
+    <ion-item>
+      <ion-label stacked>Data Nascimento*</ion-label>
+      <ion-input formControlName="data_nasc" type="date"></ion-input>
+    </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.data_nasc.dirty && formGroup.controls.data_nasc.errors" margin-left>Valor inválido</p>
     <ion-grid>
       <ion-row>
         <ion-col>
@@ -44,6 +35,7 @@
                 <ion-option value="Brasil">Brasil</ion-option>
               </ion-select>
             </ion-item>
+            <p class="danger" *ngIf="formGroup.controls.nacionalidade.dirty && formGroup.controls.nacionalidade.errors" margin-left>Valor inválido</p>
           </div>
         </ion-col>
         <ion-col>
@@ -54,6 +46,7 @@
                 <ion-option *ngFor="let estado of estados" [value]="estado.id">{{estado.nome}}</ion-option>
               </ion-select>
             </ion-item>
+            <p class="danger" *ngIf="formGroup.controls.estado_nasc.dirty && formGroup.controls.estado_nasc.errors" margin-left>Valor inválido</p>
           </div>
         </ion-col>
       </ion-row>
@@ -64,6 +57,7 @@
         <ion-option *ngFor="let cidade of cidades" [value]="cidade.nome">{{cidade.nome}}</ion-option>
       </ion-select>
     </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.municipio_nasc.dirty && formGroup.controls.municipio_nasc.errors" margin-left>Valor inválido</p>
     <ion-list radio-group formControlName="sexo">
       <ion-list-header>
         Sexo*
@@ -77,6 +71,7 @@
         <ion-radio value="2"></ion-radio>
       </ion-item>
     </ion-list>
+    <p class="danger" *ngIf="formGroup.controls.sexo.dirty && formGroup.controls.sexo.errors" margin-left>Valor inválido</p>
     <ion-grid>
       <ion-row>
         <ion-col>
@@ -85,14 +80,16 @@
               <ion-label stacked>Altura*</ion-label>
               <ion-input formControlName="altura" type="text"></ion-input>
             </ion-item>
+            <p class="danger" *ngIf="formGroup.controls.altura.dirty && formGroup.controls.altura.errors" margin-left>Valor inválido</p>
           </div>
-        </ion-col>
+        </ion-col>        
         <ion-col>
           <div>
             <ion-item>
               <ion-label stacked>Peso*</ion-label>
               <ion-input formControlName="peso" type="text"></ion-input>
             </ion-item>
+            <p class="danger" *ngIf="formGroup.controls.peso.dirty && formGroup.controls.peso.errors" margin-left>Valor inválido</p>
           </div>
         </ion-col>
       </ion-row>
@@ -110,6 +107,7 @@
         <ion-radio value="2"></ion-radio>
       </ion-item>
     </ion-list>
+    <p class="danger" *ngIf="formGroup.controls.profissionalizacao.dirty && formGroup.controls.profissionalizacao.errors" margin-left>Valor inválido</p>
     <ion-item>
       <ion-label stacked>Código CBF</ion-label>
       <ion-input formControlName="codigo_cbf" type="text"></ion-input>
@@ -121,13 +119,15 @@
           {{modalidade.descricao}}</ion-option>
       </ion-select>
     </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.idModalidade.dirty && formGroup.controls.idModalidade.errors" margin-left>Valor inválido</p>
     <ion-item>
       <ion-label stacked>Posição Principal*</ion-label>
       <ion-select formControlName="idPosicao1">
-        <ion-option *ngFor="let modalidadePosicao of modalidadePosicoes; first as f" [value]="modalidadePosicao.id"
+        <ion-option *ngFor="let modalidadePosicao of modalidadePosicoes" [value]="modalidadePosicao.id"
           [selected]="f">{{modalidadePosicao.descricao}}</ion-option>
       </ion-select>
     </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.idPosicao1.dirty && formGroup.controls.idPosicao1.errors" margin-left>Valor inválido</p>
     <ion-grid>
       <ion-row>
         <ion-col>
@@ -167,6 +167,7 @@
         <ion-radio value="2"></ion-radio>
       </ion-item>
     </ion-list>
+    <p class="danger" *ngIf="formGroup.controls.perna_preferida.dirty && formGroup.controls.perna_preferida.errors" margin-left>Valor inválido</p>
     <ion-grid>
       <ion-row>
         <ion-col>
@@ -175,6 +176,7 @@
               <ion-label stacked>Prefixo Fone*</ion-label>
               <ion-input formControlName="prefixo_fone" type="text"></ion-input>
             </ion-item>
+            <p class="danger" *ngIf="formGroup.controls.prefixo_fone.dirty && formGroup.controls.prefixo_fone.errors" margin-left>Valor inválido</p>
           </div>
         </ion-col>
         <ion-col>
@@ -183,6 +185,7 @@
               <ion-label stacked>DDD Fone*</ion-label>
               <ion-input formControlName="ddd_fone" type="text"></ion-input>
             </ion-item>
+            <p class="danger" *ngIf="formGroup.controls.ddd_fone.dirty && formGroup.controls.ddd_fone.errors" margin-left>Valor inválido</p>
           </div>
         </ion-col>
       </ion-row>
@@ -191,15 +194,17 @@
       <ion-label stacked>Fone*</ion-label>
       <ion-input formControlName="fone" type="text"></ion-input>
     </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.fone.dirty && formGroup.controls.fone.errors" margin-left>Valor inválido</p>
     <ion-item>
       <ion-label stacked>Email*</ion-label>
       <ion-input formControlName="email" type="text"></ion-input>
     </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.email.dirty && formGroup.controls.email.errors" margin-left>Valor inválido</p>
     <ion-item>
       <ion-label stacked>Complemento</ion-label>
       <ion-input formControlName="complemento" type="textarea"></ion-input>
     </ion-item>
-    <button ion-button block type="submit" color="greenlight">Cadastrar Jogador</button>
+    <button ion-button block type="submit" color="greenlight" [disabled]="formGroup.invalid">Cadastrar Jogador</button>
   </form>
 
 </ion-content>

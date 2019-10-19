@@ -13,12 +13,14 @@
       <ion-label stacked>Nome*</ion-label>
       <ion-input formControlName="nome" type="text"></ion-input>
     </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.nome.dirty && formGroup.controls.nome.errors" margin-left>Valor inválido</p>
     <ion-item>
       <ion-label stacked>Modalidade Esportiva Principal*</ion-label>
       <ion-select formControlName="idModalidade1">
         <ion-option *ngFor="let modalidade of modalidades; first as f" [value]="modalidade.id" [selected]="f">{{modalidade.descricao}}</ion-option>
       </ion-select>
     </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.idModalidade1.dirty && formGroup.controls.idModalidade1.errors" margin-left>Valor inválido</p>
     <ion-item>
       <ion-label stacked>Modalidade Esportiva Secundária</ion-label>
       <ion-select formControlName="idModalidade2">
@@ -38,6 +40,7 @@
         <ion-radio value="2"></ion-radio>
       </ion-item>
     </ion-list>
+    <p class="danger" *ngIf="formGroup.controls.profissionalizacao.dirty && formGroup.controls.profissionalizacao.errors" margin-left>Valor inválido</p>
     <ion-item>
       <ion-label stacked>Código CBF</ion-label>
       <ion-input formControlName="registro_cbf" type="text"></ion-input>
@@ -52,6 +55,7 @@
                 <ion-option value="Brasil">Brasil</ion-option>
               </ion-select>
             </ion-item>
+            <p class="danger" *ngIf="formGroup.controls.pais.dirty && formGroup.controls.pais.errors" margin-left>Valor inválido</p>
           </div>
         </ion-col>
         <ion-col>
@@ -62,6 +66,7 @@
                 <ion-option *ngFor="let estado of estados" [value]="estado.id">{{estado.nome}}</ion-option>
               </ion-select>
             </ion-item>
+            <p class="danger" *ngIf="formGroup.controls.estado.dirty && formGroup.controls.estado.errors" margin-left>Valor inválido</p>
           </div>
         </ion-col>
       </ion-row>
@@ -72,11 +77,12 @@
         <ion-option *ngFor="let cidade of cidades" [value]="cidade.nome">{{cidade.nome}}</ion-option>
       </ion-select>
     </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.municipio.dirty && formGroup.controls.municipio.errors" margin-left>Valor inválido</p>
     <ion-item>
       <ion-label stacked>Complemento</ion-label>
       <ion-input formControlName="complemento" type="text"></ion-input>
     </ion-item>
-    <button ion-button block type="submit" color="greenlight">Cadastrar Clube</button>
+    <button ion-button block type="submit" color="greenlight" [disabled]="formGroup.invalid">Cadastrar Clube</button>
   </form>
 
 </ion-content>

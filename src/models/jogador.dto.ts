@@ -10,11 +10,11 @@ export interface JogadorDTO {
     altura : string;
     peso : string;
     profissionalizacao : string;
-    codigo_cbf : string;
+    codigo_cbf? : string;
     idModalidade : string;
     idPosicao1 : string;
-    idPosicao2 : string;
-    idPosicao3 : string;
+    idPosicao2? : string;
+    idPosicao3? : string;
     perna_preferida : string;
     prefixo_fone : string;
     ddd_fone : string;
