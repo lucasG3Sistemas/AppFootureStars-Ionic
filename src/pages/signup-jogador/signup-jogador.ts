@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CONFIG_USU } from '../../config/config_usu';
 import { EstadoDTO } from '../../models/estado.dto';
@@ -10,6 +10,7 @@ import { ModalidadePosicaoDTO } from '../../models/modalidade.posicao.dto';
 import { ModalidadeDTO } from '../../models/modalidade.dto';
 import { ModalidadeService } from '../../services/domain/modalidade.service';
 import { ModalidadePosicaoService } from '../../services/domain/modalidade.posicao.service';
+import { JogadorService } from '../../services/domain/jogador.service';
 
 @IonicPage()
 @Component({
@@ -31,7 +32,9 @@ export class SignupJogadorPage {
     public estadoService: EstadoService,
     public cidadeService: CidadeService,
     public modalidadeService: ModalidadeService,
-    public modalidadePosicaoService: ModalidadePosicaoService) {
+    public modalidadePosicaoService: ModalidadePosicaoService,
+    public jogadorService: JogadorService,
+    public alertCtrl: AlertController) {
 
     this.formGroup = this.formBuilder.group({
       nome: ['', [Validators.required]],
@@ -49,7 +52,7 @@ export class SignupJogadorPage {
       idPosicao1: [null, [Validators.required]],
       idPosicao2: [null],
       idPosicao3: [null],
-      perna_preferida: [null, [Validators.required]],
+      perna_preferida: ['', [Validators.required]],
       prefixo_fone: ['', [Validators.required]],
       ddd_fone: ['', [Validators.required]],
       fone: ['', [Validators.required]],
@@ -102,8 +105,29 @@ export class SignupJogadorPage {
   }
 
   signupJogador() {
-    console.log("enviou o form");
     console.log(this.formGroup.value);
+    this.jogadorService.insert(this.formGroup.value)
+      .subscribe(response => {
+        this.showInsertOk();
+      },
+        error => { });
+  }
+
+  showInsertOk() {
+    let alert = this.alertCtrl.create({
+      title: 'Sucesso!',
+      message: 'Cadastro efetuado com sucesso',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.navCtrl.popToRoot();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }

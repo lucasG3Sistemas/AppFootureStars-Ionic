@@ -76,7 +76,6 @@ export class SignupClubePage {
   }
 
   signupClube() {
-    console.log(this.formGroup.value);
     this.clubeFutebolService.insert(this.formGroup.value)
       .subscribe(response => {
         this.showInsertOk();

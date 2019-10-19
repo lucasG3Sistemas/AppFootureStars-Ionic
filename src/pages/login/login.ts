@@ -5,6 +5,7 @@ import { CredenciaisDTO } from '../../models/credenciais-dto';
 import { AuthService } from '../../services/auth.service';
 import { TabsEmprPage } from '../tabsempr/tabsempr';
 import { SignupPage } from '../signup/signup';
+import { TabsClubePage } from '../tabsclube/tabsclube';
 
 
 @IonicPage()
@@ -52,7 +53,13 @@ export class LoginPage {
     this.auth.authenticate(this.creds)
     .subscribe(response => {
       this.auth.successfulLogin(response.headers.get('Authorization'));
-      this.navCtrl.push(TabsPage);
+      if (this.creds.email.includes("clube")) {
+        this.navCtrl.push(TabsClubePage);
+      } else if (this.creds.email.includes("empresario")) {
+        this.navCtrl.push(TabsEmprPage);
+      } else {
+        this.navCtrl.push(TabsPage);
+      }
     },
     error => {});
   }

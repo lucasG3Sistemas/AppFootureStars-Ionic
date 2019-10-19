@@ -21,4 +21,15 @@ export class JogadorService {
         return this.http.get(url, {responseType : 'blob'});
     }
 
+    insert(obj : JogadorDTO) {
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/jogadores`, 
+            obj,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        );
+    }
+
 }
