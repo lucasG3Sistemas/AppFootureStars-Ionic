@@ -21,4 +21,15 @@ export class EmpresarioService {
         return this.http.get(url, {responseType : 'blob'});
     }
 
+    insert(obj : EmpresarioDTO) {
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/empresarios`, 
+            obj,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        );
+    }
+
 }
