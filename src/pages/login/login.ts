@@ -50,13 +50,13 @@ export class LoginPage {
     this.auth.refreshToken()
       .subscribe(response => {
         this.auth.successfulLogin(response.headers.get('Authorization'));
-        //if (localUser.email.includes("clube")) {
-        //  this.navCtrl.setRoot(TabsClubePage);
-        //} else if (localUser.email.includes("empresario")) {
+        if (localUser.email.includes("clube")) {
+          this.navCtrl.setRoot(TabsClubePage);
+        } else if (localUser.email.includes("empresario")) {
           this.navCtrl.setRoot(TabsEmprPage);
-        //} else {
-          //this.navCtrl.setRoot(TabsPage);
-        //}
+        } else {
+          this.navCtrl.setRoot(TabsPage);
+        }
       },
       error => {});
   }

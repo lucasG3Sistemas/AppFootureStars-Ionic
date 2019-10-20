@@ -11,7 +11,7 @@
   <ion-list>
     <ion-item *ngFor="let item of items">
       <ion-thumbnail item-start>
-        <img src="{{bucketUrl}}/club{{item.id}}.jpg">
+          <img [src]="item.imageUrl || 'assets/imgs/club-blank.jpg'">
       </ion-thumbnail>
       <h2><b>{{item.nome}}</b></h2>
       <p>{{item.profissionalizacao==1 ? 'Clube Profissional' : 'Clube Amador'}}</p>

@@ -26,9 +26,20 @@ export class ClubesCadastradosPage {
     console.log('ionViewDidLoad ClubesCadastradosPage');
     this.clubeFutebolService.findAll().subscribe(response => {
       this.items = response;
+      this.loadImageUrls();
     },
     error => {});
+  }
 
+  loadImageUrls() {
+    for (var i=0; i<this.items.length; i++) {
+      let item = this.items[i];
+      this.clubeFutebolService.getImageFromBucket(item.id)
+        .subscribe(response => {
+          item.imageUrl = `${API_CONFIG.bucketBaseUrl}/club${item.id}.jpg`;
+        },
+        error => {});
+    }
   }
 
 }
