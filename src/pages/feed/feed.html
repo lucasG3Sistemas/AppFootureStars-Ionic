@@ -1,9 +1,3 @@
-<!--
-  Generated template for the FeedPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar color="greenlight">
@@ -12,23 +6,22 @@
 
 </ion-header>
 
-
 <ion-content padding>
-  <ion-card>
+  <ion-card *ngFor="let item of items">
 
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="assets/imgs/feed.jpg">
-      </ion-avatar>
-      <h2>Ipiranga FC contrata Pedro!</h2>
-      <p>5 de Outubro 2019</p>
-    </ion-item>
-  
-    <img src="assets/imgs/feed.jpg">
-  
-    <ion-card-content>
-      <p>O Clube Ipiranga FC anuncia seu novo atleta, Pedro da Silva, de 21 anos. O clube diz na apresentação do atleta que: "É um grande jogador e esstamos muitos felizes de podermos contar com ele". O jogador também falou sobre seu novo contrato: "É um prazer enorme em poder vestir essa camisa, espero trazer muitas alegrias para a torcida, com certeza serei muito feliz aqui!"</p>
-    </ion-card-content>
-
+      <ion-item>    
+        <h2><b>{{item.clubeFutebol.nome}} contrata {{item.jogador.nome}}!</b></h2>
+        <p>{{item.data_contratacao}}</p>
+      </ion-item>
+      
+        <img class="image" [src]="item.imageUrl || 'assets/imgs/feed.jpg'">
+        <ion-card-content>
+          <p>O Clube {{item.idClubeFutebol}} anuncia seu novo atleta, {{item.idJogador}}. 
+            O clube se mostra feliz na apresentação do atleta, falando que: 
+            "{{item.msg_clube}}". 
+            O jogador também falou sobre seu novo contrato: 
+            "{{item.msg_jogador}}"</p>
+            <p>{{item.complemento}}</p>
+        </ion-card-content>
   </ion-card>
 </ion-content>

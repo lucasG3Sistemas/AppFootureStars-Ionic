@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the FeedPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { API_CONFIG } from '../../config/api.config';
+import { HistoricoContratacaoDTO } from '../../models/historico.contratacao.dto';
+import { HistoricoContratacaoService } from '../../services/domain/historico.contratacao.service';
 
 @IonicPage()
 @Component({
@@ -15,11 +11,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FeedPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  bucketUrl: string = API_CONFIG.bucketBaseUrl;
+
+  items: HistoricoContratacaoDTO[];
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public historicoContratacaoService: HistoricoContratacaoService) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FeedPage');
+    this.historicoContratacaoService.findAll().subscribe(response => {
+      this.items = response;
+      console.log(response);
+    },
+    error => {});
   }
 
 }
