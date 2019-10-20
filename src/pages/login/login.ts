@@ -6,6 +6,7 @@ import { AuthService } from '../../services/auth.service';
 import { TabsEmprPage } from '../tabsempr/tabsempr';
 import { SignupPage } from '../signup/signup';
 import { TabsClubePage } from '../tabsclube/tabsclube';
+import { StorageService } from '../../services/storage.service';
 
 
 @IonicPage()
@@ -22,6 +23,7 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
+    public storage: StorageService,
     public menu: MenuController,
     public auth: AuthService
     ) {
@@ -41,12 +43,22 @@ export class LoginPage {
   }
 
   ionViewDidEnter() {
+    console.log(this.storage);
+    console.log(this.storage.getLocalUser);
+    let localUser = this.storage.getLocalUser();
+    
     this.auth.refreshToken()
       .subscribe(response => {
         this.auth.successfulLogin(response.headers.get('Authorization'));
-        this.navCtrl.setRoot(TabsPage);
+        //if (localUser.email.includes("clube")) {
+        //  this.navCtrl.setRoot(TabsClubePage);
+        //} else if (localUser.email.includes("empresario")) {
+          this.navCtrl.setRoot(TabsEmprPage);
+        //} else {
+          //this.navCtrl.setRoot(TabsPage);
+        //}
       },
-      error => {});  
+      error => {});
   }
 
   login() {
