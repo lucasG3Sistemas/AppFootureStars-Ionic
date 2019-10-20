@@ -24,9 +24,20 @@ export class FeedPage {
   ionViewDidLoad() {
     this.historicoContratacaoService.findAll().subscribe(response => {
       this.items = response;
-      console.log(response);
+      this.loadImageUrls();
     },
     error => {});
+  }
+
+  loadImageUrls() {
+    for (var i=0; i<this.items.length; i++) {
+      let item = this.items[i];
+      this.historicoContratacaoService.getImageFromBucket(item.id)
+        .subscribe(response => {
+          item.imageUrl = `${API_CONFIG.bucketBaseUrl}/hist${item.id}.jpg`;
+        },
+        error => {});
+    }
   }
 
 }

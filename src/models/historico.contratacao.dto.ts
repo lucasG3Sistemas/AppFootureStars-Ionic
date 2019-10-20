@@ -1,4 +1,5 @@
 export interface HistoricoContratacaoDTO {
+    id: string;
     idJogador: string;
     idClubeFutebol: string;
     data_contratacao : string;
