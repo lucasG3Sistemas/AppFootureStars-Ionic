@@ -37,6 +37,7 @@ import { ModalidadeService } from '../services/domain/modalidade.service';
 import { ModalidadePosicaoService } from '../services/domain/modalidade.posicao.service';
 import { UsuarioService } from '../services/domain/usuario.service';
 import { HistoricoContratacaoService } from '../services/domain/historico.contratacao.service';
+import { ListaObservacaoService } from '../services/domain/lista.observacao.service';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { HistoricoContratacaoService } from '../services/domain/historico.contra
     CidadeService,
     ModalidadeService,
     ModalidadePosicaoService,
-    HistoricoContratacaoService
+    HistoricoContratacaoService,
+    ListaObservacaoService
   ]
 })
 

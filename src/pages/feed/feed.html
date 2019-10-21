@@ -16,7 +16,7 @@
       
         <img class="image" [src]="item.imageUrl || 'assets/imgs/feed.jpg'">
         <ion-card-content>
-          <p>O Clube {{item.idClubeFutebol}} anuncia seu novo atleta, {{item.idJogador}}. 
+          <p>O Clube {{item.clubeFutebol.nome}} anuncia seu novo atleta, {{item.jogador.nome}}. 
             O clube se mostra feliz na apresentação do atleta, falando que: 
             "{{item.msg_clube}}". 
             O jogador também falou sobre seu novo contrato: 
