@@ -26,10 +26,7 @@ export class ListaObservacaoPage {
   ionViewDidLoad() {
     let localUser = this.storage.getLocalUser();
     this.listaObservacaoService.findListaObservacao(localUser.email).subscribe(response => {
-      console.log(response);
-      console.log(response['jogadores']);
       this.items = response['jogadores'];
-      console.log(this.items);
       this.loadImageUrls();
     },
     error => {});
