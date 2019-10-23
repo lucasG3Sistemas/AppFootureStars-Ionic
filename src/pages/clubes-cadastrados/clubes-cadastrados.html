@@ -17,5 +17,8 @@
       <p>{{item.modalidades[0].descricao}}</p>
       <p>{{item.municipio}}/{{item.estado}} - {{item.pais}}</p>
     </ion-item>
+    <ion-item *ngIf="verificaReg() <= 0">
+      <h1>Não há Nenhum Clube Cadastrado</h1>
+    </ion-item>
   </ion-list>
 </ion-content>

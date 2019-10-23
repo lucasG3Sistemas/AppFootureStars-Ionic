@@ -20,7 +20,7 @@ export class SeusJogadoresService {
         let url = `${API_CONFIG.bucketBaseUrl}/jdor${id}.jpg`
         return this.http.get(url, {responseType : 'blob'});
     }
-
+    
     //insert(obj : ListaObservacaoDTO) {
     //    return this.http.post(
     //        `${API_CONFIG.baseUrl}/listas/observacoes`, 

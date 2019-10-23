@@ -14,6 +14,7 @@ export class ClubeEmprSeusJogadoresPage {
 
   bucketUrl: string = API_CONFIG.bucketBaseUrl;
 
+  reg: number;
   items: JogadorDTO[];
 
   constructor(
@@ -26,16 +27,16 @@ export class ClubeEmprSeusJogadoresPage {
   ionViewDidLoad() {
     let localUser = this.storage.getLocalUser();
     this.seusJogadoresService.findSeusJogadores(localUser.email).subscribe(response => {
-      console.log(response);
       this.items = response;
-      console.log(this.items);
       this.loadImageUrls();
     },
     error => {});
   }
 
   loadImageUrls() {
+    this.reg = 0;
     for (var i=0; i<this.items.length; i++) {
+      this.reg = 1;
       let item = this.items[i];
       this.seusJogadoresService.getImageFromBucket(item.id)
         .subscribe(response => {
@@ -43,6 +44,10 @@ export class ClubeEmprSeusJogadoresPage {
         },
         error => {});
     }
+  }
+
+  verificaReg() : number {
+    return this.reg;
   }
 
 }

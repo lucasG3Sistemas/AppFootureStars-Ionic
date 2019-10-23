@@ -14,6 +14,7 @@ export class ClubesCadastradosPage {
 
   bucketUrl: string = API_CONFIG.bucketBaseUrl;
 
+  reg: number;
   items: ClubeFutebolDTO[];
 
   constructor(
@@ -32,7 +33,9 @@ export class ClubesCadastradosPage {
   }
 
   loadImageUrls() {
+    this.reg = 0;
     for (var i=0; i<this.items.length; i++) {
+      this.reg = 1;
       let item = this.items[i];
       this.clubeFutebolService.getImageFromBucket(item.id)
         .subscribe(response => {
@@ -40,6 +43,10 @@ export class ClubesCadastradosPage {
         },
         error => {});
     }
+  }
+
+  verificaReg() : number {
+    return this.reg;
   }
 
 }

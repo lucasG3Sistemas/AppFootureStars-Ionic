@@ -14,6 +14,7 @@ export class ListaObservacaoPage {
 
   bucketUrl: string = API_CONFIG.bucketBaseUrl;
 
+  reg: number;
   items: ListaObservacaoDTO[];
 
   constructor(
@@ -33,7 +34,9 @@ export class ListaObservacaoPage {
   }
 
   loadImageUrls() {
+    this.reg = 0;
     for (var i=0; i<this.items.length; i++) {
+      this.reg = 1;
       let item = this.items[i];
       this.listaObservacaoService.getImageFromBucket(item.id)
         .subscribe(response => {
@@ -42,5 +45,9 @@ export class ListaObservacaoPage {
         error => {});
     }
   }
-
+  
+  verificaReg() : number {
+    return this.reg;
+  }
+  
 }
