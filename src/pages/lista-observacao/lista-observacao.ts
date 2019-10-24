@@ -89,4 +89,8 @@ export class ListaObservacaoPage {
     console.log(localUser.email);
   }
 
+  chamaPaginaBuscaJogador() {
+    
+  }
+
 }
