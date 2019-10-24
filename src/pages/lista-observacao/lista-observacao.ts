@@ -4,6 +4,7 @@ import { API_CONFIG } from '../../config/api.config';
 import { ListaObservacaoDTO } from '../../models/lista.observacao.dto';
 import { ListaObservacaoService } from '../../services/domain/lista.observacao.service';
 import { StorageService } from '../../services/storage.service';
+import { BuscaJogadoresPage } from '../busca-jogadores/busca-jogadores';
 
 @IonicPage()
 @Component({
@@ -90,7 +91,7 @@ export class ListaObservacaoPage {
   }
 
   chamaPaginaBuscaJogador() {
-    
+    this.navCtrl.push(BuscaJogadoresPage);
   }
 
 }

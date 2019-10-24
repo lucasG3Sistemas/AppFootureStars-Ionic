@@ -39,6 +39,7 @@ import { UsuarioService } from '../services/domain/usuario.service';
 import { HistoricoContratacaoService } from '../services/domain/historico.contratacao.service';
 import { ListaObservacaoService } from '../services/domain/lista.observacao.service';
 import { SeusJogadoresService } from '../services/domain/seus.jogadores.service';
+import { BuscaJogadoresPage } from '../pages/busca-jogadores/busca-jogadores';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { SeusJogadoresService } from '../services/domain/seus.jogadores.service'
     TabsClubePage,
     TabsEmprPage,
     ListaObservacaoPage,
+    BuscaJogadoresPage,
     ClubeEmprSeusJogadoresPage,
     ConfigClubePage,
     ConfigEmprPage,
@@ -78,6 +80,7 @@ import { SeusJogadoresService } from '../services/domain/seus.jogadores.service'
     TabsClubePage,
     TabsEmprPage,
     ListaObservacaoPage,
+    BuscaJogadoresPage,
     ClubeEmprSeusJogadoresPage,
     ConfigClubePage,
     ConfigEmprPage,
