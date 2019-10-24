@@ -4,6 +4,7 @@ import { API_CONFIG } from '../../config/api.config';
 import { JogadorDTO } from '../../models/jogador.dto';
 import { SeusJogadoresService } from '../../services/domain/seus.jogadores.service';
 import { StorageService } from '../../services/storage.service';
+import { SignupJogadorPage } from '../signup-jogador/signup-jogador';
 
 @IonicPage()
 @Component({
@@ -48,6 +49,10 @@ export class ClubeEmprSeusJogadoresPage {
 
   verificaReg() : number {
     return this.reg;
+  }
+
+  chamaPaginaJogador() {
+    this.navCtrl.push(SignupJogadorPage);
   }
 
 }

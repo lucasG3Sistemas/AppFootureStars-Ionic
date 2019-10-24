@@ -11,6 +11,7 @@ import { ModalidadeDTO } from '../../models/modalidade.dto';
 import { ModalidadeService } from '../../services/domain/modalidade.service';
 import { ModalidadePosicaoService } from '../../services/domain/modalidade.posicao.service';
 import { JogadorService } from '../../services/domain/jogador.service';
+import { StorageService } from '../../services/storage.service';
 
 @IonicPage()
 @Component({
@@ -28,6 +29,7 @@ export class SignupJogadorPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public storage: StorageService,
     public formBuilder: FormBuilder,
     public estadoService: EstadoService,
     public cidadeService: CidadeService,
@@ -60,7 +62,7 @@ export class SignupJogadorPage {
       complemento: [''],
       idClubeFutebol: [null],
       idEmpresario: [null],
-      idUsuario: CONFIG_USU.emailUsuario
+      idUsuario: CONFIG_USU.emailUsuario == "" ? storage.getLocalUser().email : CONFIG_USU.emailUsuario
     });
 
   }

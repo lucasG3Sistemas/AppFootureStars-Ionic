@@ -5,6 +5,7 @@ import { CredenciaisDTO } from "../models/credenciais-dto";
 import { StorageService } from "./storage.service";
 import { LocalUser } from "../models/local_user";
 import { JwtHelper } from 'angular2-jwt';
+import { CONFIG_USU } from "../config/config_usu";
 
 
 @Injectable()
@@ -46,6 +47,7 @@ export class AuthService {
     }
 
     logout() {
+        CONFIG_USU.emailUsuario = "";
         this.storage.setLocalUser(null);
     }
 
