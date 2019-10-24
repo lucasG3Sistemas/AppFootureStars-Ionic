@@ -47,14 +47,15 @@ export class ListaObservacaoPage {
     }
   }
 
-  verificaReg() : number {
+  verificaReg(): number {
     return this.reg;
   }
 
-  enviarEmail() {
-    const prompt = this.alertCtrl.create({
+  enviarEmail(emailJogador : string) {
+    let alert = this.alertCtrl.create({
       title: 'Enviar Email',
-      message: "Escreve abaixo uma mensagem que deseja enviar para o jogador:",
+      message: "Escreva abaixo uma mensagem que deseja enviar para o jogador:",
+      enableBackdropDismiss: false,
       inputs: [
         {
           name: 'mensagem',
@@ -71,12 +72,21 @@ export class ListaObservacaoPage {
         {
           text: 'Enviar',
           handler: data => {
+            this.btnEnviarEmail(data, emailJogador);
             console.log('Saved clicked');
           }
         }
       ]
     });
-    prompt.present();
+    alert.present();
+
+  }
+
+  btnEnviarEmail(data : any, emailJogador : string) {
+    let localUser = this.storage.getLocalUser();
+    console.log(data);
+    console.log(emailJogador);
+    console.log(localUser.email);
   }
 
 }
