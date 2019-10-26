@@ -17,7 +17,7 @@ export class BuscaJogadoresPage {
   items: JogadorDTO[];
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public storage: StorageService,
@@ -30,19 +30,19 @@ export class BuscaJogadoresPage {
       this.items = response;
       this.loadImageUrls();
     },
-    error => {});
+      error => { });
   }
 
   loadImageUrls() {
     this.reg = 0;
-    for (var i=0; i<this.items.length; i++) {
+    for (var i = 0; i < this.items.length; i++) {
       this.reg = 1;
       let item = this.items[i];
       this.jogadorService.getImageFromBucket(item.id)
         .subscribe(response => {
           item.imageUrl = `${API_CONFIG.bucketBaseUrl}/jdor${item.id}.jpg`;
         },
-        error => {});
+          error => { });
     }
   }
 
@@ -51,7 +51,27 @@ export class BuscaJogadoresPage {
   }
 
   adicionarJogador(idJogador: string) {
-
+    let alert = this.alertCtrl.create({
+      title: 'Sucesso!',
+      message: 'Jogador adicionado na sua com sucesso',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            //this.navCtrl.pop(); //desempilhar a página
+            //if (this.formGroup.value.tipoUsuario == "1") {
+            //  this.navCtrl.push(SignupJogadorPage);
+            //} else if (this.formGroup.value.tipoUsuario == "2") {
+            ///  this.navCtrl.push(SignupClubePage);
+            //} else if (this.formGroup.value.tipoUsuario == "3") {
+            //  this.navCtrl.push(SignupEmpresarioPage);
+            //}
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }
