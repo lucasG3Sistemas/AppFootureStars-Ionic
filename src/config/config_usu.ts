@@ -1,3 +1,4 @@
 export const CONFIG_USU = {
-    emailUsuario: ""
+    emailUsuario: "",
+    idListaObservacao: ""
 }

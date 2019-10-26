@@ -7,6 +7,7 @@ import { TabsEmprPage } from '../tabsempr/tabsempr';
 import { SignupPage } from '../signup/signup';
 import { TabsClubePage } from '../tabsclube/tabsclube';
 import { StorageService } from '../../services/storage.service';
+import { CONFIG_USU } from '../../config/config_usu';
 
 
 @IonicPage()
@@ -77,6 +78,7 @@ export class LoginPage {
   }
 
   signup() {
+    CONFIG_USU.idListaObservacao = "";
     this.navCtrl.push(SignupPage);
   }
 

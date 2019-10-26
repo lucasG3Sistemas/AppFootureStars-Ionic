@@ -24,7 +24,6 @@ export class ClubesCadastradosPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ClubesCadastradosPage');
     this.clubeFutebolService.findAll().subscribe(response => {
       this.items = response;
       this.loadImageUrls();

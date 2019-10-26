@@ -4,6 +4,7 @@ import { JogadorDTO } from '../../models/jogador.dto';
 import { JogadorService } from '../../services/domain/jogador.service';
 import { StorageService } from '../../services/storage.service';
 import { API_CONFIG } from '../../config/api.config';
+import { CONFIG_USU } from '../../config/config_usu';
 
 @IonicPage()
 @Component({
@@ -24,8 +25,8 @@ export class BuscaJogadoresPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ClubesCadastradosPage');
-    this.jogadorService.findAll().subscribe(response => {
+    let localUser = this.storage.getLocalUser();
+    this.jogadorService.findBuscaJogadores(CONFIG_USU.idListaObservacao, localUser.email).subscribe(response => {
       this.items = response;
       this.loadImageUrls();
     },
@@ -50,7 +51,7 @@ export class BuscaJogadoresPage {
   }
 
   adicionarJogador(idJogador: string) {
-    
+
   }
 
 }

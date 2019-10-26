@@ -5,6 +5,7 @@ import { ListaObservacaoDTO } from '../../models/lista.observacao.dto';
 import { ListaObservacaoService } from '../../services/domain/lista.observacao.service';
 import { StorageService } from '../../services/storage.service';
 import { BuscaJogadoresPage } from '../busca-jogadores/busca-jogadores';
+import { CONFIG_USU } from '../../config/config_usu';
 
 @IonicPage()
 @Component({
@@ -17,6 +18,7 @@ export class ListaObservacaoPage {
 
   reg: number;
   items: ListaObservacaoDTO[];
+  listaObs: any;
 
   constructor(
     public navCtrl: NavController,
@@ -29,6 +31,8 @@ export class ListaObservacaoPage {
   ionViewDidLoad() {
     let localUser = this.storage.getLocalUser();
     this.listaObservacaoService.findListaObservacao(localUser.email).subscribe(response => {
+      this.listaObs = response;
+      CONFIG_USU.idListaObservacao = this.listaObs.id;
       this.items = response['jogadores'];
       this.loadImageUrls();
     },
