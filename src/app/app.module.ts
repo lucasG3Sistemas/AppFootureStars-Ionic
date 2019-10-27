@@ -40,6 +40,8 @@ import { HistoricoContratacaoService } from '../services/domain/historico.contra
 import { ListaObservacaoService } from '../services/domain/lista.observacao.service';
 import { SeusJogadoresService } from '../services/domain/seus.jogadores.service';
 import { BuscaJogadoresPage } from '../pages/busca-jogadores/busca-jogadores';
+import { HttpModule } from '@angular/http';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,7 @@ import { BuscaJogadoresPage } from '../pages/busca-jogadores/busca-jogadores';
   imports: [
     BrowserModule,
     HttpClientModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     IntroPageModule,
   ],
@@ -92,8 +95,9 @@ import { BuscaJogadoresPage } from '../pages/busca-jogadores/busca-jogadores';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     ConfigProvider,
+    YoutubeVideoPlayer,
     AuthInterceptorProvider,
     ErrorInterceptorProvider,
     AuthService,
@@ -112,4 +116,4 @@ import { BuscaJogadoresPage } from '../pages/busca-jogadores/busca-jogadores';
   ]
 })
 
-export class AppModule {}
+export class AppModule { }

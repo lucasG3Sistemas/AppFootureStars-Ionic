@@ -36,7 +36,7 @@ export class ListaObservacaoPage {
       this.items = response['jogadores'];
       this.loadImageUrls();
     },
-      error => { });
+      error => { this.reg = 0; });
   }
 
   loadImageUrls() {
