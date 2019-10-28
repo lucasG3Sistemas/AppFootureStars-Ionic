@@ -43,6 +43,7 @@ import { BuscaJogadoresPage } from '../pages/busca-jogadores/busca-jogadores';
 import { HttpModule } from '@angular/http';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 import { JogadorLancesService } from '../services/domain/jogador.lances.service';
+import { JogadorAdicionarLancePage } from '../pages/jogador-adicionar-lance/jogador-adicionar-lance';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { JogadorLancesService } from '../services/domain/jogador.lances.service'
     SignupPage,
     SignupJogadorPage,
     SignupClubePage,
-    SignupEmpresarioPage
+    SignupEmpresarioPage,
+    JogadorAdicionarLancePage
   ],
   imports: [
     BrowserModule,
@@ -91,7 +93,8 @@ import { JogadorLancesService } from '../services/domain/jogador.lances.service'
     SignupPage,
     SignupJogadorPage,
     SignupClubePage,
-    SignupEmpresarioPage
+    SignupEmpresarioPage,
+    JogadorAdicionarLancePage
   ],
   providers: [
     StatusBar,

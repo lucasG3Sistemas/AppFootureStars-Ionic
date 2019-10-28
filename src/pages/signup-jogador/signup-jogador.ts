@@ -107,7 +107,6 @@ export class SignupJogadorPage {
   }
 
   signupJogador() {
-    console.log(this.formGroup.value);
     this.jogadorService.insert(this.formGroup.value)
       .subscribe(response => {
         this.showInsertOk();

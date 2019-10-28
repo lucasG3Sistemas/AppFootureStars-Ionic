@@ -5,4 +5,5 @@ export interface JogadorLancesDTO {
     descricao: string;
     complemento: string;
     idJogador?: string;
+    idUsuario?: string;
 }

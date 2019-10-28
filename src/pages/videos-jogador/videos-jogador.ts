@@ -7,6 +7,7 @@ import { API_CONFIG } from '../../config/api.config';
 import { JogadorLancesService } from '../../services/domain/jogador.lances.service';
 import { JogadorLancesDTO } from '../../models/jogador.lance.dto';
 import { CONFIG_USU } from '../../config/config_usu';
+import { JogadorAdicionarLancePage } from '../jogador-adicionar-lance/jogador-adicionar-lance';
 
 @IonicPage()
 @Component({
@@ -53,6 +54,10 @@ export class VideosJogadorPage {
 
   sanitize(vid) {
     return this.dom.bypassSecurityTrustResourceUrl(vid);
+  }
+
+  chamaPaginaAdicionarLance() {
+    this.navCtrl.push(JogadorAdicionarLancePage);
   }
 
 }

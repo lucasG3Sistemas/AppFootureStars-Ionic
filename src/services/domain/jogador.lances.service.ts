@@ -23,9 +23,9 @@ export class JogadorLancesService {
         return this.http.get(url, {responseType : 'blob'});
     }
 
-    insert(obj : JogadorDTO) {
+    insert(obj : JogadorLancesDTO) {
         return this.http.post(
-            `${API_CONFIG.baseUrl}/jogadores`, 
+            `${API_CONFIG.baseUrl}/jogadores/lances`, 
             obj,
             { 
                 observe: 'response', 
