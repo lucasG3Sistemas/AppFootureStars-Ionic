@@ -42,6 +42,7 @@ import { SeusJogadoresService } from '../services/domain/seus.jogadores.service'
 import { BuscaJogadoresPage } from '../pages/busca-jogadores/busca-jogadores';
 import { HttpModule } from '@angular/http';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
+import { JogadorLancesService } from '../services/domain/jogador.lances.service';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,8 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
     ModalidadePosicaoService,
     HistoricoContratacaoService,
     ListaObservacaoService,
-    SeusJogadoresService
+    SeusJogadoresService,
+    JogadorLancesService
   ]
 })
 

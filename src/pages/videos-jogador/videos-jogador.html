@@ -10,14 +10,49 @@
 <ion-content padding>
   <iframe width="500" height="320" [src]="sanitize(vid)" frameborder="0" allowfullscreen></iframe>
   <button ion-button round block (click)="playVideo('i1DiaXP9nCk')">Play Video</button>
-</ion-content>-->
+</ion-content>
+
+<p>
+  <button ion-button round icon-start color="danger" (click)="openMyVideo()">
+    <ion-icon name="logo-youtube"></ion-icon>
+    Open YouTube Video
+  </button>
+</p>
+-->
 
 <ion-content padding>
-    Open YouTube Video Player in Ionic 3 Appliccation Demo
-    <p>
+  <ion-fab bottom right>
+    <button (click)="chamaPaginaBuscaJogador()" ion-fab mini color="greenlight">
+      <ion-icon name="md-add"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-card *ngFor="let item of items">
+    <ion-item>
+      <h2><b>{{item.titulo}}</b></h2>
+      <p>{{item.data_publicacao}}</p>
+    </ion-item>
+    <div text-center>
       <button ion-button round icon-start color="danger" (click)="openMyVideo()">
         <ion-icon name="logo-youtube"></ion-icon>
-        Open YouTube Video
+        Play Vídeo
       </button>
-    </p>
-  </ion-content>
+    </div>
+    <ion-card-content>
+      <p>{{item.descricao}}</p>
+      <p>{{item.complemento}}</p>
+    </ion-card-content>
+    <div text-right>
+      <button ion-button round icon-start clear large (click)="openMyVideo()">
+        <ion-icon name="ios-create" item-end color="greenlight"></ion-icon>
+      </button>
+      <button ion-button round icon-start clear large (click)="openMyVideo()">
+        <ion-icon name="trash" large item-end color="danger"></ion-icon>
+      </button>
+    </div>
+  </ion-card>
+  <ion-item *ngIf="verificaReg() <= 0">
+    <h3>Você não possui Nenhum Vídeo Cadastrado</h3>
+  </ion-item>
+
+</ion-content>

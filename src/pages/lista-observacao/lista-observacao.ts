@@ -33,7 +33,7 @@ export class ListaObservacaoPage {
     this.listaObservacaoService.findListaObservacao(localUser.email).subscribe(response => {
       this.listaObs = response;
       CONFIG_USU.idListaObservacao = this.listaObs.id;
-      this.items = response['jogadores'];
+      this.items = response['jogadores']; 
       this.loadImageUrls();
     },
       error => { this.reg = 0; });
