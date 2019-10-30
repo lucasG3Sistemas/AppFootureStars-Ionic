@@ -22,7 +22,8 @@ export class ListaObservacaoService {
     }
 
     insert(obj : ListaObservacaoDTO) {
-        return this.http.post(
+        console.log(obj);
+        let url = this.http.post(
             `${API_CONFIG.baseUrl}/listas/observacoes`, 
             obj,
             { 
@@ -30,6 +31,18 @@ export class ListaObservacaoService {
                 responseType: 'text'
             }
         );
+        if (obj.id != "") {
+            url = this.http.put(
+                `${API_CONFIG.baseUrl}/listas/observacoes/${obj.id}`, 
+                obj,
+                { 
+                    observe: 'response', 
+                    responseType: 'text'
+                }
+            );
+        }
+
+        return url;
     }
 
 }

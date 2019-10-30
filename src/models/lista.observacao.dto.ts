@@ -4,4 +4,5 @@ export interface ListaObservacaoDTO {
     idClubeFutebol? : string;
     idEmpresario? : string;
     imageUrl? : string;
+    idUsuario? : string;
 }

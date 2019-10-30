@@ -5,6 +5,8 @@ import { JogadorService } from '../../services/domain/jogador.service';
 import { StorageService } from '../../services/storage.service';
 import { API_CONFIG } from '../../config/api.config';
 import { CONFIG_USU } from '../../config/config_usu';
+import { ListaObservacaoService } from '../../services/domain/lista.observacao.service';
+import { ListaObservacaoDTO } from '../../models/lista.observacao.dto';
 
 @IonicPage()
 @Component({
@@ -15,13 +17,16 @@ export class BuscaJogadoresPage {
 
   reg: number;
   items: JogadorDTO[];
+  listaObservacao: ListaObservacaoDTO;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public storage: StorageService,
-    public jogadorService: JogadorService) {
+    public jogadorService: JogadorService,
+    public listaObservacaoService: ListaObservacaoService) {
+
   }
 
   ionViewDidLoad() {
@@ -51,22 +56,31 @@ export class BuscaJogadoresPage {
   }
 
   adicionarJogador(idJogador: string) {
+    let localUser = this.storage.getLocalUser();
+    this.listaObservacao = {
+      id: CONFIG_USU.idListaObservacao,
+      idJogador: idJogador,
+      idUsuario: localUser.email
+    };
+    
+    this.listaObservacaoService.insert(this.listaObservacao)
+      .subscribe(response => {
+        this.showInsertOk();
+      },
+        error => { });
+    
+  }
+
+  showInsertOk() {
     let alert = this.alertCtrl.create({
       title: 'Sucesso!',
-      message: 'Jogador adicionado na sua com sucesso',
+      message: 'Jogador adicionado em sua lista com sucesso',
       enableBackdropDismiss: false,
       buttons: [
         {
           text: 'Ok',
           handler: () => {
-            //this.navCtrl.pop(); //desempilhar a página
-            //if (this.formGroup.value.tipoUsuario == "1") {
-            //  this.navCtrl.push(SignupJogadorPage);
-            //} else if (this.formGroup.value.tipoUsuario == "2") {
-            ///  this.navCtrl.push(SignupClubePage);
-            //} else if (this.formGroup.value.tipoUsuario == "3") {
-            //  this.navCtrl.push(SignupEmpresarioPage);
-            //}
+            this.navCtrl.popToRoot();
           }
         }
       ]
