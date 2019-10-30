@@ -5,6 +5,8 @@ import { JogadorDTO } from '../../models/jogador.dto';
 import { SeusJogadoresService } from '../../services/domain/seus.jogadores.service';
 import { StorageService } from '../../services/storage.service';
 import { SignupJogadorPage } from '../signup-jogador/signup-jogador';
+import { JogadorDetalheCadastrarPage } from '../jogador-detalhe-cadastrar/jogador-detalhe-cadastrar';
+import { CONFIG_USU } from '../../config/config_usu';
 
 @IonicPage()
 @Component({
@@ -53,6 +55,11 @@ export class ClubeEmprSeusJogadoresPage {
 
   chamaPaginaJogador() {
     this.navCtrl.push(SignupJogadorPage);
+  }
+
+  showDetail(nomeJogador: string) {
+    CONFIG_USU.nomeJogador = nomeJogador;
+    this.navCtrl.push(JogadorDetalheCadastrarPage);
   }
 
 }

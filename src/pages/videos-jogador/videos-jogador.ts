@@ -18,7 +18,6 @@ export class VideosJogadorPage {
 
   reg: number;
   items: JogadorLancesDTO[];
-  vid = 'https://www.youtube.com/embed/z87fGiSz_-o';
 
   constructor( private dom: DomSanitizer, public plt: Platform,
     private youtube: YoutubeVideoPlayer, public navCtrl: NavController, public navParams: NavParams,

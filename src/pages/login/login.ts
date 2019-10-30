@@ -79,6 +79,7 @@ export class LoginPage {
 
   signup() {
     CONFIG_USU.idListaObservacao = "";
+    CONFIG_USU.nomeJogador = "";
     this.navCtrl.push(SignupPage);
   }
 
