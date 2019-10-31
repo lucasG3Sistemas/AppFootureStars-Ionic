@@ -17,6 +17,10 @@ export class JogadorService {
         return this.http.get<JogadorDTO[]>(`${API_CONFIG.baseUrl}/jogadores/lista?idLista=${idLista}&usuario=${usuario}`);
     }
 
+    findById(id: string) : Observable<JogadorDTO> {
+        return this.http.get<JogadorDTO>(`${API_CONFIG.baseUrl}/jogadores/${id}`);
+    }
+
     findByEmail(email: string) : Observable<JogadorDTO> {
         return this.http.get<JogadorDTO>(`${API_CONFIG.baseUrl}/jogadores/email?value=${email}`);
     }

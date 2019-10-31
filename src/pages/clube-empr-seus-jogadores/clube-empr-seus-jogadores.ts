@@ -57,7 +57,8 @@ export class ClubeEmprSeusJogadoresPage {
     this.navCtrl.push(SignupJogadorPage);
   }
 
-  showDetail(nomeJogador: string) {
+  showDetail(idJogador: string, nomeJogador: string) {
+    CONFIG_USU.idJogador = idJogador;
     CONFIG_USU.nomeJogador = nomeJogador;
     this.navCtrl.push(JogadorDetalheCadastrarPage);
   }

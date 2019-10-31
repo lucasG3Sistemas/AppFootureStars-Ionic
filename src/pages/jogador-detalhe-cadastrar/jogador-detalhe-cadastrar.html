@@ -6,24 +6,37 @@
 
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="masters">
   <ion-fab bottom right>
     <button (click)="chamaPaginaAdicionarLance()" ion-fab mini color="greenlight">
       <ion-icon name="md-add"></ion-icon>
     </button>
   </ion-fab>
-
   <ion-card>
-    <ion-avatar>
-      <img class="circle" [src]="jogador?.imageUrl || 'assets/imgs/avatar-blank.png'">
-    </ion-avatar>
-    <h2 text-center>{{jogador?.nome}}</h2>
-    <p text-center>{{jogador?.data_nasc}}</p>
-    <p text-center>Nacionalidade {{jogador?.nacionalidade}}</p>
-    <p text-center>Modalidade: {{jogador?.modalidade.descricao}}</p>
-    <p text-center>{{jogador?.posicoes[0].descricao}}</p>
+      <ion-avatar>
+        <img class="circle" [src]="jogador?.imageUrl || 'assets/imgs/avatar-blank.png'">
+      </ion-avatar>
+    <ion-item>
+      <h2 text-center><b>{{jogador?.nome}}</b></h2>
+      <ion-list-header>
+        INFORMAÇÕES
+      </ion-list-header> 
+        <p>Nasc.: {{jogador?.data_nasc}}</p>
+        <p>Nacionalidade: {{jogador?.nacionalidade}}</p>
+        <p>Naturalidade: {{jogador?.municipio_nasc}}/{{jogador?.estado_nasc}}</p>
+        <p>{{jogador?.profissionalizacao==1 ? 'Jogador Profissional' : 'Jogador Amador'}}</p>
+        <p>{{jogador?.posicoes[0].descricao}} de {{jogador?.modalidade.descricao}}</p>
+        <p>Sexo: {{jogador?.sexo==1 ? 'Masculino' : 'Feminino'}}</p>
+        <p>Altura: {{jogador?.altura}}cm. Peso: {{jogador?.peso}}kg</p>
+        <p>{{jogador?.complemento}}</p>
+      <ion-list-header>
+        CONTATO
+      </ion-list-header>
+        <p>Email: {{jogador?.email}}</p>
+        <p>Fone: +{{jogador?.prefixo_fone}} ({{jogador?.ddd_fone}}) {{jogador?.fone}}</p>
+    </ion-item>
   </ion-card>
-
+  <p class="text"><b>VÍDEOS</b></p>
   <ion-card *ngFor="let item of items">
     <ion-item>
       <h2><b>{{item.titulo}}</b></h2>
@@ -32,9 +45,9 @@
     <div text-center>
       <iframe width="250" height="200" [src]="sanitize(item.urlVideo)" frameborder="0" allowfullscreen></iframe>
       <!--<button ion-button round icon-start color="danger" (click)="openMyVideo()">
-          <ion-icon name="logo-youtube"></ion-icon>
-          Play Vídeo
-        </button>-->
+              <ion-icon name="logo-youtube"></ion-icon>
+              Play Vídeo
+            </button>-->
     </div>
     <ion-card-content>
       <p>{{item.descricao}}</p>
@@ -52,5 +65,4 @@
   <ion-item *ngIf="verificaReg() <= 0">
     <h3>Você não possui Nenhum Vídeo Cadastrado</h3>
   </ion-item>
-
 </ion-content>

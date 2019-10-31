@@ -1,3 +1,5 @@
+import { JogadorDTO } from "./jogador.dto";
+
 export interface JogadorLancesDTO {
     id: string;
     titulo: string;
