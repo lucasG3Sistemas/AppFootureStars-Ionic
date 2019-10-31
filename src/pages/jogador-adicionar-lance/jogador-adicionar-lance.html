@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar color="greenlight">
-    <ion-title>Adicionar Vídeo</ion-title>
+    <ion-title>{{tituloPage}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -12,7 +12,7 @@
   <form [formGroup]="formGroup" (ngSubmit)="addVideo(); $event.preventDefault()">
     <ion-item>
       <ion-label stacked>Título*</ion-label>
-      <ion-input formControlName="titulo" type="text"></ion-input>
+      <ion-input formControlName="titulo" type="text" value={{item?.titulo}}></ion-input>
     </ion-item>
     <p class="danger" *ngIf="formGroup.controls.titulo.dirty && formGroup.controls.titulo.errors" margin-left>Valor
       inválido</p>
@@ -32,7 +32,7 @@
       <ion-label stacked>Complemento</ion-label>
       <ion-input formControlName="complemento" type="text"></ion-input>
     </ion-item>
-    <button ion-button block type="submit" color="greenlight" [disabled]="formGroup.invalid">Cadastrar Vídeo</button>
+    <button ion-button block type="submit" color="greenlight" [disabled]="formGroup.invalid">{{tituloPage}}</button>
   </form>
 
 </ion-content>

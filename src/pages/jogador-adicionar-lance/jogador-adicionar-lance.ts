@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { JogadorLancesService } from '../../services/domain/jogador.lances.service';
 import { StorageService } from '../../services/storage.service';
+import { CONFIG_USU } from '../../config/config_usu';
+import { JogadorDTO } from '../../models/jogador.dto';
+import { JogadorLancesDTO } from '../../models/jogador.lance.dto';
 
 @IonicPage()
 @Component({
@@ -12,6 +15,8 @@ import { StorageService } from '../../services/storage.service';
 export class JogadorAdicionarLancePage {
 
   formGroup: FormGroup;
+  item: JogadorLancesDTO;
+  tituloPage: string;
 
   constructor(
     public navCtrl: NavController,
@@ -21,7 +26,6 @@ export class JogadorAdicionarLancePage {
     public alertCtrl: AlertController,
     public jogadorLanceService: JogadorLancesService
   ) {
-
     this.formGroup = this.formBuilder.group({
       titulo: ['', [Validators.required]],
       descricao: ['', [Validators.required]],
@@ -30,11 +34,19 @@ export class JogadorAdicionarLancePage {
       idJogador: [null],
       idUsuario: storage.getLocalUser().email
     });
-
+    this.tituloPage = "Cadastrar Vídeo";
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad JogadorAdicionarLancePage');
+    //if (CONFIG_USU.idLanceJogador != "") {
+    //  this.tituloPage = "Editar Vídeo";
+    //  this.jogadorLanceService.find(CONFIG_USU.idLanceJogador)
+    //  .subscribe(response => {
+    //    this.item = response;
+    //  },
+    //    error => { });
+    //}
+    //CONFIG_USU.idLanceJogador = "";
   }
 
   addVideo() {
@@ -42,7 +54,8 @@ export class JogadorAdicionarLancePage {
       .subscribe(response => {
         this.showInsertOk();
       },
-        error => { });
+      error => { });
+      //CONFIG_USU.idLanceJogador = "";
   }
 
   showInsertOk() {

@@ -59,4 +59,13 @@ export class VideosJogadorPage {
     this.navCtrl.push(JogadorAdicionarLancePage);
   }
 
+  removeVideo() {
+    console.log("EXCLUIR");
+  }
+
+  editar(id: string) {
+    CONFIG_USU.idLanceJogador = id;
+    this.navCtrl.push(JogadorAdicionarLancePage);
+  }
+
 }

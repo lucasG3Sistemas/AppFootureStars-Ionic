@@ -13,6 +13,9 @@ export class JogadorLancesService {
 
     }
 
+    find(id: string) : Observable<JogadorLancesDTO> {
+        return this.http.get<JogadorLancesDTO>(`${API_CONFIG.baseUrl}/jogadores/lances/${id}`);
+    }
 
     findLancesJogador(idJogador : string) : Observable<JogadorLancesDTO[]> {
         return this.http.get<JogadorLancesDTO[]>(`${API_CONFIG.baseUrl}/jogadores/lances/idJogador?idJogador=${idJogador}`);

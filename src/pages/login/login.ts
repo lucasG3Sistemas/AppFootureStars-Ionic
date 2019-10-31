@@ -7,7 +7,6 @@ import { TabsEmprPage } from '../tabsempr/tabsempr';
 import { SignupPage } from '../signup/signup';
 import { TabsClubePage } from '../tabsclube/tabsclube';
 import { StorageService } from '../../services/storage.service';
-import { CONFIG_USU } from '../../config/config_usu';
 
 
 @IonicPage()
@@ -44,8 +43,6 @@ export class LoginPage {
   }
 
   ionViewDidEnter() {
-    console.log(this.storage);
-    console.log(this.storage.getLocalUser);
     let localUser = this.storage.getLocalUser();
     
     this.auth.refreshToken()
@@ -78,9 +75,6 @@ export class LoginPage {
   }
 
   signup() {
-    CONFIG_USU.idListaObservacao = "";
-    CONFIG_USU.idJogador = "";
-    CONFIG_USU.nomeJogador = "";
     this.navCtrl.push(SignupPage);
   }
 

@@ -46,7 +46,11 @@ export class AuthService {
         this.storage.setLocalUser(user);
     }
 
-    logout() {
+    logout() {        
+        CONFIG_USU.idListaObservacao = "";
+        CONFIG_USU.idJogador = "";
+        CONFIG_USU.nomeJogador = "";
+        CONFIG_USU.idLanceJogador = "";
         CONFIG_USU.emailUsuario = "";
         this.storage.setLocalUser(null);
     }
