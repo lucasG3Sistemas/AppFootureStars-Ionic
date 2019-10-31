@@ -13,7 +13,7 @@
     </button>
   </ion-fab>
   <ion-list>
-    <ion-item *ngFor="let item of items">
+    <ion-item *ngFor="let item of items" (click)="showDetail(item.id, item.nome)">
       <ion-thumbnail item-start>
         <img [src]="item.imageUrl || 'assets/imgs/avatar-blank.png'">
       </ion-thumbnail>

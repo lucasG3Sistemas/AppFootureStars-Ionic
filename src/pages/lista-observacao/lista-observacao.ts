@@ -6,6 +6,7 @@ import { ListaObservacaoService } from '../../services/domain/lista.observacao.s
 import { StorageService } from '../../services/storage.service';
 import { BuscaJogadoresPage } from '../busca-jogadores/busca-jogadores';
 import { CONFIG_USU } from '../../config/config_usu';
+import { VisualizarDetalhesJogadorPage } from '../visualizar-detalhes-jogador/visualizar-detalhes-jogador';
 
 @IonicPage()
 @Component({
@@ -96,6 +97,12 @@ export class ListaObservacaoPage {
 
   chamaPaginaBuscaJogador() {
     this.navCtrl.push(BuscaJogadoresPage);
+  }
+
+  showDetail(idJogador: string, nomeJogador: string) {
+    CONFIG_USU.idJogador = idJogador;
+    CONFIG_USU.nomeJogador = nomeJogador;
+    this.navCtrl.push(VisualizarDetalhesJogadorPage);
   }
 
 }

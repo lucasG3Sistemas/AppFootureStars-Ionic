@@ -45,6 +45,7 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 import { JogadorLancesService } from '../services/domain/jogador.lances.service';
 import { JogadorAdicionarLancePage } from '../pages/jogador-adicionar-lance/jogador-adicionar-lance';
 import { JogadorDetalheCadastrarPage } from '../pages/jogador-detalhe-cadastrar/jogador-detalhe-cadastrar';
+import { VisualizarDetalhesJogadorPage } from '../pages/visualizar-detalhes-jogador/visualizar-detalhes-jogador';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { JogadorDetalheCadastrarPage } from '../pages/jogador-detalhe-cadastrar/
     SignupClubePage,
     SignupEmpresarioPage,
     JogadorAdicionarLancePage,
-    JogadorDetalheCadastrarPage
+    JogadorDetalheCadastrarPage,
+    VisualizarDetalhesJogadorPage
   ],
   imports: [
     BrowserModule,
@@ -97,7 +99,8 @@ import { JogadorDetalheCadastrarPage } from '../pages/jogador-detalhe-cadastrar/
     SignupClubePage,
     SignupEmpresarioPage,
     JogadorAdicionarLancePage,
-    JogadorDetalheCadastrarPage
+    JogadorDetalheCadastrarPage,
+    VisualizarDetalhesJogadorPage
   ],
   providers: [
     StatusBar,
