@@ -7,6 +7,7 @@ import { API_CONFIG } from '../../config/api.config';
 import { CONFIG_USU } from '../../config/config_usu';
 import { ListaObservacaoService } from '../../services/domain/lista.observacao.service';
 import { ListaObservacaoDTO } from '../../models/lista.observacao.dto';
+import { VisualizarDetalhesJogadorPage } from '../visualizar-detalhes-jogador/visualizar-detalhes-jogador';
 
 @IonicPage()
 @Component({
@@ -86,6 +87,12 @@ export class BuscaJogadoresPage {
       ]
     });
     alert.present();
+  }
+
+  showDetail(idJogador: string, nomeJogador: string) {
+    CONFIG_USU.idJogador = idJogador;
+    CONFIG_USU.nomeJogador = nomeJogador;
+    this.navCtrl.push(VisualizarDetalhesJogadorPage);
   }
 
 }
