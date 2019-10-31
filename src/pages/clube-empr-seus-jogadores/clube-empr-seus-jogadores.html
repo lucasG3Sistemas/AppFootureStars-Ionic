@@ -18,10 +18,10 @@
         <img [src]="item.imageUrl || 'assets/imgs/avatar-blank.png'">
       </ion-thumbnail>
       <h2><b>{{item.nome}}</b></h2>
-      <p>Data Nascimento: {{item.data_nasc}}</p>
-      <p>Local Nasc.: {{item.municipio_nasc}}/{{item.estado_nasc}} - {{item.nacionalidade}}</p>
+      <p>Nasc.: {{item.data_nasc}}</p>
+      <p>Nacionalidade: {{item.nacionalidade}}</p>
       <p>{{item.profissionalizacao==1 ? 'Jogador Profissional' : 'Jogador Amador'}}</p>
-      <p>Modalidade: {{item.modalidade.descricao}}</p>
+      <p>{{item.modalidade.descricao}}</p>
       <p>Posições: {{item.posicoes[0].descricao}}</p>
       <!--<ion-icon name="ios-create" item-end color="greenlight" (click)="verificaReg()"></ion-icon>-->
       <ion-icon name="trash" item-end color="danger" (click)="removeJogador(item.produto)"></ion-icon>
