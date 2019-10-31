@@ -31,7 +31,7 @@ export class JogadorAdicionarLancePage {
       descricao: ['', [Validators.required]],
       urlVideo: ['', [Validators.required]],
       complemento: [''],
-      idJogador: [null],
+      idJogador: CONFIG_USU.idJogador!="" ? CONFIG_USU.idJogador : null,
       idUsuario: storage.getLocalUser().email
     });
     this.tituloPage = "Cadastrar Vídeo";
