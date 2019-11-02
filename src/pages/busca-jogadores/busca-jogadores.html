@@ -9,16 +9,18 @@
 
 <ion-content padding class="masters">
   <ion-list>
-    <ion-item *ngFor="let item of items" (click)="showDetail(item.id, item.nome)">
+    <ion-item *ngFor="let item of items">
       <ion-thumbnail item-start>
         <img [src]="item.imageUrl || 'assets/imgs/avatar-blank.png'">
       </ion-thumbnail>
-      <h2><b>{{item.nome}}</b></h2>
-      <p>Nasc.: {{item.data_nasc}}</p>
-      <p>Nacionalidade: {{item.nacionalidade}}</p>
-      <p>{{item.profissionalizacao==1 ? 'Jogador Profissional' : 'Jogador Amador'}}</p>
-      <p>{{item.modalidade.descricao}}</p>
-      <p>Posições: {{item.posicoes[0].descricao}}</p>
+      <ion-item (click)="showDetail(item.id, item.nome)">
+        <h2><b>{{item.nome}}</b></h2>
+        <p>Nasc.: {{item.data_nasc}}</p>
+        <p>Nacionalidade: {{item.nacionalidade}}</p>
+        <p>{{item.profissionalizacao==1 ? 'Jogador Profissional' : 'Jogador Amador'}}</p>
+        <p>{{item.modalidade.descricao}}</p>
+        <p>Posições: {{item.posicoes[0].descricao}}</p>
+      </ion-item>
       <ion-icon name="md-add-circle" item-end color="greenlight" (click)="adicionarJogador(item.id)"></ion-icon>
     </ion-item>
     <ion-item *ngIf="verificaReg() <= 0">

@@ -57,6 +57,10 @@ export class ClubeEmprSeusJogadoresPage {
     this.navCtrl.push(SignupJogadorPage);
   }
 
+  removeJogador() {
+    console.log("AQX");
+  }
+
   showDetail(idJogador: string, nomeJogador: string) {
     CONFIG_USU.idJogador = idJogador;
     CONFIG_USU.nomeJogador = nomeJogador;
