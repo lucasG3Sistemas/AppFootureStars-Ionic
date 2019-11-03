@@ -7,29 +7,29 @@
 </ion-header>
 
 
-<ion-content padding class="masters">
+<ion-content padding>
 
   <form [formGroup]="formGroup" (ngSubmit)="addVideo(); $event.preventDefault()">
     <ion-item>
-      <ion-label stacked>Título*</ion-label>
+      <ion-label floating>Título*</ion-label>
       <ion-input formControlName="titulo" type="text" value={{item?.titulo}}></ion-input>
     </ion-item>
     <p class="danger" *ngIf="formGroup.controls.titulo.dirty && formGroup.controls.titulo.errors" margin-left>Valor
       inválido</p>
     <ion-item>
-      <ion-label stacked>Descrição*</ion-label>
+      <ion-label floating>Descrição*</ion-label>
       <ion-input formControlName="descricao" type="text"></ion-input>
     </ion-item>
     <p class="danger" *ngIf="formGroup.controls.descricao.dirty && formGroup.controls.descricao.errors" margin-left>
       Valor inválido</p>
     <ion-item>
-      <ion-label stacked>Url Vídeo YouTube*</ion-label>
+      <ion-label floating>Url Vídeo YouTube*</ion-label>
       <ion-input formControlName="urlVideo" type="text"></ion-input>
     </ion-item>
     <p class="danger" *ngIf="formGroup.controls.urlVideo.dirty && formGroup.controls.urlVideo.errors" margin-left>Valor
       inválido</p>
     <ion-item>
-      <ion-label stacked>Complemento</ion-label>
+      <ion-label floating>Complemento</ion-label>
       <ion-input formControlName="complemento" type="text"></ion-input>
     </ion-item>
     <button ion-button block type="submit" color="greenlight" [disabled]="formGroup.invalid">{{tituloPage}}</button>

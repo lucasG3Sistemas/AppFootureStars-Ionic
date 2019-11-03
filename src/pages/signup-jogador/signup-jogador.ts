@@ -16,7 +16,7 @@ import { StorageService } from '../../services/storage.service';
 @IonicPage()
 @Component({
   selector: 'page-signup-jogador',
-  templateUrl: 'signup-jogador.html',
+  templateUrl: 'signup-jogador.html'
 })
 export class SignupJogadorPage {
 

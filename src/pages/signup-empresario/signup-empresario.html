@@ -7,21 +7,21 @@
 </ion-header>
 
 
-<ion-content padding class="masters">
+<ion-content padding>
 
   <form [formGroup]="formGroup" (ngSubmit)="signupEmpresario(); $event.preventDefault()">
     <ion-item>
-      <ion-label stacked>Nome*</ion-label>
+      <ion-label floating>Nome*</ion-label>
       <ion-input formControlName="nome" type="text"></ion-input>
     </ion-item>
     <p class="danger" *ngIf="formGroup.controls.nome.dirty && formGroup.controls.nome.errors" margin-left>Valor inválido</p>
     <ion-item>
-      <ion-label stacked>CPF*</ion-label>
-      <ion-input formControlName="cpf" type="text"></ion-input>
+      <ion-label floating>CPF*</ion-label>
+      <ion-input formControlName="cpf" type="tel" pattern="[0-9]*"></ion-input>
     </ion-item>
     <p class="danger" *ngIf="formGroup.controls.cpf.dirty && formGroup.controls.cpf.errors" margin-left>Valor inválido</p>
     <ion-item>
-      <ion-label stacked>Data Nascimento*</ion-label>
+      <ion-label floating>Data Nascimento*</ion-label>
       <ion-input formControlName="data_nasc" type="date"></ion-input>
     </ion-item>
     <p class="danger" *ngIf="formGroup.controls.data_nasc.dirty && formGroup.controls.data_nasc.errors" margin-left>Valor inválido</p>
@@ -30,7 +30,7 @@
         <ion-col>
           <div>
             <ion-item>
-              <ion-label stacked>Nacionalidade*</ion-label>
+              <ion-label floating>Nacionalidade*</ion-label>
               <ion-select formControlName="nacionalidade">
                 <ion-option value="Brasil">Brasil</ion-option>
               </ion-select>
@@ -40,7 +40,7 @@
         <ion-col>
           <div>
             <ion-item>
-              <ion-label stacked>Estado Nascimento*</ion-label>
+              <ion-label floating>Estado Nascimento*</ion-label>
               <ion-select formControlName="estado_nasc" (ionChange)="updateCidades()">
                 <ion-option *ngFor="let estado of estados" [value]="estado.id">{{estado.nome}}</ion-option>
               </ion-select>
@@ -50,7 +50,7 @@
       </ion-row>
     </ion-grid>
     <ion-item>
-      <ion-label stacked>Cidade Nascimento*</ion-label>
+      <ion-label floating>Cidade Nascimento*</ion-label>
       <ion-select formControlName="municipio_nasc">
         <ion-option *ngFor="let cidade of cidades" [value]="cidade.nome">{{cidade.nome}}</ion-option>
       </ion-select>
@@ -75,8 +75,8 @@
         <ion-col>
           <div>
             <ion-item>
-              <ion-label stacked>Prefixo Fone*</ion-label>
-              <ion-input formControlName="prefixo_fone" type="text"></ion-input>
+              <ion-label floating>Prefixo Fone*</ion-label>
+              <ion-input formControlName="prefixo_fone" type="tel" pattern="[0-9]*"></ion-input>
             </ion-item>
             <p class="danger" *ngIf="formGroup.controls.prefixo_fone.dirty && formGroup.controls.prefixo_fone.errors" margin-left>Valor inválido</p>
           </div>
@@ -84,8 +84,8 @@
         <ion-col>
           <div>
             <ion-item>
-              <ion-label stacked>DDD Fone*</ion-label>
-              <ion-input formControlName="ddd_fone" type="text"></ion-input>
+              <ion-label floating>DDD Fone*</ion-label>
+              <ion-input formControlName="ddd_fone" type="tel" pattern="[0-9]*"></ion-input>
             </ion-item>
             <p class="danger" *ngIf="formGroup.controls.ddd_fone.dirty && formGroup.controls.ddd_fone.errors" margin-left>Valor inválido</p>
           </div>
@@ -93,12 +93,12 @@
       </ion-row>
     </ion-grid>
     <ion-item>
-      <ion-label stacked>Fone*</ion-label>
-      <ion-input formControlName="fone" type="text"></ion-input>
+      <ion-label floating>Fone*</ion-label>
+      <ion-input formControlName="fone" type="tel" pattern="[0-9]*"></ion-input>
     </ion-item>
     <p class="danger" *ngIf="formGroup.controls.fone.dirty && formGroup.controls.fone.errors" margin-left>Valor inválido</p>
     <ion-item>
-      <ion-label stacked>Complemento</ion-label>
+      <ion-label floating>Complemento</ion-label>
       <ion-input formControlName="complemento" type="textarea"></ion-input>
     </ion-item>
     <button ion-button block type="submit" color="greenlight" [disabled]="formGroup.invalid">Cadastrar Olheiro/Empresário</button>

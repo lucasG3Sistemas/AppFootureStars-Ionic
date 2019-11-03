@@ -6,20 +6,20 @@
 
 </ion-header>
 
-<ion-content padding class="masters">
+<ion-content padding>
   <form [formGroup]="formGroup" (ngSubmit)="signupUser(); $event.preventDefault()">
     <ion-item>
-      <ion-label stacked>Email*</ion-label>
+      <ion-label floating>Email*</ion-label>
       <ion-input formControlName="email" type="text"></ion-input>
     </ion-item>
     <p class="danger" *ngIf="formGroup.controls.email.dirty && formGroup.controls.email.errors" margin-left>Valor inválido</p>
     <ion-item>
-      <ion-label stacked>Senha*</ion-label>
+      <ion-label floating>Senha*</ion-label>
       <ion-input formControlName="senha" type="password"></ion-input>
     </ion-item> 
     <p class="danger" *ngIf="formGroup.controls.senha.dirty && formGroup.controls.senha.errors" margin-left>Valor inválido</p>
     <ion-item>
-      <ion-label stacked>Tipo de Usuário*</ion-label>
+      <ion-label floating>Tipo de Usuário*</ion-label>
       <ion-select formControlName="tipoUsuario">
         <ion-option value="1">Jogador de Futebol</ion-option>
         <ion-option value="2">Clube de Futebol</ion-option>

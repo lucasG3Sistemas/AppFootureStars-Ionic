@@ -24,14 +24,18 @@ export class MyApp {
       
       let config = configProvider.getConfigData();
       
-      if (config == null)  {
+      //if (config == null)  {
         this.rootPage = IntroPage;
-        configProvider.setConfigData(false);
-      } else {
-        this.rootPage = TabsPage;
-      }
+      //  configProvider.setConfigData(false);
+      //} else {
+      //  this.rootPage = TabsPage;
+      //}
       
-      statusBar.styleDefault();
+      //statusBar.styleDefault();
+      if (platform.is('android')) {
+        
+        statusBar.backgroundColorByHexString("#007d00");
+      }
       splashScreen.hide();
     });
   }

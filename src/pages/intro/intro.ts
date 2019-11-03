@@ -36,7 +36,7 @@ export class IntroPage {
   }
 
   acessarHome() {
-    this.navCtrl.push(LoginPage);
+    this.navCtrl.setRoot(LoginPage);
   }
 
 }

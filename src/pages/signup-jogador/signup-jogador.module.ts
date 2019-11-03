@@ -9,7 +9,7 @@ import { CidadeService } from '../../services/domain/municipio.service';
     SignupJogadorPage,
   ],
   imports: [
-    IonicPageModule.forChild(SignupJogadorPage),
+    IonicPageModule.forChild(SignupJogadorPage)
   ],
   providers: [
     EstadoService,
