@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { JogadorDTO } from '../../models/jogador.dto';
 import { JogadorService } from '../../services/domain/jogador.service';
 import { StorageService } from '../../services/storage.service';
@@ -27,7 +27,8 @@ export class BuscaJogadoresPage {
     public alertCtrl: AlertController,
     public storage: StorageService,
     public jogadorService: JogadorService,
-    public listaObservacaoService: ListaObservacaoService) {
+    public listaObservacaoService: ListaObservacaoService,
+    public loadingCtrl: LoadingController) {
 
   }
 
@@ -36,12 +37,24 @@ export class BuscaJogadoresPage {
   }
 
   loadData() {
+    let loader = this.presentLoading();
     let localUser = this.storage.getLocalUser();
     this.jogadorService.findBuscaJogadores(CONFIG_USU.idListaObservacao, localUser.email).subscribe(response => {
       this.items = response;
+      loader.dismiss();
       this.loadImageUrls();
     },
-      error => { });
+      error => {
+        loader.dismiss();
+      });
+  }
+
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Aguarde..."
+    });
+    loader.present();
+    return loader;
   }
 
   getItems(ev: any) {
