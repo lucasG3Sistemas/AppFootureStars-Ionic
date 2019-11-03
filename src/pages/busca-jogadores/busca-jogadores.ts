@@ -17,6 +17,7 @@ import { VisualizarDetalhesJogadorPage } from '../visualizar-detalhes-jogador/vi
 export class BuscaJogadoresPage {
 
   reg: number;
+  searchQuery: string = '';
   items: JogadorDTO[];
   listaObservacao: ListaObservacaoDTO;
 
@@ -41,6 +42,31 @@ export class BuscaJogadoresPage {
       this.loadImageUrls();
     },
       error => { });
+  }
+
+  getItems(ev: any) {
+    let localUser = this.storage.getLocalUser();
+    
+    // set val to the value of the searchbar
+    const val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+
+      this.jogadorService.findJogNome(CONFIG_USU.idListaObservacao, localUser.email, val).subscribe(response => {
+        this.items = response;
+        this.loadImageUrls();
+      },
+        error => { });
+
+      
+      //this.items = this.items.filter((item) => {
+      //  return (item.nome.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      //})
+    } else {
+      // Reset items back to all of the items
+      this.loadData();
+    }
   }
 
   doRefresh(refresher) {

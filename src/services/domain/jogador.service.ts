@@ -12,6 +12,9 @@ export class JogadorService {
 
     }
 
+    findJogNome(idLista : string, usuario : string, nome: string) : Observable<JogadorDTO[]> {
+        return this.http.get<JogadorDTO[]>(`${API_CONFIG.baseUrl}/jogadores/?idLista=${idLista}&usuario=${usuario}&nome=${nome}`);
+    }
 
     findBuscaJogadores(idLista : string, usuario : string) : Observable<JogadorDTO[]> {
         return this.http.get<JogadorDTO[]>(`${API_CONFIG.baseUrl}/jogadores/lista?idLista=${idLista}&usuario=${usuario}`);

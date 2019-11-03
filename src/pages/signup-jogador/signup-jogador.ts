@@ -131,4 +131,8 @@ export class SignupJogadorPage {
     alert.present();
   }
 
+  //public event = {
+    //month: '1990-02-19'
+  //}
+
 }
