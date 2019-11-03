@@ -46,7 +46,7 @@ import { JogadorLancesService } from '../services/domain/jogador.lances.service'
 import { JogadorAdicionarLancePage } from '../pages/jogador-adicionar-lance/jogador-adicionar-lance';
 import { JogadorDetalheCadastrarPage } from '../pages/jogador-detalhe-cadastrar/jogador-detalhe-cadastrar';
 import { VisualizarDetalhesJogadorPage } from '../pages/visualizar-detalhes-jogador/visualizar-detalhes-jogador';
-import { Camera } from '@ionic-native/camera/ngx';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
