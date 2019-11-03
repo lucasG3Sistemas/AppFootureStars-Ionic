@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, LoadingController } from 'ionic-angular';
 import { CONFIG_USU } from '../../config/config_usu';
 import { JogadorAdicionarLancePage } from '../jogador-adicionar-lance/jogador-adicionar-lance';
 import { JogadorLancesDTO } from '../../models/jogador.lance.dto';
@@ -25,32 +25,32 @@ export class JogadorDetalheCadastrarPage {
 
   constructor(private dom: DomSanitizer, public plt: Platform,
     private youtube: YoutubeVideoPlayer, public navCtrl: NavController, public navParams: NavParams,
-    public storage: StorageService, public jogadorService: JogadorService, public jogadorLancesService: JogadorLancesService) {
+    public storage: StorageService, public jogadorService: JogadorService, public jogadorLancesService: JogadorLancesService,
+    public loadingCtrl: LoadingController) {
 
     this.nomeJogador = CONFIG_USU.nomeJogador;
 
   }
 
   ionViewDidLoad() {
+    let loader = this.presentLoading();
     this.jogadorService.findById(CONFIG_USU.idJogador)
       .subscribe(response => {
         this.jogador = response;
+        loader.dismiss();
         this.getImageIfExists();
       },
-      error => {});
+      error => {
+        loader.dismiss();
+      });
 
     this.jogadorLancesService.findLancesJogador(CONFIG_USU.idJogador).subscribe(response => {
-      console.log(response);
       this.items = response;
-      console.log(this.items);
       if (response.length == 0) {
-        console.log("XXXX");
         this.reg = 0;
       } else {
-        console.log("XXXzzzX");
         this.reg = 1;
       }
-      console.log("aaaa");
     },
       error => { this.reg = 0; });
   }
@@ -61,6 +61,14 @@ export class JogadorDetalheCadastrarPage {
       this.jogador.imageUrl = `${API_CONFIG.bucketBaseUrl}/jdor${this.jogador.id}.jpg`;
     },
     error => {});
+  }
+
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Aguarde..."
+    });
+    loader.present();
+    return loader;
   }
 
   chamaPaginaAdicionarLance() {
