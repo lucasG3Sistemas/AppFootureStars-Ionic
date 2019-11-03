@@ -17,6 +17,7 @@ export class ListaObservacaoPage {
 
   bucketUrl: string = API_CONFIG.bucketBaseUrl;
 
+  //searchQuery: string = '';
   reg: number;
   items: ListaObservacaoDTO[];
   listaObs: any;
@@ -43,6 +44,32 @@ export class ListaObservacaoPage {
     },
       error => { this.reg = 0; });
   }
+
+  //getItems(ev: any) {
+  //  let localUser = this.storage.getLocalUser();
+
+    // set val to the value of the searchbar
+  //   const val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+  //  if (val && val.trim() != '') {
+
+  //    this.listaObservacaoService.findListaObservacaoNome(localUser.email, val).subscribe(response => {
+  //      this.listaObs = response;
+  //      CONFIG_USU.idListaObservacao = this.listaObs.id;
+  //      this.items = response['jogadores']; 
+  //      this.loadImageUrls();
+  //    },
+  //      error => { });
+
+      //this.items = this.items.filter((item) => {
+      //  return (item.nome.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      //})
+    //} else {
+      // Reset items back to all of the items
+    //  this.loadData();
+    //}
+  //}
 
   doRefresh(refresher) {
     this.loadData();

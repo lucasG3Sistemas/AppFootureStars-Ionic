@@ -16,6 +16,10 @@ export class ListaObservacaoService {
         return this.http.get(`${API_CONFIG.baseUrl}/listas/observacoes/usuario?value=${email}`);
     }
 
+    //findListaObservacaoNome(email: string, nome: string) {
+    //    return this.http.get(`${API_CONFIG.baseUrl}/listas/observacoes/search?usuario=${email}&nome=${nome}`);
+    //}
+
     getImageFromBucket(id : string) : Observable<any> {
         let url = `${API_CONFIG.bucketBaseUrl}/jdor${id}.jpg`
         return this.http.get(url, {responseType : 'blob'});
