@@ -30,6 +30,10 @@ export class ListaObservacaoPage {
   }
 
   ionViewDidLoad() {
+    this.loadData();
+  }
+
+  loadData() {
     let localUser = this.storage.getLocalUser();
     this.listaObservacaoService.findListaObservacao(localUser.email).subscribe(response => {
       this.listaObs = response;
@@ -40,6 +44,13 @@ export class ListaObservacaoPage {
       error => { this.reg = 0; });
   }
 
+  doRefresh(refresher) {
+    this.loadData();
+    setTimeout(() => {
+      refresher.complete();
+    }, 1000);
+  }
+  
   loadImageUrls() {
     this.reg = 0;
     for (var i = 0; i < this.items.length; i++) {

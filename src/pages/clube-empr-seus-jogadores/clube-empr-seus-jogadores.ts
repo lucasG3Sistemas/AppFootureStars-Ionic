@@ -28,12 +28,23 @@ export class ClubeEmprSeusJogadoresPage {
   }
 
   ionViewDidLoad() {
+    this.loadData();
+  }
+
+  loadData() {
     let localUser = this.storage.getLocalUser();
     this.seusJogadoresService.findSeusJogadores(localUser.email).subscribe(response => {
       this.items = response;
       this.loadImageUrls();
     },
     error => {});
+  }
+
+  doRefresh(refresher) {
+    this.loadData();
+    setTimeout(() => {
+      refresher.complete();
+    }, 1000);
   }
 
   loadImageUrls() {

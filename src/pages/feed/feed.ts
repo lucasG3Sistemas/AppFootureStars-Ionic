@@ -25,6 +25,10 @@ export class FeedPage {
   }
 
   ionViewDidLoad() {
+    this.loadData();
+  }
+
+  loadData() {
     let localUser = this.storage.getLocalUser();
     if (localUser && localUser.email) {
       this.historicoContratacaoService.findAll().subscribe(response => {
@@ -39,6 +43,13 @@ export class FeedPage {
     } else {
       this.navCtrl.parent.parent.setRoot(LoginPage);
     }
+  }
+
+  doRefresh(refresher) {
+    this.loadData();
+    setTimeout(() => {
+      refresher.complete();
+    }, 1000);
   }
 
   loadImageUrls() {

@@ -26,6 +26,10 @@ export class VideosJogadorPage {
   }
 
   ionViewDidLoad() {
+    this.loadData();
+  }
+
+  loadData() {
     let localUser = this.storage.getLocalUser();
     this.jogadorLancesService.findLances(localUser.email).subscribe(response => {
       this.items = response;
@@ -36,6 +40,13 @@ export class VideosJogadorPage {
       }
     },
       error => { this.reg = 0; });
+  }
+
+  doRefresh(refresher) {
+    this.loadData();
+    setTimeout(() => {
+      refresher.complete();
+    }, 1000);
   }
 
   verificaReg(): number {

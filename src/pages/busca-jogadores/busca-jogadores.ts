@@ -31,12 +31,23 @@ export class BuscaJogadoresPage {
   }
 
   ionViewDidLoad() {
+    this.loadData();
+  }
+
+  loadData() {
     let localUser = this.storage.getLocalUser();
     this.jogadorService.findBuscaJogadores(CONFIG_USU.idListaObservacao, localUser.email).subscribe(response => {
       this.items = response;
       this.loadImageUrls();
     },
       error => { });
+  }
+
+  doRefresh(refresher) {
+    this.loadData();
+    setTimeout(() => {
+      refresher.complete();
+    }, 1000);
   }
 
   loadImageUrls() {

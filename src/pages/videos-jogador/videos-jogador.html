@@ -16,6 +16,11 @@
 -->
 
 <ion-content padding class="masters">
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-fab bottom right>
     <button (click)="chamaPaginaAdicionarLance()" ion-fab mini color="greenlight">
       <ion-icon name="md-add"></ion-icon>

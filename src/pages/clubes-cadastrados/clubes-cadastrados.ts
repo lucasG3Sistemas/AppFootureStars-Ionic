@@ -24,11 +24,22 @@ export class ClubesCadastradosPage {
   }
 
   ionViewDidLoad() {
+    this.loadData();
+  }
+
+  loadData() {
     this.clubeFutebolService.findAll().subscribe(response => {
       this.items = response;
       this.loadImageUrls();
     },
     error => {});
+  }
+
+  doRefresh(refresher) {
+    this.loadData();
+    setTimeout(() => {
+      refresher.complete();
+    }, 1000);
   }
 
   loadImageUrls() {
