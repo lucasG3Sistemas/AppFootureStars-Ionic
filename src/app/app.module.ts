@@ -46,6 +46,7 @@ import { JogadorLancesService } from '../services/domain/jogador.lances.service'
 import { JogadorAdicionarLancePage } from '../pages/jogador-adicionar-lance/jogador-adicionar-lance';
 import { JogadorDetalheCadastrarPage } from '../pages/jogador-detalhe-cadastrar/jogador-detalhe-cadastrar';
 import { VisualizarDetalhesJogadorPage } from '../pages/visualizar-detalhes-jogador/visualizar-detalhes-jogador';
+import { Camera } from '@ionic-native/camera/ngx';
 
 @NgModule({
   declarations: [
@@ -107,6 +108,7 @@ import { VisualizarDetalhesJogadorPage } from '../pages/visualizar-detalhes-joga
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ConfigProvider,
+    Camera,
     YoutubeVideoPlayer,
     AuthInterceptorProvider,
     ErrorInterceptorProvider,
