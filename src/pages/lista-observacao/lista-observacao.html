@@ -19,6 +19,19 @@
   </ion-fab>
   <ion-list>
     <ion-item *ngFor="let item of items">
+      
+      <!--
+      <ion-item-options side="right">
+        <button ion-button color="greenlight" (click)="enviarEmail(item.email)">
+          <ion-icon name="md-chatbubbles"></ion-icon>
+          Email
+        </button>
+        <button ion-button color="danger" (click)="removeJogador(item.produto)">
+          <ion-icon name="trash"></ion-icon>
+          Excluir
+        </button>
+      </ion-item-options>
+      -->
       <ion-item (click)="showDetail(item.id, item.nome)">
         <ion-thumbnail item-start>
           <img [src]="item.imageUrl || 'assets/imgs/avatar-blank.png'">
@@ -30,8 +43,9 @@
         <p>{{item.modalidade.descricao}}</p>
         <p>Posições: {{item.posicoes[0].descricao}}</p>
       </ion-item>
-        <ion-icon name="md-chatbubbles" item-end color="greenlight" (click)="enviarEmail(item.email)"></ion-icon>
-        <ion-icon name="trash" item-end color="danger" (click)="removeJogador(item.produto)"></ion-icon>
+      <ion-icon name="md-more" item-end (click)="openMenu(item.email)"></ion-icon>
+      <!--<ion-icon name="md-chatbubbles" item-end color="greenlight" (click)="enviarEmail(item.email)"></ion-icon>
+      <ion-icon name="trash" item-end color="danger" (click)="removeJogador(item.produto)"></ion-icon>-->
     </ion-item>
     <ion-item *ngIf="verificaReg() <= 0">
       <h3>Sua Lista de Observação está Vazia</h3>

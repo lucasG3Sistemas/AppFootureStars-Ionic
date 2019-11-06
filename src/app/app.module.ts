@@ -47,6 +47,7 @@ import { JogadorAdicionarLancePage } from '../pages/jogador-adicionar-lance/joga
 import { JogadorDetalheCadastrarPage } from '../pages/jogador-detalhe-cadastrar/jogador-detalhe-cadastrar';
 import { VisualizarDetalhesJogadorPage } from '../pages/visualizar-detalhes-jogador/visualizar-detalhes-jogador';
 import { Camera } from '@ionic-native/camera';
+import { ImageUtilService } from '../services/image-util-service';
 
 @NgModule({
   declarations: [
@@ -125,7 +126,8 @@ import { Camera } from '@ionic-native/camera';
     HistoricoContratacaoService,
     ListaObservacaoService,
     SeusJogadoresService,
-    JogadorLancesService
+    JogadorLancesService,
+    ImageUtilService
   ]
 })
 

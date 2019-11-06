@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ActionSheetController } from 'ionic-angular';
 import { API_CONFIG } from '../../config/api.config';
 import { ListaObservacaoDTO } from '../../models/lista.observacao.dto';
 import { ListaObservacaoService } from '../../services/domain/lista.observacao.service';
@@ -27,7 +27,8 @@ export class ListaObservacaoPage {
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public storage: StorageService,
-    public listaObservacaoService: ListaObservacaoService) {
+    public listaObservacaoService: ListaObservacaoService,
+    public actionsheetCtrl: ActionSheetController) {
   }
 
   ionViewDidLoad() {
@@ -141,6 +142,39 @@ export class ListaObservacaoPage {
     CONFIG_USU.idJogador = idJogador;
     CONFIG_USU.nomeJogador = nomeJogador;
     this.navCtrl.push(VisualizarDetalhesJogadorPage);
+  }
+
+  openMenu(email: string) {
+    let actionSheet = this.actionsheetCtrl.create({
+      title: 'Opções',
+      cssClass: 'action-sheets-basic-page',
+      buttons: [
+        {
+          text: 'Entrar em Contato',
+          icon: 'md-chatbubbles',
+          handler: () => {
+            this.enviarEmail(email);
+          }
+        },
+        {
+          text: 'Excluir',
+          role: 'destructive',
+          icon: 'trash',
+          handler: () => {
+            console.log('Delete clicked');
+          }
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel', // will always sort to be on the bottom
+          icon: 'close',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
   }
 
 }

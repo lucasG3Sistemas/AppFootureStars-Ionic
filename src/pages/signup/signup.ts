@@ -25,7 +25,7 @@ export class SignupPage {
     public alertCtrl: AlertController) {
 
     this.formGroup = this.formBuilder.group({
-      email: ['teste@gmail.com', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required]],
       tipoUsuario: [null, [Validators.required]]
     });
