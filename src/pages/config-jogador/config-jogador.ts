@@ -28,6 +28,10 @@ export class ConfigJogadorPage {
   }
 
   ionViewDidLoad() {
+    this.loadData();
+  }
+
+  loadData() {
     let localUser = this.storage.getLocalUser();
     if (localUser && localUser.email) {
       this.jogadorService.findByEmail(localUser.email)
@@ -69,6 +73,20 @@ export class ConfigJogadorPage {
       this.cameraOn = false;
     }, (err) => {
     });
+  }
+
+  sendPicture() {
+    this.jogadorService.uploadPicture(this.picture)
+      .subscribe(response => {
+        this.picture = null;
+        this.loadData();
+      },
+      error => {
+      });
+  }
+
+  cancel() {
+    this.picture = null;
   }
 
   logout() {
