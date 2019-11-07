@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { API_CONFIG } from '../../config/api.config';
 import { JogadorDTO } from '../../models/jogador.dto';
 import { SeusJogadoresService } from '../../services/domain/seus.jogadores.service';
@@ -24,7 +24,8 @@ export class ClubeEmprSeusJogadoresPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public storage: StorageService,
-    public seusJogadoresService: SeusJogadoresService) {
+    public seusJogadoresService: SeusJogadoresService,
+    public actionsheetCtrl: ActionSheetController) {
   }
 
   ionViewDidLoad() {
@@ -76,6 +77,39 @@ export class ClubeEmprSeusJogadoresPage {
     CONFIG_USU.idJogador = idJogador;
     CONFIG_USU.nomeJogador = nomeJogador;
     this.navCtrl.push(JogadorDetalheCadastrarPage);
+  }
+
+  openMenu(email: string) {
+    let actionSheet = this.actionsheetCtrl.create({
+      title: 'Opções',
+      cssClass: 'action-sheets-basic-page',
+      buttons: [
+        {
+          text: 'Editar',
+          icon: 'ios-create',
+          handler: () => {
+            console.log('Edit clicked');
+          }
+        },
+        {
+          text: 'Excluir',
+          role: 'destructive',
+          icon: 'trash',
+          handler: () => {
+            console.log('Delete clicked');
+          }
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel', // will always sort to be on the bottom
+          icon: 'close',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
   }
 
 }
