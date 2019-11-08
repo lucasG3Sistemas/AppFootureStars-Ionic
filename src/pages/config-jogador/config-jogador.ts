@@ -21,9 +21,6 @@ export class ConfigJogadorPage {
   profileImage;
   cameraOn: boolean = false;
 
-
-  //jogador?.imageUrl || 'assets/imgs/avatar-blank.png'
-
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public storage: StorageService,
@@ -120,7 +117,7 @@ export class ConfigJogadorPage {
     this.jogadorService.uploadPicture(this.picture)
       .subscribe(response => {
         this.picture = null;
-        this.getImageIfExists();
+        this.loadData();
       },
         error => {
         });
