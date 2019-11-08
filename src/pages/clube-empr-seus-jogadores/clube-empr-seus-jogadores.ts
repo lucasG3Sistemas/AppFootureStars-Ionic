@@ -73,7 +73,7 @@ export class ClubeEmprSeusJogadoresPage {
     this.navCtrl.push(SignupJogadorPage);
   }
 
-  removeJogador() {
+  removeJogador(idJogador: string) {
     console.log("AQX");
   }
 
@@ -83,7 +83,7 @@ export class ClubeEmprSeusJogadoresPage {
     this.navCtrl.push(JogadorDetalheCadastrarPage);
   }
 
-  openMenu(email: string) {
+  openMenu(idJogador: string, email: string) {
     let actionSheet = this.actionsheetCtrl.create({
       title: 'Opções',
       cssClass: 'action-sheets-basic-page',
@@ -100,7 +100,7 @@ export class ClubeEmprSeusJogadoresPage {
           role: 'destructive',
           icon: 'trash',
           handler: () => {
-            console.log('Delete clicked');
+            this.removeJogador(idJogador);
           }
         },
         {

@@ -41,4 +41,14 @@ export class JogadorLancesService {
         );
     }
 
+    delete(id : string) {
+        return this.http.delete(
+            `${API_CONFIG.baseUrl}/jogadores/lances/${id}`, 
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        );
+    }
+
 }

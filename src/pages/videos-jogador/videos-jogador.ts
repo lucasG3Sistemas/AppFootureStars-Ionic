@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, Alert, AlertController } from 'ionic-angular';
 import { DomSanitizer } from "@angular/platform-browser"
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 import { StorageService } from '../../services/storage.service';
@@ -19,10 +19,11 @@ export class VideosJogadorPage {
   reg: number;
   items: JogadorLancesDTO[];
 
-  constructor( private dom: DomSanitizer, public plt: Platform,
+  constructor(private dom: DomSanitizer, public plt: Platform,
     private youtube: YoutubeVideoPlayer, public navCtrl: NavController, public navParams: NavParams,
-    public storage: StorageService, public jogadorLancesService: JogadorLancesService) {
-    
+    public storage: StorageService, public jogadorLancesService: JogadorLancesService,
+    public alertCtrl: AlertController) {
+
   }
 
   ionViewDidLoad() {
@@ -59,11 +60,11 @@ export class VideosJogadorPage {
 
   openMyVideo() {
     if (this.plt.is('cordova')) {
-      this.youtube.openVideo('rhQmy93LZH8');  
+      this.youtube.openVideo('rhQmy93LZH8');
     } else {
       window.open('https://www.youtube.com/watch?v=rhQmy93LZH8');
     }
-    
+
   }
 
   sanitize(urlVideo: string) {
@@ -74,8 +75,30 @@ export class VideosJogadorPage {
     this.navCtrl.push(JogadorAdicionarLancePage);
   }
 
-  removeVideo() {
-    console.log("EXCLUIR");
+  removerVideo(id: string) {
+    this.jogadorLancesService.delete(id)
+      .subscribe(response => {
+        this.showDeleteOk();
+      },
+        error => { });
+  }
+
+  showDeleteOk() {
+    let alert = this.alertCtrl.create({
+      title: 'Sucesso!',
+      message: 'Vídeo excluído com sucesso',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.navCtrl.popToRoot();
+            this.loadData();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   editar(id: string) {

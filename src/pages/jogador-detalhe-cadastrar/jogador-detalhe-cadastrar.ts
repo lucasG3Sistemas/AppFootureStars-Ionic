@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, LoadingController, AlertController } from 'ionic-angular';
 import { CONFIG_USU } from '../../config/config_usu';
 import { JogadorAdicionarLancePage } from '../jogador-adicionar-lance/jogador-adicionar-lance';
 import { JogadorLancesDTO } from '../../models/jogador.lance.dto';
@@ -26,13 +26,17 @@ export class JogadorDetalheCadastrarPage {
   constructor(private dom: DomSanitizer, public plt: Platform,
     private youtube: YoutubeVideoPlayer, public navCtrl: NavController, public navParams: NavParams,
     public storage: StorageService, public jogadorService: JogadorService, public jogadorLancesService: JogadorLancesService,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
 
     this.nomeJogador = CONFIG_USU.nomeJogador;
 
   }
 
   ionViewDidLoad() {
+    this.loadData();
+  }
+
+  loadData() {
     let loader = this.presentLoading();
     this.jogadorService.findById(CONFIG_USU.idJogador)
       .subscribe(response => {
@@ -40,9 +44,9 @@ export class JogadorDetalheCadastrarPage {
         loader.dismiss();
         this.getImageIfExists();
       },
-      error => {
-        loader.dismiss();
-      });
+        error => {
+          loader.dismiss();
+        });
 
     this.jogadorLancesService.findLancesJogador(CONFIG_USU.idJogador).subscribe(response => {
       this.items = response;
@@ -57,10 +61,10 @@ export class JogadorDetalheCadastrarPage {
 
   getImageIfExists() {
     this.jogadorService.getImageFromBucket(this.jogador.id)
-    .subscribe(response => {
-      this.jogador.imageUrl = `${API_CONFIG.bucketBaseUrl}/jdor${this.jogador.id}.jpg`;
-    },
-    error => {});
+      .subscribe(response => {
+        this.jogador.imageUrl = `${API_CONFIG.bucketBaseUrl}/jdor${this.jogador.id}.jpg`;
+      },
+        error => { });
   }
 
   presentLoading() {
@@ -81,6 +85,31 @@ export class JogadorDetalheCadastrarPage {
 
   sanitize(urlVideo: string) {
     return this.dom.bypassSecurityTrustResourceUrl(urlVideo);
+  }
+
+  removerVideoJogador(id: string) {
+    this.jogadorLancesService.delete(id)
+      .subscribe(response => {
+        this.showDeleteOk();
+      },
+        error => { });
+  }
+
+  showDeleteOk() {
+    let alert = this.alertCtrl.create({
+      title: 'Sucesso!',
+      message: 'Vídeo excluído com sucesso',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.loadData();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }
