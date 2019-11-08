@@ -10,39 +10,39 @@ import { ImageUtilService } from "../image-util-service";
 export class JogadorService {
 
     constructor(
-        public http : HttpClient, 
-        public storage : StorageService,
+        public http: HttpClient,
+        public storage: StorageService,
         public imageUtilService: ImageUtilService) {
 
     }
 
-    findJogNome(idLista : string, usuario : string, nome: string) : Observable<JogadorDTO[]> {
+    findJogNome(idLista: string, usuario: string, nome: string): Observable<JogadorDTO[]> {
         return this.http.get<JogadorDTO[]>(`${API_CONFIG.baseUrl}/jogadores/?idLista=${idLista}&usuario=${usuario}&nome=${nome}`);
     }
 
-    findBuscaJogadores(idLista : string, usuario : string) : Observable<JogadorDTO[]> {
+    findBuscaJogadores(idLista: string, usuario: string): Observable<JogadorDTO[]> {
         return this.http.get<JogadorDTO[]>(`${API_CONFIG.baseUrl}/jogadores/lista?idLista=${idLista}&usuario=${usuario}`);
     }
 
-    findById(id: string) : Observable<JogadorDTO> {
+    findById(id: string): Observable<JogadorDTO> {
         return this.http.get<JogadorDTO>(`${API_CONFIG.baseUrl}/jogadores/${id}`);
     }
 
-    findByEmail(email: string) : Observable<JogadorDTO> {
+    findByEmail(email: string): Observable<JogadorDTO> {
         return this.http.get<JogadorDTO>(`${API_CONFIG.baseUrl}/jogadores/email?value=${email}`);
     }
 
-    getImageFromBucket(id : string) : Observable<any> {
+    getImageFromBucket(id: string): Observable<any> {
         let url = `${API_CONFIG.bucketBaseUrl}/jdor${id}.jpg`
-        return this.http.get(url, {responseType : 'blob'});
+        return this.http.get(url, { responseType: 'blob' });
     }
 
-    insert(obj : JogadorDTO) {
+    insert(obj: JogadorDTO) {
         return this.http.post(
-            `${API_CONFIG.baseUrl}/jogadores`, 
+            `${API_CONFIG.baseUrl}/jogadores`,
             obj,
-            { 
-                observe: 'response', 
+            {
+                observe: 'response',
                 responseType: 'text'
             }
         );
@@ -50,16 +50,26 @@ export class JogadorService {
 
     uploadPicture(picture) {
         let pictureBlob = this.imageUtilService.dataUriToBlob(picture);
-        let formData : FormData = new FormData();
+        let formData: FormData = new FormData();
         formData.set('file', pictureBlob, 'file.png');
         return this.http.post(
-            `${API_CONFIG.baseUrl}/jogadores/picture`, 
+            `${API_CONFIG.baseUrl}/jogadores/picture`,
             formData,
-            { 
-                observe: 'response', 
+            {
+                observe: 'response',
                 responseType: 'text'
             }
-        ); 
+        );
+    }
+
+    delete(id: string) {
+        return this.http.delete(
+            `${API_CONFIG.baseUrl}/jogadores/${id}`,
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        );
     }
 
 }

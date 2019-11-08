@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, AlertController } from 'ionic-angular';
 import { API_CONFIG } from '../../config/api.config';
 import { JogadorDTO } from '../../models/jogador.dto';
 import { SeusJogadoresService } from '../../services/domain/seus.jogadores.service';
@@ -7,6 +7,7 @@ import { StorageService } from '../../services/storage.service';
 import { SignupJogadorPage } from '../signup-jogador/signup-jogador';
 import { JogadorDetalheCadastrarPage } from '../jogador-detalhe-cadastrar/jogador-detalhe-cadastrar';
 import { CONFIG_USU } from '../../config/config_usu';
+import { JogadorService } from '../../services/domain/jogador.service';
 
 @IonicPage()
 @Component({
@@ -25,7 +26,9 @@ export class ClubeEmprSeusJogadoresPage {
     public navParams: NavParams,
     public storage: StorageService,
     public seusJogadoresService: SeusJogadoresService,
-    public actionsheetCtrl: ActionSheetController) {
+    public actionsheetCtrl: ActionSheetController,
+    public alertCtrl: AlertController,
+    public jogadorService: JogadorService) {
   }
 
   ionViewDidLoad() {
@@ -74,8 +77,29 @@ export class ClubeEmprSeusJogadoresPage {
   }
 
   removeJogador(idJogador: string) {
-    console.log("AQX");
-  }
+    this.jogadorService.delete(idJogador)
+    .subscribe(response => {
+      this.showDeleteOk();
+    },
+      error => { });
+}
+
+showDeleteOk() {
+  let alert = this.alertCtrl.create({
+    title: 'Sucesso!',
+    message: 'Jogador excluído com sucesso',
+    enableBackdropDismiss: false,
+    buttons: [
+      {
+        text: 'Ok',
+        handler: () => {
+          this.loadData();
+        }
+      }
+    ]
+  });
+  alert.present();
+}
 
   showDetail(idJogador: string, nomeJogador: string) {
     CONFIG_USU.idJogador = idJogador;
