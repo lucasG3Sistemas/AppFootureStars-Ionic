@@ -116,7 +116,7 @@ showDeleteOk() {
           text: 'Editar',
           icon: 'ios-create',
           handler: () => {
-            console.log('Edit clicked');
+            
           }
         },
         {
@@ -132,7 +132,7 @@ showDeleteOk() {
           role: 'cancel', // will always sort to be on the bottom
           icon: 'close',
           handler: () => {
-            console.log('Cancel clicked');
+            
           }
         }
       ]

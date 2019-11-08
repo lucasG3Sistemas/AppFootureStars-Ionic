@@ -148,7 +148,32 @@ export class ListaObservacaoPage {
     this.navCtrl.push(VisualizarDetalhesJogadorPage);
   }
 
-  openMenu(email: string) {
+  removeJogador(idLista: string, idJogador: string) {
+    this.listaObservacaoService.delete(idLista, idJogador)
+    .subscribe(response => {
+      this.showDeleteOk();
+    },
+      error => { });
+}
+
+showDeleteOk() {
+  let alert = this.alertCtrl.create({
+    title: 'Sucesso!',
+    message: 'Jogador removido com sucesso',
+    enableBackdropDismiss: false,
+    buttons: [
+      {
+        text: 'Ok',
+        handler: () => {
+          this.loadData();
+        }
+      }
+    ]
+  });
+  alert.present();
+}
+
+  openMenu(email: string, idLista: string, idJogador: string) {
     let actionSheet = this.actionsheetCtrl.create({
       title: 'Opções',
       cssClass: 'action-sheets-basic-page',
@@ -165,7 +190,7 @@ export class ListaObservacaoPage {
           role: 'destructive',
           icon: 'trash',
           handler: () => {
-            console.log('Delete clicked');
+            this.removeJogador(idLista, idJogador);
           }
         },
         {
@@ -173,7 +198,7 @@ export class ListaObservacaoPage {
           role: 'cancel', // will always sort to be on the bottom
           icon: 'close',
           handler: () => {
-            console.log('Cancel clicked');
+            
           }
         }
       ]

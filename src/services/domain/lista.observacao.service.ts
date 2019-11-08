@@ -49,4 +49,14 @@ export class ListaObservacaoService {
         return url;
     }
 
+    delete(id: string, idJogador: string) {
+        return this.http.delete(
+            `${API_CONFIG.baseUrl}/listas/observacoes/?id=${id}&jogador=${idJogador}`,
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        );
+    }
+
 }

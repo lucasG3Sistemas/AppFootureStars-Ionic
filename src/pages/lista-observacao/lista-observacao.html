@@ -19,7 +19,6 @@
   </ion-fab>
   <ion-list>
     <ion-item *ngFor="let item of items">
-      
       <!--
       <ion-item-options side="right">
         <button ion-button color="greenlight" (click)="enviarEmail(item.email)">
@@ -43,7 +42,7 @@
         <p>{{item.modalidade.descricao}}</p>
         <p>Posições: {{item.posicoes[0].descricao}}</p>
       </ion-item>
-      <ion-icon name="md-more" item-end (click)="openMenu(item.email)"></ion-icon>
+      <ion-icon name="md-more" item-end (click)="openMenu(item.email, listaObs.id, item.id)"></ion-icon>
       <!--<ion-icon name="md-chatbubbles" item-end color="greenlight" (click)="enviarEmail(item.email)"></ion-icon>
       <ion-icon name="trash" item-end color="danger" (click)="removeJogador(item.produto)"></ion-icon>-->
     </ion-item>
