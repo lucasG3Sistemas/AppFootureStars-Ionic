@@ -35,6 +35,10 @@ export class ListaObservacaoPage {
     this.loadData();
   }
 
+  ionViewDidEnter() {
+    this.loadData();
+  }
+
   loadData() {
     let localUser = this.storage.getLocalUser();
     this.listaObservacaoService.findListaObservacao(localUser.email).subscribe(response => {

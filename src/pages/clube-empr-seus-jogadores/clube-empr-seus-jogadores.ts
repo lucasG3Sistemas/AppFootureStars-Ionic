@@ -32,6 +32,10 @@ export class ClubeEmprSeusJogadoresPage {
     this.loadData();
   }
 
+  ionViewDidEnter() {
+    this.loadData();
+  }
+
   loadData() {
     let localUser = this.storage.getLocalUser();
     this.seusJogadoresService.findSeusJogadores(localUser.email).subscribe(response => {

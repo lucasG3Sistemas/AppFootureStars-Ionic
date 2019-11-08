@@ -29,6 +29,10 @@ export class VideosJogadorPage {
     this.loadData();
   }
 
+  ionViewDidEnter() {
+    this.loadData();
+  }
+
   loadData() {
     let localUser = this.storage.getLocalUser();
     this.jogadorLancesService.findLances(localUser.email).subscribe(response => {
