@@ -48,6 +48,7 @@ import { JogadorDetalheCadastrarPage } from '../pages/jogador-detalhe-cadastrar/
 import { VisualizarDetalhesJogadorPage } from '../pages/visualizar-detalhes-jogador/visualizar-detalhes-jogador';
 import { Camera } from '@ionic-native/camera';
 import { ImageUtilService } from '../services/image-util-service';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 @NgModule({
   declarations: [
@@ -110,6 +111,7 @@ import { ImageUtilService } from '../services/image-util-service';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ConfigProvider,
     Camera,
+    EmailComposer,
     YoutubeVideoPlayer,
     AuthInterceptorProvider,
     ErrorInterceptorProvider,

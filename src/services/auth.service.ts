@@ -52,6 +52,7 @@ export class AuthService {
         CONFIG_USU.nomeJogador = "";
         CONFIG_USU.idLanceJogador = "";
         CONFIG_USU.emailUsuario = "";
+        CONFIG_USU.nomeUsuario = "";
         this.storage.setLocalUser(null);
     }
 

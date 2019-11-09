@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "5.0.0",
     "@ionic-native/camera": "^4.20.0",
     "@ionic-native/core": "4.3.2",
+    "@ionic-native/email-composer": "^3.14.0",
     "@ionic-native/splash-screen": "4.3.2",
     "@ionic-native/status-bar": "4.3.2",
     "@ionic-native/video-player": "^5.15.1",
@@ -35,6 +36,7 @@
     "cordova-browser": "5.0.4",
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-email-composer": "^0.9.2",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.1.2",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -69,6 +71,9 @@
       "cordova-plugin-youtube-video-player": {},
       "ionic-plugin-keyboard": {},
       "cordova-plugin-camera": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
+      "cordova-plugin-email-composer": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       }
     },

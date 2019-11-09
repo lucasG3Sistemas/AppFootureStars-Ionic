@@ -7,6 +7,7 @@ import { StorageService } from '../../services/storage.service';
 import { BuscaJogadoresPage } from '../busca-jogadores/busca-jogadores';
 import { CONFIG_USU } from '../../config/config_usu';
 import { VisualizarDetalhesJogadorPage } from '../visualizar-detalhes-jogador/visualizar-detalhes-jogador';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 @IonicPage()
 @Component({
@@ -28,7 +29,8 @@ export class ListaObservacaoPage {
     public alertCtrl: AlertController,
     public storage: StorageService,
     public listaObservacaoService: ListaObservacaoService,
-    public actionsheetCtrl: ActionSheetController) {
+    public actionsheetCtrl: ActionSheetController,
+    private emailComposer: EmailComposer) {
   }
 
   ionViewDidLoad() {
@@ -44,7 +46,12 @@ export class ListaObservacaoPage {
     this.listaObservacaoService.findListaObservacao(localUser.email).subscribe(response => {
       this.listaObs = response;
       CONFIG_USU.idListaObservacao = this.listaObs.id;
-      this.items = response['jogadores']; 
+      if (this.listaObs.clubeFutebol != null) {
+        CONFIG_USU.nomeUsuario = 'Clube de Futebol ' + this.listaObs.clubeFutebol.nome;
+      } else {
+        CONFIG_USU.nomeUsuario = 'Empresário ' + this.listaObs.empresario.nome;
+      }
+      this.items = response['jogadores'];
       this.loadImageUrls();
     },
       error => { this.reg = 0; });
@@ -53,10 +60,10 @@ export class ListaObservacaoPage {
   //getItems(ev: any) {
   //  let localUser = this.storage.getLocalUser();
 
-    // set val to the value of the searchbar
+  // set val to the value of the searchbar
   //   const val = ev.target.value;
 
-    // if the value is an empty string don't filter the items
+  // if the value is an empty string don't filter the items
   //  if (val && val.trim() != '') {
 
   //    this.listaObservacaoService.findListaObservacaoNome(localUser.email, val).subscribe(response => {
@@ -67,13 +74,13 @@ export class ListaObservacaoPage {
   //    },
   //      error => { });
 
-      //this.items = this.items.filter((item) => {
-      //  return (item.nome.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      //})
-    //} else {
-      // Reset items back to all of the items
-    //  this.loadData();
-    //}
+  //this.items = this.items.filter((item) => {
+  //  return (item.nome.toLowerCase().indexOf(val.toLowerCase()) > -1);
+  //})
+  //} else {
+  // Reset items back to all of the items
+  //  this.loadData();
+  //}
   //}
 
   doRefresh(refresher) {
@@ -82,7 +89,7 @@ export class ListaObservacaoPage {
       refresher.complete();
     }, 1000);
   }
-  
+
   loadImageUrls() {
     this.reg = 0;
     for (var i = 0; i < this.items.length; i++) {
@@ -100,7 +107,7 @@ export class ListaObservacaoPage {
     return this.reg;
   }
 
-  enviarEmail(emailJogador : string) {
+  enviarEmail(emailJogador: string) {
     let alert = this.alertCtrl.create({
       title: 'Enviar Email',
       message: "Escreva abaixo uma mensagem que deseja enviar para o jogador:",
@@ -108,21 +115,20 @@ export class ListaObservacaoPage {
       inputs: [
         {
           name: 'mensagem',
-          placeholder: 'Escreva aqui a mensagem'
+          placeholder: 'Escreva aqui sua mensagem...'
         },
       ],
       buttons: [
         {
           text: 'Cancelar',
           handler: data => {
-            console.log('Cancel clicked');
+            
           }
         },
         {
           text: 'Enviar',
           handler: data => {
             this.btnEnviarEmail(data, emailJogador);
-            console.log('Saved clicked');
           }
         }
       ]
@@ -131,11 +137,20 @@ export class ListaObservacaoPage {
 
   }
 
-  btnEnviarEmail(data : any, emailJogador : string) {
+  btnEnviarEmail(data: any, emailJogador: string) {
     let localUser = this.storage.getLocalUser();
     console.log(data);
     console.log(emailJogador);
     console.log(localUser.email);
+
+    let email = {
+      to: emailJogador,
+      subject: 'App Footure Stars - Queremos Abrir uma Negociação',
+      body: data.mensagem + '\n\n' + 'Att. ' + CONFIG_USU.nomeUsuario + '\n',
+      isHtml: true
+    };
+
+    this.emailComposer.open(email);
   }
 
   chamaPaginaBuscaJogador() {
@@ -150,28 +165,28 @@ export class ListaObservacaoPage {
 
   removeJogador(idLista: string, idJogador: string) {
     this.listaObservacaoService.delete(idLista, idJogador)
-    .subscribe(response => {
-      this.showDeleteOk();
-    },
-      error => { });
-}
+      .subscribe(response => {
+        this.showDeleteOk();
+      },
+        error => { });
+  }
 
-showDeleteOk() {
-  let alert = this.alertCtrl.create({
-    title: 'Sucesso!',
-    message: 'Jogador removido com sucesso',
-    enableBackdropDismiss: false,
-    buttons: [
-      {
-        text: 'Ok',
-        handler: () => {
-          this.loadData();
+  showDeleteOk() {
+    let alert = this.alertCtrl.create({
+      title: 'Sucesso!',
+      message: 'Jogador removido com sucesso',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.loadData();
+          }
         }
-      }
-    ]
-  });
-  alert.present();
-}
+      ]
+    });
+    alert.present();
+  }
 
   openMenu(email: string, idLista: string, idJogador: string) {
     let actionSheet = this.actionsheetCtrl.create({
@@ -198,7 +213,7 @@ showDeleteOk() {
           role: 'cancel', // will always sort to be on the bottom
           icon: 'close',
           handler: () => {
-            
+
           }
         }
       ]
