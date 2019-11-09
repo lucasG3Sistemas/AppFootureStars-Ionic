@@ -146,7 +146,7 @@ export class ListaObservacaoPage {
     let email = {
       to: emailJogador,
       subject: 'App Footure Stars - Queremos Abrir uma Negociação',
-      body: data.mensagem + '<br><br>' + 'Att. ' + CONFIG_USU.nomeUsuario + '\n',
+      body: data.mensagem + '<br><br>' + 'Att. ' + CONFIG_USU.nomeUsuario + '!\n',
       isHtml: true
     };
 
