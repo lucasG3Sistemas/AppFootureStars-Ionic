@@ -139,9 +139,6 @@ export class ListaObservacaoPage {
 
   btnEnviarEmail(data: any, emailJogador: string) {
     let localUser = this.storage.getLocalUser();
-    console.log(data);
-    console.log(emailJogador);
-    console.log(localUser.email);
 
     let email = {
       to: emailJogador,
