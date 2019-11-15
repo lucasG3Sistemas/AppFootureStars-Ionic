@@ -32,6 +32,13 @@ export class ConfigClubePage {
     this.profileImage = 'assets/imgs/club-blank.jpg';
   }
 
+  doRefresh(refresher) {
+    this.loadData();
+    setTimeout(() => {
+      refresher.complete();
+    }, 1000);
+  }
+
   ionViewDidLoad() {
     this.loadData();
   }
@@ -39,6 +46,8 @@ export class ConfigClubePage {
   loadData() {
     let localUser = this.storage.getLocalUser();
     if (localUser && localUser.email) {
+      this.profileImage = null;
+      
       this.clubeService.findByEmail(localUser.email)
         .subscribe(response => {
           this.clube = response as ClubeFutebolDTO;

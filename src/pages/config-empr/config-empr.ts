@@ -32,6 +32,13 @@ export class ConfigEmprPage {
       this.profileImage = 'assets/imgs/avatar-blank.png';
   }
 
+  doRefresh(refresher) {
+    this.loadData();
+    setTimeout(() => {
+      refresher.complete();
+    }, 1000);
+  }
+
   ionViewDidLoad() {
     this.loadData();
   }
@@ -39,6 +46,8 @@ export class ConfigEmprPage {
   loadData() {
     let localUser = this.storage.getLocalUser();
     if (localUser && localUser.email) {
+      this.profileImage = null;
+      
       this.empresarioService.findByEmail(localUser.email)
         .subscribe(response => {
           this.empresario = response as EmpresarioDTO;
