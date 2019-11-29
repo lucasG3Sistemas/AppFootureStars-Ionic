@@ -4,5 +4,7 @@ export const CONFIG_USU = {
     idListaObservacao: "",
     idJogador: "",
     nomeJogador: "",
-    idLanceJogador: ""
+    idLanceJogador: "",
+    idClube: "",
+    nomeClube: ""
 }

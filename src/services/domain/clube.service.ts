@@ -19,7 +19,11 @@ export class ClubeFutebolService {
     findAll() : Observable<ClubeFutebolDTO[]> {
         return this.http.get<ClubeFutebolDTO[]>(`${API_CONFIG.baseUrl}/clubes`);
     }
-    
+
+    findById(id: string): Observable<ClubeFutebolDTO> {
+        return this.http.get<ClubeFutebolDTO>(`${API_CONFIG.baseUrl}/clubes/${id}`);
+    }
+
     findByEmail(email: string) : Observable<ClubeFutebolDTO> {
         return this.http.get<ClubeFutebolDTO>(`${API_CONFIG.baseUrl}/clubes/email?value=${email}`);
     }

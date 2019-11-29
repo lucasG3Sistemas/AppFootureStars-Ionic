@@ -51,6 +51,7 @@ import { ImageUtilService } from '../services/image-util-service';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { FiltrarJogadorPageModule } from '../pages/filtrar-jogador/filtrar-jogador.module';
 import { EditarJogadorPage } from '../pages/editar-jogador/editar-jogador';
+import { VisualizarClubePage } from '../pages/visualizar-clube/visualizar-clube';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { EditarJogadorPage } from '../pages/editar-jogador/editar-jogador';
     JogadorAdicionarLancePage,
     JogadorDetalheCadastrarPage,
     VisualizarDetalhesJogadorPage,
-    EditarJogadorPage
+    EditarJogadorPage,
+    VisualizarClubePage
   ],
   imports: [
     BrowserModule,
@@ -108,7 +110,8 @@ import { EditarJogadorPage } from '../pages/editar-jogador/editar-jogador';
     JogadorAdicionarLancePage,
     JogadorDetalheCadastrarPage,
     VisualizarDetalhesJogadorPage,
-    EditarJogadorPage
+    EditarJogadorPage,
+    VisualizarClubePage
   ],
   providers: [
     StatusBar,

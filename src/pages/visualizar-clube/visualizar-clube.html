@@ -1,0 +1,27 @@
+<ion-header>
+
+  <ion-navbar color="greenlight">
+    <ion-title>{{nomeClube}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="masters">
+  <ion-card>
+    <ion-avatar>
+      <img class="circle" [src]="clube?.imageUrl || 'assets/imgs/club-blank.jpg'">
+    </ion-avatar>
+    <ion-item>
+      <h2 text-center><b>{{clube?.nome}}</b></h2>
+      <ion-list-header>
+        INFORMAÇÕES
+      </ion-list-header>
+      <p>Modalidade: {{clube?.modalidades[0].descricao}}</p>
+      <p>Profissionalização: {{clube?.profissionalizacao==1 ? 'Clube Profissional' : 'Clube Amador'}}</p>
+      <p>Local:{{clube?.municipio}}/{{clube?.estado}} - {{clube?.pais}}</p>
+      <p></p>
+      <p>{{clube?.complemento}}</p>
+    </ion-item>
+  </ion-card>
+</ion-content>

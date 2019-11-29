@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ClubeFutebolService } from '../../services/domain/clube.service';
 import { ClubeFutebolDTO } from '../../models/clube.dto';
 import { API_CONFIG } from '../../config/api.config';
+import { CONFIG_USU } from '../../config/config_usu';
+import { VisualizarClubePage } from '../visualizar-clube/visualizar-clube';
 
 
 @IonicPage()
@@ -57,6 +59,12 @@ export class ClubesCadastradosPage {
 
   verificaReg() : number {
     return this.reg;
+  }
+
+  showDetail(idClube: string, nomeClube: string) {
+    CONFIG_USU.idClube = idClube;
+    CONFIG_USU.nomeClube = nomeClube;
+    this.navCtrl.push(VisualizarClubePage);
   }
 
 }
