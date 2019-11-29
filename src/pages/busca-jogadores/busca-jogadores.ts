@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController, Modal, ModalController } from 'ionic-angular';
 import { JogadorDTO } from '../../models/jogador.dto';
 import { JogadorService } from '../../services/domain/jogador.service';
 import { StorageService } from '../../services/storage.service';
@@ -8,6 +8,7 @@ import { CONFIG_USU } from '../../config/config_usu';
 import { ListaObservacaoService } from '../../services/domain/lista.observacao.service';
 import { ListaObservacaoDTO } from '../../models/lista.observacao.dto';
 import { VisualizarDetalhesJogadorPage } from '../visualizar-detalhes-jogador/visualizar-detalhes-jogador';
+import { FiltrarJogadorPage } from '../filtrar-jogador/filtrar-jogador';
 
 @IonicPage()
 @Component({
@@ -28,7 +29,8 @@ export class BuscaJogadoresPage {
     public storage: StorageService,
     public jogadorService: JogadorService,
     public listaObservacaoService: ListaObservacaoService,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    public modalCtrl: ModalController) {
 
   }
 
@@ -59,7 +61,7 @@ export class BuscaJogadoresPage {
 
   getItems(ev: any) {
     let localUser = this.storage.getLocalUser();
-    
+
     // set val to the value of the searchbar
     const val = ev.target.value;
 
@@ -72,7 +74,7 @@ export class BuscaJogadoresPage {
       },
         error => { });
 
-      
+
       //this.items = this.items.filter((item) => {
       //  return (item.nome.toLowerCase().indexOf(val.toLowerCase()) > -1);
       //})
@@ -113,13 +115,13 @@ export class BuscaJogadoresPage {
       idJogador: idJogador,
       idUsuario: localUser.email
     };
-    
+
     this.listaObservacaoService.insert(this.listaObservacao)
       .subscribe(response => {
         this.showInsertOk();
       },
         error => { });
-    
+
   }
 
   showInsertOk() {
@@ -143,6 +145,32 @@ export class BuscaJogadoresPage {
     CONFIG_USU.idJogador = idJogador;
     CONFIG_USU.nomeJogador = nomeJogador;
     this.navCtrl.push(VisualizarDetalhesJogadorPage);
+  }
+
+  openFiltroModal() {
+
+    const modal: Modal = this.modalCtrl.create(FiltrarJogadorPage);
+    modal.present();
+    modal.onDidDismiss((data) => {
+      console.log(data);
+      this.getFiltro(data);
+    })
+    //const profileModal = this.modalCtrl.create(FiltrarJogadorPage);
+    //profileModal.onDidDismiss(data => {
+    //  console.log(data);
+    //this.madalDismissData = JSON.stringify(data);
+    //});
+    //profileModal.present();
+  }
+
+  getFiltro(data: any) {
+    //console.log(JSON.stringify(data));
+    let localUser = this.storage.getLocalUser();
+    this.jogadorService.findFiltroAvancado(CONFIG_USU.idListaObservacao, localUser.email, JSON.stringify(data)).subscribe(response => {
+      console.log(response);
+      this.items = response;
+      this.loadImageUrls();
+    })
   }
 
 }

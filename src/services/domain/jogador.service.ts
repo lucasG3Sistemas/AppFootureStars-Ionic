@@ -16,6 +16,10 @@ export class JogadorService {
 
     }
 
+    findFiltroAvancado(idLista: string, usuario: string, data: any): Observable<JogadorDTO[]> {
+        return this.http.get<JogadorDTO[]>(`${API_CONFIG.baseUrl}/jogadores/filtro/?idLista=${idLista}&usuario=${usuario}`, {params:data});
+    }
+
     findJogNome(idLista: string, usuario: string, nome: string): Observable<JogadorDTO[]> {
         return this.http.get<JogadorDTO[]>(`${API_CONFIG.baseUrl}/jogadores/?idLista=${idLista}&usuario=${usuario}&nome=${nome}`);
     }
@@ -40,6 +44,17 @@ export class JogadorService {
     insert(obj: JogadorDTO) {
         return this.http.post(
             `${API_CONFIG.baseUrl}/jogadores`,
+            obj,
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        );
+    }
+
+    update(obj: JogadorDTO) {
+        return this.http.put(
+            `${API_CONFIG.baseUrl}/jogadores/${obj.id}`,
             obj,
             {
                 observe: 'response',

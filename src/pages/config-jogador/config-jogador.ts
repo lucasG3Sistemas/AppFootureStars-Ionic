@@ -8,6 +8,7 @@ import { LoginPage } from '../login/login';
 import { AuthService } from '../../services/auth.service';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { DomSanitizer } from '@angular/platform-browser';
+import { EditarJogadorPage } from '../editar-jogador/editar-jogador';
 
 @IonicPage()
 @Component({
@@ -20,6 +21,8 @@ export class ConfigJogadorPage {
   picture: string;
   profileImage;
   cameraOn: boolean = false;
+  regModalidade: any;
+  regPosicoes: any;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -29,7 +32,7 @@ export class ConfigJogadorPage {
     public camera: Camera,
     public sanitizer: DomSanitizer) {
 
-      this.profileImage = 'assets/imgs/avatar-blank.png';
+    this.profileImage = 'assets/imgs/avatar-blank.png';
   }
 
   doRefresh(refresher) {
@@ -47,10 +50,14 @@ export class ConfigJogadorPage {
     let localUser = this.storage.getLocalUser();
     if (localUser && localUser.email) {
       this.profileImage = null;
-          
+
       this.jogadorService.findByEmail(localUser.email)
         .subscribe(response => {
+          console.log(response);
+          this.regModalidade = response['modalidade'];
+          this.regPosicoes = response['posicoes']
           this.jogador = response as JogadorDTO;
+          
           this.getImageIfExists();
         },
           error => {
@@ -63,16 +70,35 @@ export class ConfigJogadorPage {
     }
   }
 
+  editar() {
+    this.navCtrl.push(EditarJogadorPage, {
+      idJogador: this.jogador.id,
+      altura: this.jogador.altura,
+      peso: this.jogador.peso,
+      profissionalizacao: this.jogador.profissionalizacao,
+      codigo_cbf: this.jogador.codigo_cbf,
+      idModalidade: this.regModalidade.id,
+      idPosicao1: this.regPosicoes[0] != null ? this.regPosicoes[0].id : "",
+      idPosicao2: this.regPosicoes[1] != null ? this.regPosicoes[1].id : "",
+      idPosicao3: this.regPosicoes[2] != null ? this.regPosicoes[2].id : "",
+      perna_preferida: this.jogador.perna_preferida,
+      prefixo_fone: this.jogador.prefixo_fone,
+      ddd_fone: this.jogador.ddd_fone,
+      fone: this.jogador.fone,
+      complemento: this.jogador.complemento
+    });
+  }
+
   getImageIfExists() {
     this.jogadorService.getImageFromBucket(this.jogador.id)
       .subscribe(response => {
         this.jogador.imageUrl = `${API_CONFIG.bucketBaseUrl}/jdor${this.jogador.id}.jpg`;
         this.blobToDataURL(response).then(dataUrl => {
-          let str : string = dataUrl as string;
+          let str: string = dataUrl as string;
           this.profileImage = this.sanitizer.bypassSecurityTrustUrl(str);
         });
       },
-        error => { 
+        error => {
           this.profileImage = 'assets/imgs/avatar-blank.png';
         });
   }

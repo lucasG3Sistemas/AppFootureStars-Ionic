@@ -55,9 +55,9 @@ export class SignupJogadorPage {
       idPosicao2: [null],
       idPosicao3: [null],
       perna_preferida: ['', [Validators.required]],
-      prefixo_fone: ['', [Validators.required]],
-      ddd_fone: ['', [Validators.required]],
-      fone: ['', [Validators.required]],
+      prefixo_fone: ['55', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
+      ddd_fone: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
+      fone: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(9)]],
       email: [CONFIG_USU.emailUsuario, [Validators.required, Validators.email]],
       complemento: [''],
       idClubeFutebol: [null],
@@ -132,7 +132,7 @@ export class SignupJogadorPage {
   }
 
   //public event = {
-    //month: '1990-02-19'
+  //month: '1990-02-19'
   //}
 
 }

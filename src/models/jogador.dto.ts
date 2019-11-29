@@ -1,3 +1,6 @@
+import { ModalidadeDTO } from "./modalidade.dto";
+import { ModalidadePosicaoDTO } from "./modalidade.posicao.dto";
+
 export interface JogadorDTO {
     id : string;
     nome : string;

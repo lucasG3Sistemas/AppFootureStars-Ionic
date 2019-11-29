@@ -1,0 +1,155 @@
+<ion-header>
+
+  <ion-navbar color="greenlight">
+    <ion-title>Editar Perfil</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <form [formGroup]="formGroup" (ngSubmit)="salvarEdicao(); $event.preventDefault()">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label floating>Altura (cm)*</ion-label>
+              <ion-input name="altura" [(ngModel)]="altura" formControlName="altura" type="tel" pattern="[0-9]*"></ion-input>
+              cm
+            </ion-item>
+            <p class="danger" *ngIf="formGroup.controls.altura.dirty && formGroup.controls.altura.errors" margin-left>
+              Valor inválido</p>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label floating>Peso (kg)*</ion-label>
+              <ion-input name="peso" [(ngModel)]="peso" formControlName="peso" type="tel" pattern="[0-9]*"></ion-input>
+              kg
+            </ion-item>
+            <p class="danger" *ngIf="formGroup.controls.peso.dirty && formGroup.controls.peso.errors" margin-left>Valor
+              inválido</p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-list radio-group name="profissionalizacao" [(ngModel)]="profissionalizacao" formControlName="profissionalizacao">
+      <ion-list-header>
+        Profissionalização*
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Atleta Profissional</ion-label>
+        <ion-radio checked="true" value="1"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Atleta Amador</ion-label>
+        <ion-radio value="2"></ion-radio>
+      </ion-item>
+    </ion-list>
+    <p class="danger"
+      *ngIf="formGroup.controls.profissionalizacao.dirty && formGroup.controls.profissionalizacao.errors" margin-left>
+      Valor inválido</p>
+    <ion-item>
+      <ion-label floating>Código CBF</ion-label>
+      <ion-input name="codigo_cbf" [(ngModel)]="codigo_cbf" formControlName="codigo_cbf" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Modalidade Esportiva*</ion-label>
+      <ion-select name="idModalidade" [(ngModel)]="idModalidade" formControlName="idModalidade" (ionChange)="updatePosicoes()">
+        <ion-option *ngFor="let modalidade of modalidades" [value]="modalidade.id">
+          {{modalidade.descricao}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.idModalidade.dirty && formGroup.controls.idModalidade.errors"
+      margin-left>Valor inválido</p>
+    <ion-item>
+      <ion-label floating>Posição Principal*</ion-label>
+      <ion-select name="idPosicao1" [(ngModel)]="idPosicao1" formControlName="idPosicao1">
+        <ion-option *ngFor="let modalidadePosicao of modalidadePosicoes" [value]="modalidadePosicao.id">
+          {{modalidadePosicao.descricao}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.idPosicao1.dirty && formGroup.controls.idPosicao1.errors" margin-left>
+      Valor inválido</p>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label stacked>Posição Secundária</ion-label>
+              <ion-select name="idPosicao2" [(ngModel)]="idPosicao2" formControlName="idPosicao2">
+                <ion-option *ngFor="let modalidadePosicao of modalidadePosicoes" [value]="modalidadePosicao.id">
+                  {{modalidadePosicao.descricao}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label stacked>Posição Terciária</ion-label>
+              <ion-select name="idPosicao3" [(ngModel)]="idPosicao3" formControlName="idPosicao3">
+                <ion-option *ngFor="let modalidadePosicao of modalidadePosicoes" [value]="modalidadePosicao.id">
+                  {{modalidadePosicao.descricao}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-list radio-group name="perna_preferida" [(ngModel)]="perna_preferida" formControlName="perna_preferida">
+      <ion-list-header>
+        Perna Preferida*
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Direita</ion-label>
+        <ion-radio checked="true" value="1"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Esquerda</ion-label>
+        <ion-radio value="2"></ion-radio>
+      </ion-item>
+    </ion-list>
+    <p class="danger" *ngIf="formGroup.controls.perna_preferida.dirty && formGroup.controls.perna_preferida.errors"
+      margin-left>Valor inválido</p>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label floating>Prefixo Fone*</ion-label>
+              <ion-input name="prefixo_fone" [(ngModel)]="prefixo_fone" formControlName="prefixo_fone" type="tel" pattern="[0-9]*"></ion-input>
+            </ion-item>
+            <p class="danger" *ngIf="formGroup.controls.prefixo_fone.dirty && formGroup.controls.prefixo_fone.errors"
+              margin-left>Valor inválido</p>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-item>
+              <ion-label floating>DDD Fone*</ion-label>
+              <ion-input name="ddd_fone" [(ngModel)]="ddd_fone" formControlName="ddd_fone" type="tel" pattern="[0-9]*"></ion-input>
+            </ion-item>
+            <p class="danger" *ngIf="formGroup.controls.ddd_fone.dirty && formGroup.controls.ddd_fone.errors"
+              margin-left>Valor inválido</p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-item>
+      <ion-label floating>Fone*</ion-label>
+      <ion-input name="fone" [(ngModel)]="fone" formControlName="fone" type="tel" pattern="[0-9]*"></ion-input>
+    </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.fone.dirty && formGroup.controls.fone.errors" margin-left>Valor inválido
+    </p>
+    <ion-item>
+      <ion-label floating>Complemento</ion-label>
+      <ion-input name="complemento" [(ngModel)]="complemento" formControlName="complemento" type="textarea"></ion-input>
+    </ion-item>
+    <button ion-button block type="submit" color="greenlight" [disabled]="formGroup.invalid">Salvar</button>
+  </form>
+
+</ion-content>

@@ -21,28 +21,28 @@ export class SignupEmpresarioPage {
 
   constructor(
     public navCtrl: NavController,
-     public navParams: NavParams,
-     public formBuilder: FormBuilder,
-     public estadoService: EstadoService,
-     public cidadeService: CidadeService,
-     public empresarioService: EmpresarioService,
-     public alertCtrl: AlertController) {
+    public navParams: NavParams,
+    public formBuilder: FormBuilder,
+    public estadoService: EstadoService,
+    public cidadeService: CidadeService,
+    public empresarioService: EmpresarioService,
+    public alertCtrl: AlertController) {
 
-      this.formGroup = this.formBuilder.group({
-        nome: ['', [Validators.required]],
-        cpf : ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
-        data_nasc : ['', [Validators.required]],
-        nacionalidade : ['', [Validators.required]],
-        estado_nasc : [null, [Validators.required]],
-        municipio_nasc : [null, [Validators.required]],
-        sexo : ['', [Validators.required]],
-        prefixo_fone: ['', [Validators.required]],
-        ddd_fone: ['', [Validators.required]],
-        fone: ['', [Validators.required]],
-        complemento: [''],
-        idUsuario: CONFIG_USU.emailUsuario
-      });
-      
+    this.formGroup = this.formBuilder.group({
+      nome: ['', [Validators.required]],
+      cpf: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+      data_nasc: ['', [Validators.required]],
+      nacionalidade: ['', [Validators.required]],
+      estado_nasc: [null, [Validators.required]],
+      municipio_nasc: [null, [Validators.required]],
+      sexo: ['', [Validators.required]],
+      prefixo_fone: ['55', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
+      ddd_fone: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
+      fone: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(9)]],
+      complemento: [''],
+      idUsuario: CONFIG_USU.emailUsuario
+    });
+
   }
 
   ionViewDidLoad() {
@@ -83,7 +83,7 @@ export class SignupEmpresarioPage {
         {
           text: 'Ok',
           handler: () => {
-            this.navCtrl.popToRoot(); 
+            this.navCtrl.popToRoot();
             //this.navCtrl.pop();
           }
         }

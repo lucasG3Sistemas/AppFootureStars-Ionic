@@ -49,6 +49,8 @@ import { VisualizarDetalhesJogadorPage } from '../pages/visualizar-detalhes-joga
 import { Camera } from '@ionic-native/camera';
 import { ImageUtilService } from '../services/image-util-service';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { FiltrarJogadorPageModule } from '../pages/filtrar-jogador/filtrar-jogador.module';
+import { EditarJogadorPage } from '../pages/editar-jogador/editar-jogador';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,8 @@ import { EmailComposer } from '@ionic-native/email-composer';
     SignupEmpresarioPage,
     JogadorAdicionarLancePage,
     JogadorDetalheCadastrarPage,
-    VisualizarDetalhesJogadorPage
+    VisualizarDetalhesJogadorPage,
+    EditarJogadorPage
   ],
   imports: [
     BrowserModule,
@@ -80,6 +83,7 @@ import { EmailComposer } from '@ionic-native/email-composer';
     HttpModule,
     IonicModule.forRoot(MyApp),
     IntroPageModule,
+    FiltrarJogadorPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -103,7 +107,8 @@ import { EmailComposer } from '@ionic-native/email-composer';
     SignupEmpresarioPage,
     JogadorAdicionarLancePage,
     JogadorDetalheCadastrarPage,
-    VisualizarDetalhesJogadorPage
+    VisualizarDetalhesJogadorPage,
+    EditarJogadorPage
   ],
   providers: [
     StatusBar,

@@ -7,7 +7,11 @@
 </ion-header>
 
 <ion-content padding class="masters">
-  <ion-searchbar placeholder="Pesquisar por nome..." (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-item>
+  <ion-searchbar placeholder="Buscar por nome..." (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-icon name="ios-switch" item-end color="greenlight" (click)="openFiltroModal()"></ion-icon>
+  </ion-item>
+  
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -23,7 +27,7 @@
         <p>Nacionalidade: {{item.nacionalidade}}</p>
         <p>{{item.profissionalizacao==1 ? 'Jogador Profissional' : 'Jogador Amador'}}</p>
         <p>{{item.modalidade.descricao}}</p>
-        <p>Posições: {{item.posicoes[0].descricao}}</p>
+        <p>Posições: {{item.posicoes[0] != null ? item.posicoes[0].descricao : ""}}</p>
       </ion-item>
       <ion-icon name="md-add-circle" item-end color="greenlight" (click)="adicionarJogador(item.id)"></ion-icon>
     </ion-item>
