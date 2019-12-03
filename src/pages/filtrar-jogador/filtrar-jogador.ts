@@ -45,8 +45,8 @@ export class FiltrarJogadorPage {
       //municipio_nasc: [null, [Validators.required]],
 
       idModalidade: [null],
-      idPosicao: [null],
-      sexo: [''],
+      idPosicao: [''],
+      sexo: [1],
       alturaInicial: [''],
       alturaFinal: [''],
       pesoInicial: [''],
@@ -86,7 +86,7 @@ export class FiltrarJogadorPage {
     let filtroJogadorDTO: any;
     filtroJogadorDTO;
     let data = { 
-      filtroJogadorDTO: {
+      //filtroJogadorDTO: {
         idModalidade: this.formGroup.controls.idModalidade.value,
         idPosicao: this.formGroup.controls.idPosicao.value,
         sexo: this.formGroup.controls.sexo.value,
@@ -96,7 +96,7 @@ export class FiltrarJogadorPage {
         pesoFinal: this.formGroup.controls.pesoFinal.value,
         profissionalizacao: this.formGroup.controls.profissionalizacao.value,
         perna_preferida: this.formGroup.controls.perna_preferida.value
-      }
+     //}
     };
     this.viewCtrl.dismiss(data);
   }

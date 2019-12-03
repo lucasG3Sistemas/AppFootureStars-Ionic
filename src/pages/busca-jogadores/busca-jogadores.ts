@@ -21,6 +21,7 @@ export class BuscaJogadoresPage {
   searchQuery: string = '';
   items: JogadorDTO[];
   listaObservacao: ListaObservacaoDTO;
+  data: any = '';
 
   constructor(
     public navCtrl: NavController,
@@ -36,6 +37,7 @@ export class BuscaJogadoresPage {
 
   ionViewDidLoad() {
     this.loadData();
+    this.data = '';
   }
 
   loadData() {
@@ -86,6 +88,7 @@ export class BuscaJogadoresPage {
 
   doRefresh(refresher) {
     this.loadData();
+    this.data = '';
     setTimeout(() => {
       refresher.complete();
     }, 1000);
@@ -152,25 +155,32 @@ export class BuscaJogadoresPage {
     const modal: Modal = this.modalCtrl.create(FiltrarJogadorPage);
     modal.present();
     modal.onDidDismiss((data) => {
-      console.log(data);
-      this.getFiltro(data);
+      if (data != null) {
+        this.data = data;
+        this.getFiltro(data);
+      } else {
+        this.loadData();
+      }
     })
-    //const profileModal = this.modalCtrl.create(FiltrarJogadorPage);
-    //profileModal.onDidDismiss(data => {
-    //  console.log(data);
-    //this.madalDismissData = JSON.stringify(data);
-    //});
-    //profileModal.present();
   }
 
   getFiltro(data: any) {
-    //console.log(JSON.stringify(data));
+    let loader = this.presentLoading();
     let localUser = this.storage.getLocalUser();
-    this.jogadorService.findFiltroAvancado(CONFIG_USU.idListaObservacao, localUser.email, JSON.stringify(data)).subscribe(response => {
-      console.log(response);
-      this.items = response;
+    this.jogadorService.findFiltroAvancado(CONFIG_USU.idListaObservacao, localUser.email, data).subscribe(response => {
+      this.items = JSON.parse(response.body);
+      loader.dismiss();
       this.loadImageUrls();
-    })
+    },
+    error => {
+      loader.dismiss();
+    });
+  }
+
+  ionViewDidEnter() {
+    if (this.data != '') {
+      this.getFiltro(this.data);
+    }
   }
 
 }
