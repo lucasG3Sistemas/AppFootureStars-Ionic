@@ -8,23 +8,23 @@ import { UsuarioDTO } from "../../models/usuario.dto";
 @Injectable()
 export class UsuarioService {
 
-    constructor(public http : HttpClient, public storage : StorageService) {
+    constructor(public http: HttpClient, public storage: StorageService) {
 
     }
 
-    //findByEmail(email: string) : Observable<JogadorDTO> {
-    //    return this.http.get<JogadorDTO>(`${API_CONFIG.baseUrl}/jogadores/email?value=${email}`);
-    //}
+    findByEmail(email: string): Observable<UsuarioDTO> {
+        return this.http.get<UsuarioDTO>(`${API_CONFIG.baseUrl}/usuarios/login/${email}`);
+    }
 
-    insert(obj : UsuarioDTO) {
+    insert(obj: UsuarioDTO) {
         return this.http.post(
-            `${API_CONFIG.baseUrl}/usuarios`, 
+            `${API_CONFIG.baseUrl}/usuarios`,
             obj,
-            { 
-                observe: 'response', 
+            {
+                observe: 'response',
                 responseType: 'text'
             }
-        ); 
+        );
     }
 
 }

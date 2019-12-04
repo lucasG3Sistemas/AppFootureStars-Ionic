@@ -42,6 +42,10 @@ export class ConfigJogadorPage {
     }, 1000);
   }
 
+  ionViewDidEnter() {
+    this.loadData();
+  }
+
   ionViewDidLoad() {
     this.loadData();
   }
@@ -53,7 +57,6 @@ export class ConfigJogadorPage {
 
       this.jogadorService.findByEmail(localUser.email)
         .subscribe(response => {
-          console.log(response);
           this.regModalidade = response['modalidade'];
           this.regPosicoes = response['posicoes']
           this.jogador = response as JogadorDTO;

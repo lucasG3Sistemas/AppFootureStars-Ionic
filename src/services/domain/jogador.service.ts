@@ -16,8 +16,18 @@ export class JogadorService {
 
     }
 
-    findFiltroAvancado(idLista: string, usuario: string, data: any): Observable<JogadorDTO[]> {
-        return this.http.get<JogadorDTO[]>(`${API_CONFIG.baseUrl}/jogadores/filtro/?idLista=${idLista}&usuario=${usuario}`, {params:data});
+    findFiltroAvancado(idLista: string, usuario: string, data: any) {
+
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/jogadores/filtro/?idLista=${idLista}&usuario=${usuario}`,
+            data,
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        );
+
+        //return this.http.get<JogadorDTO[]>(`${API_CONFIG.baseUrl}/jogadores/filtro/?idLista=${idLista}&usuario=${usuario}`, {params:data});
     }
 
     findJogNome(idLista: string, usuario: string, nome: string): Observable<JogadorDTO[]> {
@@ -34,6 +44,10 @@ export class JogadorService {
 
     findByEmail(email: string): Observable<JogadorDTO> {
         return this.http.get<JogadorDTO>(`${API_CONFIG.baseUrl}/jogadores/email?value=${email}`);
+    }
+
+    findExistsEmail(email: string): Observable<JogadorDTO> {
+        return this.http.get<JogadorDTO>(`${API_CONFIG.baseUrl}/jogadores/email/exists?value=${email}`);
     }
 
     getImageFromBucket(id: string): Observable<any> {

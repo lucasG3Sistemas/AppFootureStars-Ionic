@@ -12,6 +12,7 @@ import { ModalidadeService } from '../../services/domain/modalidade.service';
 import { ModalidadePosicaoService } from '../../services/domain/modalidade.posicao.service';
 import { JogadorService } from '../../services/domain/jogador.service';
 import { StorageService } from '../../services/storage.service';
+import { TabsPage } from '../tabs/tabs';
 
 @IonicPage()
 @Component({
@@ -26,6 +27,8 @@ export class SignupJogadorPage {
   modalidades: ModalidadeDTO[];
   modalidadePosicoes: ModalidadePosicaoDTO[];
 
+  loginEfetuado: boolean = false;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -37,6 +40,8 @@ export class SignupJogadorPage {
     public modalidadePosicaoService: ModalidadePosicaoService,
     public jogadorService: JogadorService,
     public alertCtrl: AlertController) {
+
+    this.loginEfetuado = this.navParams.get("loginEfetuado");
 
     this.formGroup = this.formBuilder.group({
       nome: ['', [Validators.required]],
@@ -123,7 +128,11 @@ export class SignupJogadorPage {
         {
           text: 'Ok',
           handler: () => {
-            this.navCtrl.popToRoot();
+            if (this.loginEfetuado) {
+              this.navCtrl.setRoot(TabsPage);
+            } else {
+              this.navCtrl.popToRoot();
+            }
           }
         }
       ]
@@ -131,8 +140,8 @@ export class SignupJogadorPage {
     alert.present();
   }
 
-  //public event = {
-  //month: '1990-02-19'
-  //}
+  public event = {
+    month: '1990-01-01'
+  }
 
 }

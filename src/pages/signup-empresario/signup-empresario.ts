@@ -7,6 +7,7 @@ import { CidadeDTO } from '../../models/municipio.dto';
 import { EstadoService } from '../../services/domain/estado.service';
 import { CidadeService } from '../../services/domain/municipio.service';
 import { EmpresarioService } from '../../services/domain/empresario.service';
+import { TabsEmprPage } from '../tabsempr/tabsempr';
 
 @IonicPage()
 @Component({
@@ -19,6 +20,8 @@ export class SignupEmpresarioPage {
   estados: EstadoDTO[];
   cidades: CidadeDTO[];
 
+  loginEfetuado: boolean = false;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -27,6 +30,8 @@ export class SignupEmpresarioPage {
     public cidadeService: CidadeService,
     public empresarioService: EmpresarioService,
     public alertCtrl: AlertController) {
+
+    this.loginEfetuado = this.navParams.get("loginEfetuado");
 
     this.formGroup = this.formBuilder.group({
       nome: ['', [Validators.required]],
@@ -83,13 +88,20 @@ export class SignupEmpresarioPage {
         {
           text: 'Ok',
           handler: () => {
-            this.navCtrl.popToRoot();
-            //this.navCtrl.pop();
+            if (this.loginEfetuado) {
+              this.navCtrl.setRoot(TabsEmprPage);
+            } else {
+              this.navCtrl.popToRoot();
+            }
           }
         }
       ]
     });
     alert.present();
+  }
+
+  public event = {
+    month: '1990-01-01'
   }
 
 }

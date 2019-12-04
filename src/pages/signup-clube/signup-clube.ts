@@ -9,6 +9,7 @@ import { EstadoService } from '../../services/domain/estado.service';
 import { ModalidadeDTO } from '../../models/modalidade.dto';
 import { ModalidadeService } from '../../services/domain/modalidade.service';
 import { ClubeFutebolService } from '../../services/domain/clube.service';
+import { TabsClubePage } from '../tabsclube/tabsclube';
 
 @IonicPage()
 @Component({
@@ -22,6 +23,8 @@ export class SignupClubePage {
   estados: EstadoDTO[];
   cidades: CidadeDTO[];
 
+  loginEfetuado: boolean = false;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -31,6 +34,8 @@ export class SignupClubePage {
     public cidadeService: CidadeService,
     public clubeFutebolService: ClubeFutebolService,
     public alertCtrl: AlertController) {
+
+    this.loginEfetuado = this.navParams.get("loginEfetuado");
 
     this.formGroup = this.formBuilder.group({
       nome: ['', [Validators.required]],
@@ -92,7 +97,11 @@ export class SignupClubePage {
         {
           text: 'Ok',
           handler: () => {
-            this.navCtrl.popToRoot();
+            if (this.loginEfetuado) {
+              this.navCtrl.setRoot(TabsClubePage);
+            } else {
+              this.navCtrl.popToRoot();
+            }
           }
         }
       ]

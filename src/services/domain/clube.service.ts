@@ -28,6 +28,10 @@ export class ClubeFutebolService {
         return this.http.get<ClubeFutebolDTO>(`${API_CONFIG.baseUrl}/clubes/email?value=${email}`);
     }
 
+    findExistsEmail(email: string) : Observable<ClubeFutebolDTO> {
+        return this.http.get<ClubeFutebolDTO>(`${API_CONFIG.baseUrl}/clubes/email/exists?value=${email}`);
+    }
+
     getImageFromBucket(id : string) : Observable<any> {
         let url = `${API_CONFIG.bucketBaseUrl}/club${id}.jpg`
         return this.http.get(url, {responseType : 'blob'});
