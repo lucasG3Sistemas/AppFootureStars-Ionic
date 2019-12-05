@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { StorageService } from '../../services/storage.service';
 import { EmpresarioDTO } from '../../models/empresario.dto';
 import { EmpresarioService } from '../../services/domain/empresario.service';
@@ -27,7 +27,8 @@ export class ConfigEmprPage {
     public empresarioService: EmpresarioService,
     public auth: AuthService,
     public camera: Camera,
-    public sanitizer: DomSanitizer) {
+    public sanitizer: DomSanitizer,
+    public loadingCtrl: LoadingController) {
 
       this.profileImage = 'assets/imgs/avatar-blank.png';
   }
@@ -123,13 +124,24 @@ export class ConfigEmprPage {
   }
 
   sendPicture() {
+    let loader = this.presentLoading();
     this.empresarioService.uploadPicture(this.picture)
       .subscribe(response => {
         this.picture = null;
         this.loadData();
+        loader.dismiss();
       },
         error => {
+          loader.dismiss();
         });
+  }
+
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Salvando..."
+    });
+    loader.present();
+    return loader;
   }
 
   cancel() {

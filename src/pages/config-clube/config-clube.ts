@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { StorageService } from '../../services/storage.service';
 import { API_CONFIG } from '../../config/api.config';
 import { ClubeFutebolService } from '../../services/domain/clube.service';
@@ -27,7 +27,8 @@ export class ConfigClubePage {
     public clubeService: ClubeFutebolService,
     public auth: AuthService,
     public camera: Camera,
-    public sanitizer: DomSanitizer) {
+    public sanitizer: DomSanitizer,
+    public loadingCtrl: LoadingController) {
 
     this.profileImage = 'assets/imgs/club-blank.jpg';
   }
@@ -123,13 +124,24 @@ export class ConfigClubePage {
   }
 
   sendPicture() {
+    let loader = this.presentLoading();
     this.clubeService.uploadPicture(this.picture)
       .subscribe(response => {
         this.picture = null;
         this.loadData();
+        loader.dismiss();
       },
         error => {
+          loader.dismiss();
         });
+  }
+
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Salvando..."
+    });
+    loader.present();
+    return loader;
   }
 
   cancel() {
