@@ -102,7 +102,7 @@ export class LoginPage {
               },
               error => {
                 CONFIG_USU.emailUsuario = this.usuario.email;
-                this.navCtrl.push(SignupClubePage, {
+                this.navCtrl.setRoot(SignupClubePage, {
                   loginEfetuado: true
                 });
               });
@@ -116,7 +116,7 @@ export class LoginPage {
               },
               error => {
                 CONFIG_USU.emailUsuario = this.usuario.email;
-                this.navCtrl.push(SignupEmpresarioPage, {
+                this.navCtrl.setRoot(SignupEmpresarioPage, {
                   loginEfetuado: true
                 });
               });

@@ -25,10 +25,9 @@ export class VisualizarClubePage {
     let loader = this.presentLoading();
     this.clubeService.findById(CONFIG_USU.idClube)
       .subscribe(response => {
-        console.log(response);
         this.clube = response;
-        loader.dismiss();
         this.getImageIfExists();
+        loader.dismiss();
       },
       error => {
         loader.dismiss();

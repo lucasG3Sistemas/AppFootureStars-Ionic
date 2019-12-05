@@ -19,7 +19,8 @@
       </ion-list-header>
       <p>Modalidade: {{clube?.modalidades[0].descricao}}</p>
       <p>Profissionalização: {{clube?.profissionalizacao==1 ? 'Clube Profissional' : 'Clube Amador'}}</p>
-      <p>Local:{{clube?.municipio}}/{{clube?.estado}} - {{clube?.pais}}</p>
+      <p>Local: {{clube?.municipio}}/{{clube?.estado}} - {{clube?.pais}}</p>
+      <p>Email: {{clube?.usuario.email}}</p>
       <p></p>
       <p>{{clube?.complemento}}</p>
     </ion-item>
