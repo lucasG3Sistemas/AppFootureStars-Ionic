@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { SignupJogadorPage } from '../signup-jogador/signup-jogador';
 import { UsuarioDTO } from '../../models/usuario.dto';
 import { SignupClubePage } from '../signup-clube/signup-clube';
@@ -22,7 +22,8 @@ export class SignupPage {
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public usuarioService: UsuarioService,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+    public loadingCtrl: LoadingController) {
 
     this.formGroup = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -36,13 +37,16 @@ export class SignupPage {
   }
 
   signupUser() {
+    let loader = this.presentLoading();
     CONFIG_USU.emailUsuario = this.formGroup.value.email;
-
     this.usuarioService.insert(this.formGroup.value)
       .subscribe(response => {
+        loader.dismiss();
         this.showInsertOk();
       },
-        error => { });
+      error => { 
+        loader.dismiss(); 
+      });
   }
 
   showInsertOk() {
@@ -67,6 +71,14 @@ export class SignupPage {
       ]
     });
     alert.present();
+  }
+
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Aguarde..."
+    });
+    loader.present();
+    return loader;
   }
 
 }
